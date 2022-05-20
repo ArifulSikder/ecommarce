@@ -22,6 +22,7 @@
                                 <th style="width: 10%">সিরিয়াল</th>
                                 <th style="width: 20%">ক্যাটেগরির ছবি</th>
                                 <th style="width: 20%">ক্যাটেগরির নাম</th>
+                                <th style="width: 15%">ক্যাটেগরির স্লাগ</th>
                                 <th style="width: 15%">ক্যাটেগরির সাজান</th>
                                 <th style="width: 15%">ক্যাটেগরির আইকন</th>
                                 <th style="width: 20%" class="text-center">আকশন</th>
@@ -36,6 +37,7 @@
                                     <td>{{ $serial++ }}</td>
                                     <td><img width="100px" src="{{ asset($category->category_thumbnail) }}" alt=""></td>
                                     <td>{{ $category->category_name }}</td>
+                                    <td>{{ $category->slug }}</td>
                                     <td>{{ $category->category_status }}</td>
                                     <td>{!! $category->category_icon !!}</td>
                                     <td class="text-center">
@@ -45,8 +47,8 @@
                                             data-category="{{ $category->category_name }}"
                                             data-icon="{{ $category->category_icon }}" data-slug="{{ $category->slug }}"
                                             data-thumbnail="{{ asset($category->category_thumbnail) }}"
-                                            data-status="{{ $category->category_status }}"><i
-                                                class="far fa-edit"></i></button>
+                                            data-status="{{ $category->category_status }}"
+                                            data-slug="{{ $category->slug }}"><i class="far fa-edit"></i></button>
 
                                         <a href="{{ url('category/' . $category->id) }}}}" class="btn btn-danger btn-sm"
                                             id="delete"><i class="far fa-trash-alt"></i></a>
@@ -164,9 +166,8 @@
 
                             <div class="form-group">
                                 <label for="slug">ক্যাটেগরির স্লাগ(English) </label>
-                                <input type="text" class="form-control  @error('slug') is-invalid @enderror"
-                                    id="category_slug" name="slug" placeholder="ক্যাটেগরির নাম দিন"
-                                    value="{{ old('slug') }}" value="">
+                                <input type="text" class="form-control  @error('slug') is-invalid @enderror" id="slugCAt"
+                                    name="slug" placeholder="ক্যাটেগরির নাম দিন" value="{{ old('slug') }}" value="">
                             </div>
                             <span class="text-danger" id="slugError"></span>
                             <div class="form-group">
@@ -182,7 +183,7 @@
                                 <select name="category_status" id="category_status"
                                     class="form-control select2  @error('category_status') is-invalid @enderror"
                                     style="width: 100%;" data-placeholder="ক্যাটেগরির স্থাপন করুন">
-                                    <option selected="selected" value="">ক্যাটেগরির স্থাপন করুন</option>
+                                    <option selected="selected">ক্যাটেগরির স্থাপন করুন</option>
                                     <option value="1"
                                         {{ collect(old('category_status'))->contains('1') ? 'selected' : '' }}>জনপ্রিয়
                                         ক্যাটেগরিতে যোগ করুন
@@ -234,7 +235,7 @@
                 $('#idUpdate').val(id);
                 $('#category_name').val(category);
                 $('#category_icon').val(icon);
-                $('#category_slug').val(slug);
+                $('#slugCAt').val(slug);
                 $('#category_status').val(status);
                 $('.previewHolder').attr('src', thumbnail).css('width', '100px');
 
