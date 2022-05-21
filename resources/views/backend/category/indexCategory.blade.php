@@ -21,9 +21,7 @@
                             <tr>
                                 <th style="width: 10%">সিরিয়াল</th>
                                 <th style="width: 20%">ক্যাটেগরির ছবি</th>
-                                <th style="width: 20%">ক্যাটেগরির নাম</th>
-                                <th style="width: 15%">ক্যাটেগরির স্লাগ</th>
-                                <th style="width: 15%">ক্যাটেগরির সাজান</th>
+                                <th style="width: 40%">ক্যাটেগরির তথ্য</th>
                                 <th style="width: 15%">ক্যাটেগরির আইকন</th>
                                 <th style="width: 20%" class="text-center">আকশন</th>
                             </tr>
@@ -36,9 +34,12 @@
                                 <tr>
                                     <td>{{ $serial++ }}</td>
                                     <td><img width="100px" src="{{ asset($category->category_thumbnail) }}" alt=""></td>
-                                    <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->slug }}</td>
-                                    <td>{{ $category->category_status }}</td>
+                                    <td>
+                                        <strong>ক্যাটেগরির নাম :</strong> {{ $category->category_name }} <br>
+                                        <strong>ক্যাটেগরির স্লাগ :</strong> {{ $category->slug }} <br>
+                                        <strong>ক্যাটেগরির সাজান :</strong>
+                                        {{ $category->category_status == 1 ? 'জনপ্রিয় ক্যাটেগরি' : 'ন্যাভবার' }} <br>
+                                    </td>
                                     <td>{!! $category->category_icon !!}</td>
                                     <td class="text-center">
                                         <!-- Large modal -->
@@ -184,12 +185,10 @@
                                     class="form-control select2  @error('category_status') is-invalid @enderror"
                                     style="width: 100%;" data-placeholder="ক্যাটেগরির স্থাপন করুন">
                                     <option selected="selected">ক্যাটেগরির স্থাপন করুন</option>
-                                    <option value="1"
-                                        {{ collect(old('category_status'))->contains('1') ? 'selected' : '' }}>জনপ্রিয়
+                                    <option value="1">জনপ্রিয়
                                         ক্যাটেগরিতে যোগ করুন
                                     </option>
-                                    <option value="2"
-                                        {{ collect(old('category_status'))->contains('2') ? 'selected' : '' }}> ন্যাভবারে
+                                    <option value="2"> ন্যাভবারে
                                         যোগ করুন
                                     </option>
                                 </select>
@@ -236,7 +235,7 @@
                 $('#category_name').val(category);
                 $('#category_icon').val(icon);
                 $('#slugCAt').val(slug);
-                $('#category_status').val(status);
+                $('#category_status').val(status).trigger('change');
                 $('.previewHolder').attr('src', thumbnail).css('width', '100px');
 
             })
@@ -268,6 +267,7 @@
                         } else if (response[0].status == 1) {
                             toastr.success(response[0].success);
                             $("#EditForm")[0].reset();
+                            location.reload();
                             $('#categoryEdit').modal('hide');
                             // $(".table").load(location.href + " .table");
 
@@ -288,65 +288,4 @@
             });
         });
     </script>
-    {{-- <script>
-        $(document).ready(function() {
-
-            $('#submitBtn').click(function(e) {
-                e.preventDefault();
-                var id = $("#idUpdate").val();
-                var category_name = $("#category_name").val();
-                var category_slug = $("#category_slug").val();
-                var category_icon = $("#category_icon").val();
-                var category_status = $("#category_status").val();
-
-
-                var file_data = $('.photoUpload').prop("files")[0];
-                var formData = new FormData();
-                formData.append('category_thumbnail', file_data);
-                formData.append('id', id);
-                formData.append('category_name', category_name);
-                formData.append('category_slug', category_slug);
-                formData.append('category_icon', category_icon);
-                formData.append('category_status', category_status);
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('updateCategory') }}",
-                    dataType: "json",
-                    cache: false,
-                    processData: false,
-                    data: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        if (response.status == 0) {
-                            $.each(response, function(index, value) {
-                                $("#slugError").text(value.category_slug);
-                                $("#nameError").text(value.category_name);
-                                $("#iconError").text(value.category_icon);
-                            });
-
-                        } else if (response[0].status == 1) {
-                            toastr.success(response[0].success);
-                            $("#EditForm")[0].reset();
-                            $('#categoryEdit').modal('hide');
-                            // $(".table").load(location.href + " .table");
-
-                        } else if (response[0].status == 2) {
-                            toastr.success(response[0].error);
-                        }
-                    },
-                    error: function(error) {
-                        if (response[0].category_slug[0]) {
-                            $("#slugError").text(response[0].category_slug[0]);
-                        } else if (response[0].category_name) {
-                            $("#nameError").text(response[0].category_name[0]);
-                        } else if (response.category_icon) {
-                            $("#iconError").text(response[0].category_icon[0]);
-                        }
-                    }
-                });
-            });
-        });
-    </script> --}}
 @endsection

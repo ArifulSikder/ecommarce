@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('product_name');
             $table->string('product_qty',11);
-            $table->string('product_size',11);
-            $table->string('product_color', 50);
             $table->string('product_code');
             $table->string('product_price', 50);
             $table->string('product_discount', 50);
