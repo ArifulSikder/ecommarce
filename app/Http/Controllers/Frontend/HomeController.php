@@ -27,13 +27,14 @@ class HomeController extends Controller
 
     function productDetails()
     {
+        $product = Product::latest()->with('category')->first();
         $categoriesNav = Category::where(['status' => 1])
             ->where(['status' => 1, 'category_status' => 2])
             ->get();
         $categoriesPropular = Category::where(['status' => 1])
             ->where(['status' => 1, 'category_status' => 1])
             ->get();
-        return view('frontend.product.productDetails', compact('categoriesNav', 'categoriesPropular'));
+        return view('frontend.product.productDetails', compact('categoriesNav', 'categoriesPropular','product'));
     }
 
     function shopping()

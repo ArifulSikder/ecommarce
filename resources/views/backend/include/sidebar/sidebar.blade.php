@@ -51,6 +51,7 @@
                         </li>
                     </ul>
                 </li>
+                {{-- product --}}
                 <li class="nav-item has-treeview  @yield('product')">
                     <a href="#" class="nav-link  @yield('productActive')">
                         <i class="nav-icon fas fa-chart-pie"></i>
@@ -70,6 +71,31 @@
                             <a href="{{ route('productList') }}" class="nav-link  @yield('productList')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>প্রোডাক্ট তালিকা</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- blog --}}
+                <li class="nav-item has-treeview  @yield('blog')">
+                    <a href="#" class="nav-link  @yield('blogActive')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            ব্লোগ
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('addblog') }}" class="nav-link  @yield('addblog')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ব্লোগ যোগ করুন</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blogs-list') }}" class="nav-link  @yield('blogs-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ব্লোগ তালিকা</p>
                             </a>
                         </li>
                     </ul>

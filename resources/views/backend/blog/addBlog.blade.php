@@ -4,15 +4,15 @@
 @endsection
 
 {{-- menu active start --}}
-@section('product', 'menu-open')
-@section('productActive', 'active')
-@section('addProduct', 'active')
+@section('blog', 'menu-open')
+@section('blogActive', 'active')
+@section('addblog', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div>
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">প্রোডাক্ট যোগ করুন</h3>
+                <h3 class="card-title">ব্লোগ যোগ করুন</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -22,31 +22,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>ক্যাটেগরির নাম</label>
-                                <select name="category_id"
-                                    class="form-control select2 @error('category_id') is-invalid @enderror"
-                                    style=" width:100%;" data-placeholder="ক্যাটেগরির নাম বাছাই করুন">
-                                    <option selected="selected" value="">ক্যাটেগরির নাম </option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ collect(old('category_id'))->contains($category->id) ? 'selected' : '' }}>
-                                            {{ $category->category_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <label for="blog_title">ব্লোগ টাইটেল</label>
+                                <input type="text" class="form-control  @error('blog_title') is-invalid @enderror"
+                                    id="blog_title" name="blog_title" placeholder="প্রোডাক্টের নাম দিন"
+                                    value='{{ old('blog_title') }}'>
                             </div>
-                            @error('category_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="product_name">প্রোডাক্টের নাম</label>
-                                <input type="text" class="form-control  @error('product_name') is-invalid @enderror"
-                                    id="product_name" name="product_name" placeholder="প্রোডাক্টের নাম দিন"
-                                    value='{{ old('product_name') }}'>
-                            </div>
-                            @error('product_name')
+                            @error('blog_title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -188,71 +169,4 @@
     </div>
     <!-- /.row -->
 
-@endsection
-
-@section('script')
-    <script>
-        $(document).ready(function() {
-            if (window.File && window.FileList && window.FileReader) {
-                $("#files").on("change", function(e) {
-                    var files = e.target.files,
-                        filesLength = files.length;
-                    for (var i = 0; i < filesLength; i++) {
-                        var f = files[i]
-                        var fileReader = new FileReader();
-                        fileReader.onload = (function(e) {
-                            var file = e.target;
-                            $(`<span class="pip">
-                                    <img class="imageThumb" src="${e.target.result}" title="${file.name}" alt=""> <br>
-                                    <span class="remove">Remove Photo</span>
-                                </span>`).insertAfter("#files");
-                            $(".remove").click(function() {
-                                $(this).parent(".pip").remove();
-                            });
-
-                            // Old code here
-                            /*$("<img></img>", {
-                              class: "imageThumb",
-                              src: e.target.result,
-                              title: file.name + " | Click to remove"
-                            }).insertAfter("#files").click(function(){$(this).remove();});*/
-
-                        });
-                        fileReader.readAsDataURL(f);
-                    }
-                    console.log(files);
-                });
-            } else {
-                alert("Your browser doesn't support to File API")
-            }
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#givenSlug").keyup(function(e) {
-                var slug = $(this).val();
-                $("#product_slug").val(slug.replace(/\s+/g, '-').toLowerCase());
-            });
-        });
-    </script>
-    <script>
-        //preview image user
-        function readURLL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#previewHolderr').attr('src', '');
-                    $('#previewHolderr').attr('src', e.target.result);
-                    $('#previewHolderr').css('width', '100px')
-                }
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                alert('select a file to see preview');
-                $('#previewHolderr').attr('src', '');
-            }
-        }
-        $("#photoUploadd").change(function() {
-            readURLL(this);
-        });
-    </script>
 @endsection

@@ -20,18 +20,14 @@
                     <thead>
                         <tr>
                             <th style="width: 5%">সিরিয়াল</th>
-                            <th style="width: 10%">প্রোডাক্টের থাম্বনেল</th>
-                            <th style="width: 10%">প্রোডাক্টের স্লাইডার</th>
-                            <th style="width: 10%">ক্যাটেগরির নাম</th>
-                            <th style="width: 10%">প্রোডাক্টের নাম</th>
-                            <th style="width: 6%">প্রোডাক্টের পরিমান</th>
-                            <th style="width: 12%">প্রোডাক্টের কোড</th>
-                            <th style="width: 5%">প্রোডাক্টের দাম (টাকা)</th>
-                            <th style="width: 5%">প্রোডাক্টের ডিস্কাউন্ট (%)</th>
+                            <th style="width: 10%">ব্লোগ থাম্বনেল</th>
+                            <th style="width: 10%">লেখক স্লাইডার</th>
+                            <th style="width: 10%"> তারিখ নাম</th>
+                            <th style="width: 10%">শিরোনাম নাম</th>
                             <th style="width: 10%" class="text-center">আকশন</th>
                         </tr>
                     </thead>
-                    @php
+                    {{-- @php
                         $serial = ($products->currentpage() - 1) * $products->perpage() + 1;
                     @endphp
                     <tbody>
@@ -61,7 +57,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
         </div>

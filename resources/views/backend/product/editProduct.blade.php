@@ -64,38 +64,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>প্রোডাক্টের সাইজ</label>
-                                <select name="product_size"
-                                    class="form-control select2  @error('product_size') is-invalid @enderror"
-                                    style="width: 100%;" data-placeholder="প্রোডাক্টের সাইজ বাছাই করুন">
-                                    <option selected="selected" value="">প্রোডাক্টের সাইজ</option>
-                                    <option value="XL" {{ $productData->product_size == 'XL' ? 'selected' : '' }}>XL
-                                    </option>
-                                    <option value="L" {{ $productData->product_size == 'L' ? 'selected' : '' }}>L
-                                    </option>
-                                    <option value="M" {{ $productData->product_size == 'M' ? 'selected' : '' }}>M
-                                    </option>
-                                    <option value="S" {{ $productData->product_size == 'S' ? 'selected' : '' }}>S
-                                    </option>
-                                </select>
-                            </div>
-                            @error('category_name')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="product_color">প্রোডাক্টের কালার</label>
-                                <input type="text" class="form-control  @error('product_color') is-invalid @enderror"
-                                    id="product_color" name="product_color" placeholder="প্রোডাক্টের কালার দিন"
-                                    value='{{ $productData->product_color }}'>
-                            </div>
-                            @error('product_color')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label for="product_code">প্রোডাক্টের কোড</label>
                                 <input type="text" class="form-control  @error('product_code') is-invalid @enderror"
                                     id="product_code" name="product_code" placeholder="প্রোডাক্টের কোড দিন"
@@ -162,6 +130,18 @@
                             <img id="previewHolder" height="100px" src="{{ asset($productData->product_thumbnail) }}"
                                 alt="product thumbnail preview">
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="product_slider_img">প্রোডাক্টের স্লাইডারের ছবি</label>
+                                <input type="file" class="form-control  @error('product_slider_img') is-invalid @enderror"
+                                    id="photoUploadd" name="product_slider_img" placeholder="প্রোডাক্টের স্লাইডারের ছবি দিন"
+                                    value='{{ old('product_slider_img') }}'>
+                            </div>
+                            @error('product_slider_img')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <img id="previewHolderr" src="" alt="">
+                        </div>
                         {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="multiple_image">প্রোডাক্টের অন্যান্য ছবি</label>
@@ -193,6 +173,17 @@
                             <input type="hidden" id="product_slug" name="product_slug"
                                 value='{{ $productData->product_slug }}'>
                             @error('product_slug')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="special_offer">স্পেশাল অফার</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                <input type="checkbox" id="special_offer" name="special_offer" value="1"
+                                    {{ $productData->special_offer == 1 ? 'checked' : '' }}>
+                                <span>স্পেশাল অফারে যোগ করতে চাইলে ক্লিক করুন !</span>
+                            </div>
+                            @error('special_offer')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

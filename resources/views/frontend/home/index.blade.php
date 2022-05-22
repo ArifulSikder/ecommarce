@@ -127,25 +127,27 @@
                                                             off</label>
                                                     </div>
                                                     <div class="product-action-vertical">
-                                                        <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                        <a href="{{ url('_' . $product->product_slug) }}"
+                                                            class="btn-product-icon btn-cart" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></a>
-                                                        <a href="#" class="btn-product-icon btn-wishlist"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></a>
+                                                        <a href="{{ url('_' . $product->product_slug) }}"
+                                                            class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
+                                                                class="d-icon-heart"></i></a>
                                                     </div>
                                                     <div class="product-action">
-                                                        <a href="#" class="btn-product btn-quickview"
-                                                            title="Quick View">দ্রুত
+                                                        <a href="{{ url('_' . $product->product_slug) }}"
+                                                            class="btn-product btn-quickview" title="Quick View">দ্রুত
                                                             দেখুন</a>
                                                     </div>
                                                 </figure>
                                                 <div class="product-details">
                                                     <div class="product-cat"><a
-                                                            href="{{ route('productDetails') }}">{{ $product->category->category_name }}</a>
+                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
                                                     </div>
                                                     <h3 class="product-name">
                                                         <a
-                                                            href="{{ route('productDetails') }}">{{ $product->product_name }}</a>
+                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                                     </h3>
                                                     <div class="product-price">
                                                         <ins class="new-price">৳

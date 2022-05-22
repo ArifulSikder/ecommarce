@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CagegoryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Blog\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -45,6 +46,11 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/edit-banner/{banner_id}', [BannerController::class, 'editBanner']);
     Route::post('/update-banner', [BannerController::class, 'updateBanner'])->name('updateBanner');
     Route::get('/delete-banner/{banner_id}', [BannerController::class, 'deleteBanner']);
+
+    //block
+    Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
+    Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
+    Route::get('add-block', [BlogController::class, 'indexBlog'])->name('addblog');
     
 });
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++

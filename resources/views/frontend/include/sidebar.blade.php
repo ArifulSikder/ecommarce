@@ -8,12 +8,12 @@
         <div class="sticky-sidebar">
             <ul class="menu vertical-menu category-menu mb-4">
 
-                <li><a href="{{ route('shopping') }}" class="menu-title">জনপ্রিয়
+                <li><a href="#" class="menu-title">জনপ্রিয়
                         ক্যাটাগরি</a>
                 </li>
                 @foreach ($categoriesPropular as $category)
                     <li>
-                        <a href="{{ route('shopping') }}">{!! $category->category_icon !!}
+                        <a href="{{ url('show-' . $category->slug) }}">{!! $category->category_icon !!}
                             {{ $category->category_name }}</a>
                     </li>
                 @endforeach
@@ -32,8 +32,8 @@
             </ul>
             <div class="banner banner-fixed overlay-zoom overlay-dark">
                 <figure>
-                    <img src="{{ asset('public/frontend') }}/images/sundorbon/haninut.jpg" width="280" height="312"
-                        alt="banner" style="background-color: #26303c;" />
+                    <img src="{{ asset(SpecialOffer()->product_thumbnail) }}" width="280" height="312" alt="banner"
+                        style="background-color: #26303c;" />
                 </figure>
                 <div class="banner-price-info font-weight-bold text-white text-uppercase">
                     20-22<sup>th</sup> April</div>
@@ -42,7 +42,7 @@
                         Ultimate Sale</h4>
                     <h3 class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
                         Up
-                        to 70%</h3>
+                        to {{ SpecialOffer()->product_discount }}%</h3>
                     <p class="mb-4 font-primary text-white lh-1">Discount Selected Items</p>
                 </div>
             </div>

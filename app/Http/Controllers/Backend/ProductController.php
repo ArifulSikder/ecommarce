@@ -23,12 +23,11 @@ class ProductController extends Controller
 
     //store product 
     function storeProduct(Request $request){
+        dd($request->all());
         $validator = $request->validate([
             'category_id' => 'required|max:11',
             'product_name' => 'required|max:255',
             'product_qty' => 'required|max:11',
-            'product_size' => 'required|max:11',
-            'product_color' => 'required|max:50',
             'product_code' => 'required|max:255',
             'product_price' => 'required|max:50',
             'product_discount' => 'required|max:50',
@@ -36,13 +35,12 @@ class ProductController extends Controller
             'long_description' => 'required',
             'product_thumbnail' => 'required',
             'multiple_image' => 'required',
+            'product_slider_img' => 'required',
             'product_slug' => 'required|max:255|unique:products|regex:/^[a-zA-ZÑñ\s]+$/',
         ],[
             'category_id.required' => 'Please Enter This Filed',
             'product_name.required' => 'Please Enter This Filed',
             'product_qty.required' => 'Please Enter This Filed',
-            'product_size.required' => 'Please Enter This Filed',
-            'product_color.required' => 'Please Enter This Filed',
             'product_code.required' => 'Please Enter This Filed',
             'product_price.required' => 'Please Enter This Filed',
             'product_discount.required' => 'Please Enter This Filed',
@@ -50,8 +48,17 @@ class ProductController extends Controller
             'long_description.required' => 'Please Enter This Filed',
             'product_thumbnail.required' => 'Please Enter This Filed',
             'multiple_image.required' => 'Please Enter This Filed',
+            'product_slider_img.required' => 'Please Enter This Filed',
             'product_slug.required' => 'Please Enter This Filed'
         ]);
+
+        $product_slider_img = '';
+        if ($request->file('product_slider_img')) {
+            $image = $request->file('product_slider_img');
+            $imageName = $image->getClientOriginalName();
+            Image::make($image)->resize(1230,660)->save('public/uploads/product_banner/' . $imageName);
+            $product_slider_img = 'public/uploads/product_banner/' . $imageName;
+        }
 
         $product_thumbnail = '';
         if ($request->file('product_thumbnail')) {
@@ -64,14 +71,14 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'product_name' => $request->product_name,
             'product_qty' => $request->product_qty,
-            'product_size' => $request->product_size,
-            'product_color' => $request->product_color,
             'product_code' => $request->product_code,
             'product_price' => $request->product_price,
             'product_discount' => $request->product_discount,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'product_thumbnail' => $product_thumbnail,
+            'product_slider_img' => $product_slider_img,
+            'special_offer' =>  $request->special_offer,
             'product_slug' =>  strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->product_slug))),
         ]);
         $multipleImg = $request->file('multiple_image');
@@ -115,28 +122,34 @@ class ProductController extends Controller
             'category_id' => 'required|max:11',
             'product_name' => 'required|max:255',
             'product_qty' => 'required|max:11',
-            'product_size' => 'required|max:11',
-            'product_color' => 'required|max:50',
             'product_code' => 'required|max:255',
             'product_price' => 'required|max:50',
             'product_discount' => 'required|max:50',
             'short_description' => 'required|max:500',
             'long_description' => 'required',
+            'product_slider_img' => 'required',
             'product_slug' => 'required|max:255|unique:products,product_slug,'.$request->id,
         ],[
             'category_id.required' => 'Please Enter This Filed',
             'product_name.required' => 'Please Enter This Filed',
             'product_qty.required' => 'Please Enter This Filed',
-            'product_size.required' => 'Please Enter This Filed',
-            'product_color.required' => 'Please Enter This Filed',
             'product_code.required' => 'Please Enter This Filed',
             'product_price.required' => 'Please Enter This Filed',
             'product_discount.required' => 'Please Enter This Filed',
             'short_description.required' => 'Please Enter This Filed',
             'long_description.required' => 'Please Enter This Filed',
+            'product_slider_img.required' => 'Please Enter This Filed',
             'product_slug.required' => 'Please Enter This Filed',
         ]);
         $singleProduct = Product::findOrFail($request->id);
+        $product_slider_img = $singleProduct->product_slider_img;
+        if ($request->file('product_slider_img')) {
+            $image = $request->file('product_slider_img');
+            $imageName = $image->getClientOriginalName();
+            Image::make($image)->resize(1230,660)->save('public/uploads/product_banner/' . $imageName);
+            $product_slider_img = 'public/uploads/product_banner/' . $imageName;
+        }
+
         $product_thumbnail = $singleProduct->product_thumbnail;
         if ($request->file('product_thumbnail')) {
             $image = $request->file('product_thumbnail');
@@ -148,14 +161,14 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'product_name' => $request->product_name,
             'product_qty' => $request->product_qty,
-            'product_size' => $request->product_size,
-            'product_color' => $request->product_color,
             'product_code' => $request->product_code,
             'product_price' => $request->product_price,
             'product_discount' => $request->product_discount,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'product_thumbnail' => $product_thumbnail,
+            'product_slider_img' => $product_slider_img,
+            'special_offer' =>  $request->special_offer,
             'product_slug' =>  strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->product_slug))),
         ]);
    
