@@ -149,12 +149,20 @@
                                                         <a
                                                             href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                                     </h3>
-                                                    <div class="product-price">
-                                                        <ins class="new-price">৳
-                                                            {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
-                                                            class="old-price">৳
-                                                            {{ $product->product_price }}/-</del>
-                                                    </div>
+                                                    @if ($product->product_discount > 0)
+                                                        <div class="product-price">
+                                                            <ins class="new-price">৳
+                                                                {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                                                class="old-price">৳
+                                                                {{ $product->product_price }}/-</del>
+                                                        </div>
+                                                    @else
+                                                        <div class="product-price">
+                                                            <ins class="new-price">৳
+                                                                {{ $product->product_price }}/-
+                                                            </ins>
+                                                        </div>
+                                                    @endif
                                                     <div class="ratings-container">
                                                         <div class="ratings-full">
                                                             <span class="ratings" style="width:80%"></span>
@@ -489,8 +497,10 @@
                                 </li>
                                 {{-- <li class="list-group-item"> প্রোডাক্টের দাম (টাকা) : <strong id="productPrice"></strong>
                                 </li> --}}
-                                <li class="list-group-item">বিক্রয় মুল্য(টাকা) : <strong
-                                        id="subTotal">&nbsp;&nbsp;&nbsp;&nbsp;</strong><del id="productPrice"></del>
+                                <li class="list-group-item product-price" style="font-size: 13px;">বিক্রয় মুল্য(টাকা) :
+                                    <ins class="new-price">৳ <span id="discunt_price"></span>/-</ins><del
+                                        class="old-price">৳
+                                        <span id="product_price"></span>/-</del>
                                 </li>
                             </ul>
                         </div>
@@ -514,13 +524,14 @@
                 productView(productId)
             });
 
+
             function productView(productId) {
                 $("#id").empty();
                 $("#productName").text('');
                 $("#productThumbnail").attr("src", '');
                 $("#productCode").empty();
-                $("#productPrice").empty();
-                $("#productDiscout").empty();
+                $("#product_price").empty();
+                $("#discunt_price").empty();
                 $("#subTotal").empty();
                 $("#productQuantity").empty();
                 $("#productStock").empty();
@@ -542,13 +553,21 @@
                         $("#productThumbnail").attr("src", "{{ url('/') }}/" + response
                             .product_thumbnail);
                         $("#productCode").append(response.product_code);
-                        $("#productPrice").append(response.product_price + 'tk');
-                        $("#productDiscout").append(discountAmount + 'tk');
-                        $("#subTotal").append(response.product_price - discountAmount + 'tk');
-
-                        $("#productStock").append(response.product_qty > 0 ?
-                            '<span class="badge badge-success">In Stock</span>' :
-                            '<span class="badge badge-danger">Out Of Stock</span>');
+                        if (response.product_discount > 0) {
+                            $("#product_price").text(response.product_price);
+                            $("#discunt_price").text(response.product_price - discountAmount);
+                        } else {
+                            $("#product_price").text(response.product_price);
+                        }
+                        if (response.product_qty > 0) {
+                            $(".addToCart").css("display", '');
+                            $("#productStock").append(
+                                '<span class="badge badge-success">In Stock</span>');
+                        } else {
+                            $(".addToCart").css("display", 'none');
+                            $("#productStock").append(
+                                '<span class="badge badge-danger">Out Of Stock</span>');
+                        }
                     }
                 });
 
@@ -563,24 +582,31 @@
             $(".addToCart").click(function() {
                 var id = $("#id").val();
                 var quantity = $("#quantity").val();
-                alert(quantity)
-                addToCart(id, quantity);
+                var productName = $('#productName').text();
+                var discunt_price = $('#discunt_price').text();
+                addToCart(id, quantity, productName, discunt_price);
             });
 
-            function addToCart(product_id, quantity) {
+            function addToCart(product_id, quantity, productName, discunt_price) {
+                var id = product_id;
+                var product_qty = quantity;
+                var product_name = productName;
+                var discunt_price = discunt_price;
                 $.ajax({
                     type: "POST",
                     url: "{{ url('add-to-cart') }}",
                     data: {
                         id: id,
-                        quantity: quantity,
+                        product_qty: product_qty,
+                        product_name: product_name,
+                        discunt_price: discunt_price,
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     dataType: "json",
                     success: function(response) {
-
+                        console.log(response)
                     }
                 });
             }
