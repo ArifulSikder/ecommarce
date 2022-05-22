@@ -127,17 +127,17 @@
                                                             off</label>
                                                     </div>
                                                     <div class="product-action-vertical">
-                                                        <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product-icon btn-cart" data-toggle="modal"
+                                                        <button class="btn-product-icon ViewProduct"
+                                                            id="{{ $product->id }}" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
-                                                                class="d-icon-bag"></i></a>
+                                                                class="d-icon-bag"></i></button>
                                                         <a href="{{ url('_' . $product->product_slug) }}"
                                                             class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
                                                                 class="d-icon-heart"></i></a>
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                            class="btn-product" title="Quick View">দ্রুত
                                                             দেখুন</a>
                                                     </div>
                                                 </figure>
@@ -460,4 +460,134 @@
         <!-- End Footer -->
     </div>
     @include('frontend.include.mobile')
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productName">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img id="productThumbnail" src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png"
+                                alt="product image">
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <input type="hidden" id="id">
+                                <li class="list-group-item">স্টকে আছে : <strong id="productStock"></strong>
+                                <li class="list-group-item">প্রোডাক্টের কোড : <strong id="productCode"></strong></li>
+                                <li class="list-group-item">প্রোডাক্টের সংখ্যা :
+                                    <input type="number" id="quantity" value="1" min="1"></strong>
+                                </li>
+                                {{-- <li class="list-group-item"> প্রোডাক্টের দাম (টাকা) : <strong id="productPrice"></strong>
+                                </li> --}}
+                                <li class="list-group-item">বিক্রয় মুল্য(টাকা) : <strong
+                                        id="subTotal">&nbsp;&nbsp;&nbsp;&nbsp;</strong><del id="productPrice"></del>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary addToCart">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
+@section('script')
+    {{-- product cart view --}}
+    <script>
+        $(document).ready(function() {
+            $(".ViewProduct").click(function() {
+                var productId = this.id;
+                productView(productId)
+            });
+
+            function productView(productId) {
+                $("#id").empty();
+                $("#productName").text('');
+                $("#productThumbnail").attr("src", '');
+                $("#productCode").empty();
+                $("#productPrice").empty();
+                $("#productDiscout").empty();
+                $("#subTotal").empty();
+                $("#productQuantity").empty();
+                $("#productStock").empty();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('product-view') }}",
+                    data: {
+                        id: productId
+                    },
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        var discountAmount = response.product_price * response.product_discount / 100;
+
+                        $("#id").val(response.id);
+                        $("#productName").text(response.product_name);
+                        $("#productThumbnail").attr("src", "{{ url('/') }}/" + response
+                            .product_thumbnail);
+                        $("#productCode").append(response.product_code);
+                        $("#productPrice").append(response.product_price + 'tk');
+                        $("#productDiscout").append(discountAmount + 'tk');
+                        $("#subTotal").append(response.product_price - discountAmount + 'tk');
+
+                        $("#productStock").append(response.product_qty > 0 ?
+                            '<span class="badge badge-success">In Stock</span>' :
+                            '<span class="badge badge-danger">Out Of Stock</span>');
+                    }
+                });
+
+            }
+            productView();
+        });
+    </script>
+
+    {{-- add to cart --}}
+    <script>
+        $(document).ready(function() {
+            $(".addToCart").click(function() {
+                var id = $("#id").val();
+                var quantity = $("#quantity").val();
+                alert(quantity)
+                addToCart(id, quantity);
+            });
+
+            function addToCart(product_id, quantity) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('add-to-cart') }}",
+                    data: {
+                        id: id,
+                        quantity: quantity,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: "json",
+                    success: function(response) {
+
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
+    <script>
+        $("input[type='number']").inputSpinner();
+    </script>
 @endsection

@@ -38,7 +38,10 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/product-view/{id}', [ProductController::class, 'viewProduct']);
     Route::get('/product-image-delete/{img_id}', [ProductController::class, 'ImageDelete']);
     Route::post('/image-update', [ProductController::class, 'imageUpdate'])->name('image-update');
-
+    // product view ajax
+    Route::post('product-view', [ProductController::class, 'productView']);
+    // product add to cart ajax
+    Route::post('add-to-cart', [ProductController::class, 'addToCart']);
     //banner
     Route::get('/banner', [BannerController::class, 'bannerIndex'])->name('banner');
     Route::get('/add-banner', [BannerController::class, 'addBanner'])->name('addBanner');
@@ -49,8 +52,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
 
     //block
     Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
-    Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
-    Route::get('add-block', [BlogController::class, 'indexBlog'])->name('addblog');
+    Route::get('add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
+    Route::post('/store-blog', [BlogController::class, 'storeBlog'])->name('storeBlog');
     
 });
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++

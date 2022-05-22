@@ -21,7 +21,7 @@
                         <tr>
                             <th style="width: 5%">সিরিয়াল</th>
                             <th style="width: 10%">ব্লোগ থাম্বনেল</th>
-                            <th style="width: 10%">লেখক স্লাইডার</th>
+                            <th style="width: 10%">লেখক </th>
                             <th style="width: 10%"> তারিখ নাম</th>
                             <th style="width: 10%">শিরোনাম নাম</th>
                             <th style="width: 10%" class="text-center">আকশন</th>

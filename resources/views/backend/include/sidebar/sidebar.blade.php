@@ -87,7 +87,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('addblog') }}" class="nav-link  @yield('addblog')">
+                            <a href="{{ route('addBlog') }}" class="nav-link  @yield('addBlog')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ব্লোগ যোগ করুন</p>
                             </a>

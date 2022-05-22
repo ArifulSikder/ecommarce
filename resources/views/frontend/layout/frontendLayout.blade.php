@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <meta name="keywords" content="HTML5 Template" />
@@ -38,7 +39,7 @@
         href="{{ asset('public/frontend/vendor/magnific-popup/magnific-popup.min.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('public/frontend/vendor/owl-carousel/owl.carousel.min.css') }}">
-
+    <link rel="stylesheet" href="public/frontend/bootstrap/bootstrap.min.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/demo3.min.css') }}">
 </head>
@@ -49,6 +50,12 @@
 
     <!-- Plugins JS File -->
     <script src="{{ asset('public/frontend/vendor/jquery/jquery.min.js') }}"></script>
+    <!-- jQuery -->
+    {{-- <script src="{{ asset('public/admin/plugins/jquery/jquery.min.js') }}"></script> --}}
+    {{-- bootstrap --}}
+    {{-- <script src="{{ asset('public/frontend/bootstrap/slim.min.js') }}"></script> --}}
+    <script src="{{ asset('public/frontend/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('public/frontend/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('public/frontend/vendor/elevatezoom/jquery.elevatezoom.min.js') }}"></script>
     <script src="{{ asset('public/frontend/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
@@ -57,7 +64,7 @@
     <script src="{{ asset('public/frontend/vendor/sticky/sticky.min.js') }}"></script>
     <!-- Main JS File -->
     <script src="{{ asset('public/frontend/js/main.min.js') }}"></script>
-
+    @yield('script')
 </body>
 
 </html>

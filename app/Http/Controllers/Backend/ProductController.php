@@ -232,5 +232,17 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    // product view ajax
+
+    function productView(Request $request){
+        $product=Product::findOrFail($request->id);
+        return response()->json($product);
+    }
+
+    // product add to cart
+    function addToCart(Request $request){
+dd($request->all());
+    }
+
 
 }
