@@ -25,6 +25,10 @@ Route::post('add-to-cart', [CartController::class, 'addToCart']);
 Route::get('product-minicart', [CartController::class, 'productMinicart']);
 // product remove from cart ajax
 Route::get('remove-cart', [CartController::class, 'productRemove']);
+//cart view ||cart index
+Route::get('cart', [CartController::class, 'cartIndex']);
+// cart page ajax 
+Route::get('cart-page', [CartController::class, 'cartPage']);
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
 

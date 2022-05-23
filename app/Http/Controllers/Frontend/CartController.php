@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Cart;
@@ -65,5 +66,30 @@ class CartController extends Controller
             ]);
         }
         return response()->json($notification);
+    }
+    
+
+    //cart page || cart view page
+
+    function cartIndex(){
+        $categoriesNav = Category::where(['status' => 1])
+        ->where(['status' => 1, 'category_status' => 2])
+        ->get();
+        $categoriesPropular = Category::where(['status' => 1])
+        ->where(['status' => 1, 'category_status' => 1])
+        ->get();
+        return view('frontend.cart.cartIndex', compact('categoriesNav', 'categoriesPropular' ));
+    }
+
+    //cart page 
+    function cartPage(){
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+        return response()->json([
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal,
+        ]);
     }
 }
