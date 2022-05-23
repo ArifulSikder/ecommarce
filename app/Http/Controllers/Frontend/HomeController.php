@@ -14,7 +14,8 @@ class HomeController extends Controller
 {
     function index()
     {
-        $products = Product::latest()->with('category')->paginate(12);
+        $singleCategory = Category::where(['status' => 1]);
+        $products = Product::latest()->with('category')->get();
         $banners = Banner::where(['status' => 1, 'active_status' => 1])->get();
         $categoriesNav = Category::where(['status' => 1])
             ->where(['status' => 1, 'category_status' => 2])
@@ -22,7 +23,7 @@ class HomeController extends Controller
         $categoriesPropular = Category::where(['status' => 1])
             ->where(['status' => 1, 'category_status' => 1])
             ->get();
-        return view('frontend.home.index', compact('banners', 'categoriesNav', 'products', 'categoriesPropular'));
+        return view('frontend.home.index', compact('banners', 'categoriesNav', 'products', 'categoriesPropular','singleCategory'));
     }
 
     function productDetails()
