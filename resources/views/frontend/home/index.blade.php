@@ -519,6 +519,8 @@
     {{-- product cart view --}}
     <script>
         $(document).ready(function() {
+
+            // product view 
             $(".ViewProduct").click(function() {
                 var productId = this.id;
                 productView(productId)
@@ -534,7 +536,6 @@
                 $("#product_price").empty();
                 $("#discunt_price").empty();
                 $("#subTotal").empty();
-                $("#productQuantity").empty();
                 $("#productStock").empty();
                 $.ajax({
                     type: "POST",
@@ -548,12 +549,30 @@
                     },
                     success: function(response) {
                         var discountAmount = response.product_price * response.product_discount / 100;
+                        var salesPrice = response.product_price - discountAmount;
 
                         $("#id").val(response.id);
                         $("#productName").text(response.product_name);
                         $("#productThumbnail").attr("src", "{{ url('/') }}/" + response
                             .product_thumbnail);
                         $("#productCode").append(response.product_code);
+
+                        // increase product 
+                        $("#quantity").change(function(e) {
+                            e.preventDefault();
+                            // product if discount 
+                            if (response.product_discount > 0) {
+                                $(".old-price").removeClass('d-none');
+                                $("#product_price").text($(this).val() * response
+                                    .product_price);
+                                $("#discunt_price").text($(this).val() * salesPrice);
+                            } else {
+                                $(".old-price").addClass('d-none');
+                                $("#discunt_price").text($(this).val() * response
+                                    .product_price);
+                            }
+                        });
+                        // product if discount 
                         if (response.product_discount > 0) {
                             $(".old-price").removeClass('d-none');
                             $("#product_price").text(response.product_price);
@@ -562,6 +581,8 @@
                             $(".old-price").addClass('d-none');
                             $("#discunt_price").text(response.product_price);
                         }
+
+                        // product quantity
                         if (response.product_qty > 0) {
                             $(".addToCart").attr("disabled", false).text('Add To Cart');
                             $("#productStock").append(
