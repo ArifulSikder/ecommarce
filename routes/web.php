@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Blog\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductControllerFrontend;
+use App\Http\Controllers\Frontend\CartController;
 
 Auth::routes();
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -17,9 +18,13 @@ Route::get('/location',[HomeController::class, 'location'])->name('location');
 Route::get('/show-{cat_slug}', [HomeController::class, 'catWiseProduct']);
 Route::get('/_{product_slug}', [HomeController::class, 'productShow']);
 // product view ajax
-Route::post('product-view', [ProductControllerFrontend::class, 'productView']);
+Route::post('product-view', [CartController::class, 'productView']);
 // product add to cart ajax
-Route::post('add-to-cart', [ProductControllerFrontend::class, 'addToCart']);
+Route::post('add-to-cart', [CartController::class, 'addToCart']);
+// product mini cart ajax
+Route::get('product-minicart', [CartController::class, 'productMinicart']);
+// product remove from cart ajax
+Route::get('remove-cart', [CartController::class, 'productRemove']);
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
 

@@ -42,6 +42,8 @@
     <link rel="stylesheet" href="public/frontend/bootstrap/bootstrap.min.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/demo3.min.css') }}">
+    {{-- tostr notification --}}
+    <link rel="stylesheet" href="{{ URL::asset('admin/css/toastr/toastr.min.css') }}">
 </head>
 
 <body class="@yield('pageClass')">
@@ -64,6 +66,8 @@
     <script src="{{ asset('public/frontend/vendor/sticky/sticky.min.js') }}"></script>
     <!-- Main JS File -->
     <script src="{{ asset('public/frontend/js/main.min.js') }}"></script>
+    {{-- toastr alert --}}
+    <script src="{{ URL::asset('admin/js/toastr.min.js') }}"></script>
     @yield('script')
 </body>
 

@@ -526,6 +526,7 @@
 
 
             function productView(productId) {
+                $("#quantity").val(1);
                 $("#id").empty();
                 $("#productName").text('');
                 $("#productThumbnail").attr("src", '');
@@ -554,17 +555,19 @@
                             .product_thumbnail);
                         $("#productCode").append(response.product_code);
                         if (response.product_discount > 0) {
+                            $(".old-price").removeClass('d-none');
                             $("#product_price").text(response.product_price);
                             $("#discunt_price").text(response.product_price - discountAmount);
                         } else {
-                            $("#product_price").text(response.product_price);
+                            $(".old-price").addClass('d-none');
+                            $("#discunt_price").text(response.product_price);
                         }
                         if (response.product_qty > 0) {
-                            $(".addToCart").css("display", '');
+                            $(".addToCart").attr("disabled", false).text('Add To Cart');
                             $("#productStock").append(
                                 '<span class="badge badge-success">In Stock</span>');
                         } else {
-                            $(".addToCart").css("display", 'none');
+                            $(".addToCart").attr("disabled", true).text('Stock Out');
                             $("#productStock").append(
                                 '<span class="badge badge-danger">Out Of Stock</span>');
                         }
@@ -584,14 +587,17 @@
                 var quantity = $("#quantity").val();
                 var productName = $('#productName').text();
                 var discunt_price = $('#discunt_price').text();
-                addToCart(id, quantity, productName, discunt_price);
+                var productThumbnail = $("#productThumbnail").attr('src');
+                addToCart(id, quantity, productName, discunt_price, productThumbnail);
             });
 
-            function addToCart(product_id, quantity, productName, discunt_price) {
+            function addToCart(product_id, quantity, productName, discunt_price, productThumbnail) {
                 var id = product_id;
                 var product_qty = quantity;
                 var product_name = productName;
                 var discunt_price = discunt_price;
+                var product_thumbnail = productThumbnail;
+
                 $.ajax({
                     type: "POST",
                     url: "{{ url('add-to-cart') }}",
@@ -600,16 +606,90 @@
                         product_qty: product_qty,
                         product_name: product_name,
                         discunt_price: discunt_price,
+                        product_thumbnail: product_thumbnail,
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     dataType: "json",
                     success: function(response) {
-                        console.log(response)
+                        $("#addCartModal").modal('hide');
+                        if (response.success) {
+                            toastr.success(response.success)
+                        } else {
+                            toastr.error(response.error)
+                        }
+
+                        minicart();
                     }
                 });
             }
+
+            function minicart() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('product-minicart') }}",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        $("#cartTotal").text('৳' + response.cartTotal + ' TK');
+                        $("#miniCartTotal").text('৳' + response.cartTotal + ' TK');
+                        $("#cartQty").text(response.cartQty);
+                        var minicart = '';
+                        $.each(response.carts, function(index, value) {
+
+                            minicart += `
+                            <div class="product product-cart">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="${value.options.product_thumbnail}"
+                                            alt="product" width="80" height="88" />
+                                    </a>
+                                    <button type="submit" class="btn btn-link btn-close cartRemove" id="${value.rowId}">
+                                     <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                    </button>
+                                </figure>
+                                <div class="product-detail">
+                                    <a href="product.html" class="product-name">${value.name}</a>
+                                    <div class="price-box">
+                                        <span class="product-quantity">${value.qty}</span>
+                                        <span class="product-price">${value.price}</span>
+                                    </div>
+                                </div>
+                            </div>`
+                        });
+
+                        // console.log(minicart);
+                        $("#MiniCart").html(minicart);
+
+
+                        $('.cartRemove').click(function(e) {
+                            var rowId = $(this).attr('id');
+                            $.ajax({
+                                type: "GET",
+                                url: "{{ url('remove-cart') }}",
+                                data: {
+                                    rowId: rowId,
+                                },
+                                dataType: "json",
+                                success: function(response) {
+                                    if (response.success) {
+                                        toastr.success(response.success)
+                                    } else {
+                                        toastr.error(response.error)
+                                    }
+                                    location.reload();
+                                }
+                            });
+                        });
+
+                    }
+                });
+            }
+            minicart();
+
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
