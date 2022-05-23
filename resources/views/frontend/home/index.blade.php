@@ -280,75 +280,42 @@
                                             data-animation-options="{'name': 'fadeIn','delay': '.3s'}">
                                             <h4 class="widget-title font-weight-bold">সর্বশেষ পন্য</h4>
                                             <div class="products-col">
-                                                <div class="product product-list-sm">
-                                                    <figure class="product-media">
-                                                        <a href="{{ route('productDetails') }}">
-                                                            <img src="{{ asset('public/frontend') }}/images/sundorbon/modhu.jpg"
-                                                                alt="product" width="100" height="100"
-                                                                style="background-color: #f5f5f5;" />
-                                                        </a>
-                                                    </figure>
-                                                    <div class="product-details">
-                                                        <h3 class="product-name">
-                                                            <a href="{{ route('productDetails') }}">মধু</a>
-                                                        </h3>
-                                                        <div class="product-price">
-                                                            <span class="price">৳ ৫০০/-</span>
-                                                        </div>
-                                                        <div class="ratings-container">
-                                                            <div class="ratings-full">
-                                                                <span class="ratings" style="width:40%"></span>
-                                                                <span class="tooltiptext tooltip-top"></span>
+                                                @foreach ($products->take(3) as $product)
+                                                    <div class="product product-list-sm">
+                                                        <figure class="product-media">
+                                                            <a href="{{ route('productDetails') }}">
+                                                                <img src="{{ asset($product->product_thumbnail) }}"
+                                                                    alt="product" width="100" height="100"
+                                                                    style="background-color: #f5f5f5;" />
+                                                            </a>
+                                                        </figure>
+                                                        <div class="product-details">
+                                                            <h3 class="product-name">
+                                                                <a
+                                                                    href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                            </h3>
+                                                            @if ($product->product_discount > 0)
+                                                                <div class="product-price">
+                                                                    <ins class="new-price">৳
+                                                                        {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                                                        class="old-price">৳
+                                                                        {{ $product->product_price }}/-</del>
+                                                                </div>
+                                                            @else
+                                                                <div class="product-price">
+                                                                    <ins class="new-price">৳
+                                                                        {{ $product->product_price }}/-</ins>
+                                                                </div>
+                                                            @endif
+                                                            <div class="ratings-container">
+                                                                <div class="ratings-full">
+                                                                    <span class="ratings" style="width:40%"></span>
+                                                                    <span class="tooltiptext tooltip-top"></span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="product product-list-sm">
-                                                    <figure class="product-media">
-                                                        <a href="{{ route('productDetails') }}">
-                                                            <img src="{{ asset('public/frontend') }}/images/sundorbon/horiner%20chamra.jpg"
-                                                                alt="product" width="100" height="100"
-                                                                style="background-color: #f5f5f5;" />
-                                                        </a>
-                                                    </figure>
-                                                    <div class="product-details">
-                                                        <h3 class="product-name">
-                                                            <a href="{{ route('productDetails') }}">হরিনের চামরা</a>
-                                                        </h3>
-                                                        <div class="product-price">
-                                                            <span class="price">৳ ৫০০/-</span>
-                                                        </div>
-                                                        <div class="ratings-container">
-                                                            <div class="ratings-full">
-                                                                <span class="ratings" style="width:60%"></span>
-                                                                <span class="tooltiptext tooltip-top"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product product-list-sm">
-                                                    <figure class="product-media">
-                                                        <a href="{{ route('productDetails') }}">
-                                                            <img src="{{ asset('public/frontend') }}/images/sundorbon/horiner%20chamra.jpg"
-                                                                alt="product" width="100" height="100"
-                                                                style="background-color: #f5f5f5;" />
-                                                        </a>
-                                                    </figure>
-                                                    <div class="product-details">
-                                                        <h3 class="product-name">
-                                                            <a href="{{ route('productDetails') }}">হরিনের চামরা</a>
-                                                        </h3>
-                                                        <div class="product-price">
-                                                            <span class="price">৳ ৫০০/-</span>
-                                                        </div>
-                                                        <div class="ratings-container">
-                                                            <div class="ratings-full">
-                                                                <span class="ratings" style="width:20%"></span>
-                                                                <span class="tooltiptext tooltip-top"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
