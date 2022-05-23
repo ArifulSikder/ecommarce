@@ -286,7 +286,7 @@
                                                 @foreach ($products->take(3) as $product)
                                                     <div class="product product-list-sm">
                                                         <figure class="product-media">
-                                                            <a href="{{ route('productDetails') }}">
+                                                            <a href="{{ url('_' . $product->product_slug) }}">
                                                                 <img src="{{ asset($product->product_thumbnail) }}"
                                                                     alt="product" width="100" height="100"
                                                                     style="background-color: #f5f5f5;" />
