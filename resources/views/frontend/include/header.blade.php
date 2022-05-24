@@ -34,7 +34,7 @@
                     </div>
                 </a>
                 <span class="divider"></span>
-                <a href="wishlist.html" class="wishlist">
+                <a href="{{ url('wishlist') }}" class="wishlist">
                     <i class="d-icon-heart"></i>
                 </a>
                 <span class="divider"></span>

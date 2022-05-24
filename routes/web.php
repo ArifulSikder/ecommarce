@@ -71,8 +71,12 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
 
 
     // ************************************frontend**************************************
-    Route::post('add-to-wishlist', [WishlistController::class, 'addToWishlist']); 
-    
+    Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 
+    Route::get('/wishlist',  [WishlistController::class, 'indexWishlist']);
+    // wishlist data ajax 
+    Route::get('/wishlist-data',  [WishlistController::class, 'wishlistData']);
+    // remove wishlist ajax 
+    Route::post('/remove-wishlist',  [WishlistController::class, 'removeWishlist']);
 });
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 

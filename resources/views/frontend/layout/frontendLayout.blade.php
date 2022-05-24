@@ -14,7 +14,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('public/frontend/images/icons/favicon.png') }}">
 
-    <script>
+    {{-- <script>
         WebFontConfig = {
             google: {
                 families: ['Poppins:400,500,600,700,800,900']
@@ -27,7 +27,7 @@
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);
-    </script>
+    </script> --}}
 
 
     <link rel="stylesheet" type="text/css"

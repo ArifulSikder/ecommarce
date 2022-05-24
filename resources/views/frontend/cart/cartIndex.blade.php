@@ -12,6 +12,7 @@
         <main class="main mt-lg-4">
             <div class="page-content">
                 <div class="container">
+                    <p>আপনার কার্টের পোডাক্ট</p>
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="card">

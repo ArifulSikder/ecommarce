@@ -78,7 +78,7 @@
               });
 
           }
-          productView();
+          //   productView();
       });
   </script>
 
@@ -142,7 +142,7 @@
                                         alt="product" width="80" height="88" />
                                 </a>
                                 <button type="submit" class="btn btn-link btn-close cartRemove" id="${value.rowId}">
-                                 <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                  <i class="fas fa-times"></i><span class="sr-only">Close</span>
                                 </button>
                             </figure>
                             <div class="product-detail">
@@ -170,6 +170,7 @@
           minicart();
           // cart page script 
           function cartPage() {
+
               $.ajax({
                   type: "GET",
                   url: "{{ url('cart-page') }}",
@@ -199,7 +200,8 @@
 
                                                                 <div class="row">
                                                                     <div class="col-md-2">
-                                                                        <a href="wishlist.html" class="wishlist"
+                                                                       
+                                                                        <a id="${value.id}" authId='{{ Auth::id() }}' class="wishlist AddToWishList"
                                                                             title="Add To Wishlist">
                                                                             <i class="d-icon-heart"></i>
                                                                         </a>
@@ -221,7 +223,7 @@
                                                 </td>
                                             </tr>`
                           $("#CartListItem").html(cartItem)
-                          $("input[type='number']").inputSpinner();
+                          $("#quantity").inputSpinner();
 
                           // remove cart / 
                           $('.cartRemove').click(function(e) {
@@ -233,7 +235,14 @@
                               var rowId = $(this).attr("rowId");
                               var quantity = $(this).val();
                               increaseCartQty(rowId, quantity);
-                          })
+                          });
+
+                          //   {{-- wishlist section --}}
+                          $(".AddToWishList").click(function(e) {
+                              var authId = $(this).attr("authId");
+                              var product_id = $(this).attr("id");
+                              addToWishList(authId, product_id);
+                          });
                       });
                   }
               });
@@ -281,19 +290,18 @@
                   }
               });
           }
-      });
-  </script>
 
-  {{-- wishlist section --}}
-
-  <script>
-      $(document).ready(function() {
+          //   {{-- wishlist section --}}
           $(".AddToWishList").click(function(e) {
-              var product_id = $(this).attr("authId");
-              console.log(product_id);
-              if (product_id != '') {
-
-                  var product_id = $(this).attr("id");
+              var authId = $(this).attr("authId");
+              var product_id = $(this).attr("id");
+              addToWishList(authId, product_id);
+          });
+          //add to wishlist
+          function addToWishList(authId, product_id) {
+              var authId = authId;
+              var product_id = product_id;
+              if (authId != '') {
                   $.ajax({
                       type: "POST",
                       url: "{{ url('add-to-wishlist') }}",
@@ -336,6 +344,110 @@
                       }
                   })
               }
-          });
+          }
+          //show wishlist data in table
+          function wishlistData() {
+              //wish list data
+              $.ajax({
+                  type: "GET",
+                  url: "{{ url('wishlist-data') }}",
+                  dataType: "json",
+                  success: function(response) {
+                      var wishlistData = '';
+                      $.each(response, function(index, value) {
+                          wishlistData += `  
+                        
+                      <tr>
+                        <td>
+                             <figure class="itemside align-items-center">
+                                   <img width='100px' id="product_thumbnail" src="${value.product_thumbnail}" class="img-sm">
+                              </figure>
+                        </td>
+                        <td>
+                            <figcaption class="info">
+                                <p class="title text-dark" id="product_name">${value.product_name}</p>
+                            </figcaption>
+                        </div>
+                        </td>
+                        <td>
+                            <p><strong id="productPrice">
+                                <span class="badge badge-${value.product_qty >0 ? 'success': 'danger'}">${value.product_qty >0 ? 'IN STOCK': 'STOCK OUT'}</span>
+                                </strong>
+                            </p>
+                        </td>
+                        <td>
+                            ${value.product_price } tk
+                        </td>
+                        <td>
+                            <button type="submit" id='${value.id }' class="btn  float-left btn-link  removeWishList">
+                                <i class="far fa-trash-alt fa-xs"></i>
+                            </button>
+                            <button style='font-size: 14px;' class="btn  btn-link  addToCart float-right" id="${value.id }" title="Add to cart"><i class="d-icon-bag"></i>Add To Cart</button>
+                        </td>
+                    </tr>
+                    `
+                      });
+                      $("#wishListData").html(wishlistData);
+
+                      $('.removeWishList').click(function(e) {
+                          var product_id = $(this).attr("id");
+                          removeProduct(product_id);
+                      });
+
+                      function removeProduct(product_id) {
+                          var id = product_id;
+                          $.ajax({
+                              type: "POST",
+                              url: "{{ url('remove-wishlist') }}",
+                              data: {
+                                  id: id,
+                              },
+                              headers: {
+                                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                              },
+                              dataType: 'json',
+                              success: function(response) {
+                                  if (response.status == 1) {
+                                      Swal.fire({
+                                          icon: 'success',
+                                          title: response.success,
+                                          showConfirmButton: false,
+                                          timer: 1500
+                                      })
+                                  } else {
+                                      Swal.fire({
+                                          icon: 'error',
+                                          title: response.error,
+                                          showConfirmButton: false,
+                                          timer: 1500
+                                      })
+                                  }
+
+                                  location.reload();
+                              }
+                          });
+                      }
+
+                      //   {{-- add to cart --}}
+                      $(".addToCart").click(function() {
+                          var id = $(this).attr("id");
+                          var quantity = 1;
+                          addToCart(id, quantity);
+                      });
+
+                  }
+
+              });
+          }
+          wishlistData();
+          //   {{-- remove product from wishlist --}}
+
+      });
+  </script>
+
+
+  <script>
+      $(document).ready(function() {
+
       });
   </script>
