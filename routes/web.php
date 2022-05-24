@@ -29,6 +29,8 @@ Route::get('remove-cart', [CartController::class, 'productRemove']);
 Route::get('cart', [CartController::class, 'cartIndex']);
 // cart page ajax 
 Route::get('cart-page', [CartController::class, 'cartPage']);
+// incrase cart quantity 
+Route::get('increase-cart-qty', [CartController::class, 'increaseCartQty']);
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
 

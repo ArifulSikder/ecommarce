@@ -13,7 +13,7 @@
             <div class="page-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <div class="card">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-shopping-cart">
@@ -31,35 +31,42 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <form>
                                         <label>Have coupon?</label>
-                                        <input type="email" class="form-control email" name="email" id="email2"
-                                            placeholder="Enter Coupon...">
-                                        <button class="btn btn-dark" type="submit">SUBMIT</button>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control email" name="email" id="email2"
+                                                    placeholder="Enter Coupon...">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-dark" style="font-size: 11px;"
+                                                    type="submit">SUBMIT</button>
+                                            </div>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <dl class="dlist-align">
-                                        <dt>Total price:</dt>
-                                        <dd class="text-right ml-3">$69.97</dd>
-                                    </dl>
-                                    <dl class="dlist-align">
-                                        <dt>Discount:</dt>
-                                        <dd class="text-right text-danger ml-3">- $10.00</dd>
-                                    </dl>
-                                    <dl class="dlist-align">
-                                        <dt>Total:</dt>
-                                        <dd class="text-right text-dark b ml-3"><strong>$59.97</strong></dd>
-                                    </dl>
-                                    <hr>
-                                    <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
-                                        Check Out
-                                    </a>
+                                    <ul class="list-group">
+                                        <li class="list-group-item border-0">Total Item <span class="float-right"
+                                                id="cartQtyy"></span>
+                                        </li>
+                                        <li class="list-group-item border-0">Total Amount <span class="float-right"
+                                                id="cartTotall"></span></li>
+                                        <li class="list-group-item border-0">Other Cost <span class="float-right">0
+                                                TK</span></li>
+                                        <li class="list-group-item border-0">Grand Total <span class="float-right"
+                                                id="grandTotal"></span></li>
+                                        <ul>
+                                            <hr>
+                                            <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
+                                                Check Out
+                                            </a>
                                 </div>
                             </div>
                         </div>

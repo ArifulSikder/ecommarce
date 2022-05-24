@@ -88,18 +88,12 @@
           $(".addToCart").click(function() {
               var id = $("#id").val();
               var quantity = $("#quantity").val();
-              var productName = $('#productName').text();
-              var discunt_price = $('#discunt_price').text();
-              var productThumbnail = $("#productThumbnail").attr('src');
-              addToCart(id, quantity, productName, discunt_price, productThumbnail);
+              addToCart(id, quantity);
           });
 
-          function addToCart(product_id, quantity, productName, discunt_price, productThumbnail) {
+          function addToCart(product_id, quantity) {
               var id = product_id;
               var product_qty = quantity;
-              var product_name = productName;
-              var discunt_price = discunt_price;
-              var product_thumbnail = productThumbnail;
 
               $.ajax({
                   type: "POST",
@@ -107,9 +101,6 @@
                   data: {
                       id: id,
                       product_qty: product_qty,
-                      product_name: product_name,
-                      discunt_price: discunt_price,
-                      product_thumbnail: product_thumbnail,
                   },
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -167,46 +158,31 @@
                       // console.log(minicart);
                       $("#MiniCart").html(minicart);
 
-
+                      // remove cart / 
                       $('.cartRemove').click(function(e) {
                           var rowId = $(this).attr('id');
-                          $.ajax({
-                              type: "GET",
-                              url: "{{ url('remove-cart') }}",
-                              data: {
-                                  rowId: rowId,
-                              },
-                              dataType: "json",
-                              success: function(response) {
-                                  if (response.success) {
-                                      toastr.success(response.success)
-                                  } else {
-                                      toastr.error(response.error)
-                                  }
-                                  location.reload();
-                              }
-                          });
+                          removeCart(rowId);
                       });
 
                   }
               });
           }
           minicart();
-
-      });
-  </script>
-  {{-- cart page --}}
-  <script>
-      $(document).ready(function() {
-          $.ajax({
-              type: "GET",
-              url: "{{ url('cart-page') }}",
-              data: "data",
-              dataType: "json",
-              success: function(response) {
-                  var cartItem = '';
-                  $.each(response.carts, function(index, value) {
-                      cartItem += `
+          // cart page script 
+          function cartPage() {
+              $.ajax({
+                  type: "GET",
+                  url: "{{ url('cart-page') }}",
+                  data: "data",
+                  dataType: "json",
+                  success: function(response) {
+                      $("#cartTotall").text('৳' + response.cartTotal + ' TK');
+                      $("#grandTotal").text('৳' + response.cartTotal + ' TK');
+                      $("#miniCartTotall").text('৳' + response.cartTotal + ' TK');
+                      $("#cartQtyy").text(response.cartQty);
+                      var cartItem = '';
+                      $.each(response.carts, function(index, value) {
+                          cartItem += `
                                             <tr>
                                                 <td>
                                                     <figure class="itemside align-items-center">
@@ -229,7 +205,7 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-md-2">
-                                                                        <a href="wishlist.html" class="wishlist"
+                                                                        <a  class="wishlist cartRemove rowId" id="${value.rowId}"
                                                                             title="Remove">
                                                                             <i class="fas fa-trash-alt"></i>
                                                                         </a>
@@ -239,15 +215,71 @@
                                                         </div>
                                                     </figure>
                                                 </td>
-                                                <td> <input type="number" id="quantity" value="${value.qty}" min="1"></td>
+                                                <td> <input type="number" id="quantity" class='quantity' rowId='${value.rowId}' value="${value.qty}" min="1"></td>
                                                 <td>
                                                     <p><strong id="productPrice">${value.price}</strong><span>TK</span></p>
                                                 </td>
                                             </tr>`
-                      $("#CartListItem").html(cartItem)
-                      $("input[type='number']").inputSpinner();
-                  });
-              }
-          });
+                          $("#CartListItem").html(cartItem)
+                          $("input[type='number']").inputSpinner();
+
+                          // remove cart / 
+                          $('.cartRemove').click(function(e) {
+                              var rowId = $(this).attr('id');
+                              removeCart(rowId);
+                          });
+
+                          $(".quantity").change(function(e) {
+                              var rowId = $(this).attr("rowId");
+                              var quantity = $(this).val();
+                              increaseCartQty(rowId, quantity);
+                          })
+                      });
+                  }
+              });
+          }
+          cartPage();
+
+          //   {{-- remove product --}}
+
+          function removeCart(rowId) {
+              var rowId = rowId;
+              $.ajax({
+                  type: "GET",
+                  url: "{{ url('remove-cart') }}",
+                  data: {
+                      rowId: rowId,
+                  },
+                  dataType: "json",
+                  success: function(response) {
+                      if (response.success) {
+                          toastr.success(response.success)
+                      } else {
+                          toastr.error(response.error)
+                      }
+                      location.reload();
+                  }
+              });
+          }
+
+          //   {{-- incrase cart quantity --}}
+          function increaseCartQty(rowId, quantity) {
+              var rowId = rowId;
+              var quantity = quantity;
+
+              $.ajax({
+                  type: "GET",
+                  url: "{{ url('increase-cart-qty') }}",
+                  data: {
+                      rowId: rowId,
+                      quantity: quantity,
+                  },
+                  dataType: "json",
+                  success: function(response) {
+                      cartPage();
+                      minicart();
+                  }
+              });
+          }
       });
   </script>

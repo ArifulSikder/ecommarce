@@ -18,13 +18,21 @@ class CartController extends Controller
 
     // product add to cart
     function addToCart(Request $request){
+        $product=Product::findOrFail($request->id);
+        if ($product->product_discount > 0) {
+            $discount = $product->product_price * $product->product_discount/100;
+            $discountPrice = $product->product_price - $discount;
+        } else {
+            $discountPrice = $product->product_price;
+        }
+        
         $cart =Cart::add([
-                'id' =>  $request->id,
-                'name' => $request->product_name,
+                'id' =>  $product->id,
+                'name' => $product->product_name,
                 'qty' => $request->product_qty,
-                'price' => $request->discunt_price,
+                'price' => $discountPrice,
                 'weight' => 1,
-                'options' => ['product_thumbnail' => $request->product_thumbnail],
+                'options' => ['product_thumbnail' => $product->product_thumbnail],
             ]);
     
         if ($cart == true) {
@@ -91,5 +99,19 @@ class CartController extends Controller
             'cartQty' => $cartQty,
             'cartTotal' => $cartTotal,
         ]);
+    }
+
+    function increaseCartQty(Request $request){
+       $cart= Cart::update($request->rowId, $request->quantity); // Will update the quantity
+        if ($cart == false) {
+            $notification = ([
+                'success' => 'প্রোডাক্ট রিমোভ করা হয়েছে !',
+            ]);
+        } else{
+            $notification = ([
+                'error' => 'প্রোডাক্ট রিমোভ ব্যর্থ হয়েছে...!',
+            ]);
+        }
+        return response()->json($notification);
     }
 }
