@@ -8,6 +8,7 @@ use App\Http\Controllers\Blog\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductControllerFrontend;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 Auth::routes();
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -67,6 +68,10 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
     Route::get('add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
     Route::post('/store-blog', [BlogController::class, 'storeBlog'])->name('storeBlog');
+
+
+    // ************************************frontend**************************************
+    Route::post('add-to-wishlist', [WishlistController::class, 'addToWishlist']); 
     
 });
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
