@@ -290,22 +290,52 @@
       $(document).ready(function() {
           $(".AddToWishList").click(function(e) {
               var product_id = $(this).attr("authId");
-              alert(product_id);
-              var product_id = $(this).attr("id");
-              $.ajax({
-                  type: "POST",
-                  url: "{{ url('add-to-wishlist') }}",
-                  data: {
-                      product_id: product_id,
-                  },
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  dataType: "json",
-                  success: function(response) {
-                      alert("ok");
-                  }
-              });
+              console.log(product_id);
+              if (product_id != '') {
+
+                  var product_id = $(this).attr("id");
+                  $.ajax({
+                      type: "POST",
+                      url: "{{ url('add-to-wishlist') }}",
+                      data: {
+                          product_id: product_id,
+                      },
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      },
+                      dataType: "json",
+                      success: function(response) {
+                          if (response.status == 1) {
+                              Swal.fire({
+                                  icon: 'success',
+                                  title: response.success,
+                                  showConfirmButton: false,
+                                  timer: 1500
+                              })
+                          } else {
+                              Swal.fire({
+                                  icon: 'error',
+                                  title: response.error,
+                                  showConfirmButton: false,
+                                  timer: 1500
+                              })
+                          }
+                      }
+                  });
+              } else {
+                  Swal.fire({
+                      title: 'দয়া করে লগিন করুন !',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Login !'
+                  }).then((result) => {
+                      if (result.isConfirmed) {
+                          window.location.href = '{{ url('login') }}'
+                      }
+                  })
+              }
           });
       });
   </script>

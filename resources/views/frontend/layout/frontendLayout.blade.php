@@ -70,6 +70,8 @@
     <script src="{{ asset('public/frontend/js/main.min.js') }}"></script>
     {{-- toastr alert --}}
     <script src="{{ URL::asset('admin/js/toastr.min.js') }}"></script>
+    {{-- sweet alert --}}
+    <script src="{{ URL::asset('admin/sweetalert/sweetalert.min.js') }}"></script>
     @include('frontend.cart.cartScript')
     @yield('script')
 </body>

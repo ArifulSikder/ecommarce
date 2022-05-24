@@ -14,6 +14,7 @@ class WishlistController extends Controller
        if ($CheckWishlist > 1) {
             $notification = ([
                 'error' => 'ইতোমদ্ধে উইশলিষ্টে যুক্ত করা আছে...!',
+                'status' => 0,
             ]);
            return response()->json($notification);
        } else {
@@ -25,10 +26,12 @@ class WishlistController extends Controller
             if ($wishlist == true) {
                 $notification = ([
                     'success' => 'উইশলিষ্টে যুক্ত করা হয়েছে !',
+                    'status' => 1,
                 ]);
             } else{
                 $notification = ([
                     'error' => 'উইশলিষ্টে যুক্ত ব্যর্থ হয়েছে...!',
+                    'status' => 0,
                 ]);
             }
         return response()->json($notification);
