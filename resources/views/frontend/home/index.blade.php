@@ -68,10 +68,10 @@
                                                         data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
                                                         মূল্য ৳ {{ $banner->product_price }}/-
                                                     </p>
-                                                    <a href="{{ route('productDetails') }}"
+                                                    {{-- <a href="{{ route('productDetails') }}"
                                                         class="btn btn-dark btn-rounded slide-animate"
                                                         data-animation-options="{'name': 'fadeInDownShorter','delay': '.5s','duration': '1s'}">
-                                                        এখুনি কিনুন</a>
+                                                        এখুনি কিনুন</a> --}}
                                                 </div>
                                             </div>
                                         @else
@@ -94,8 +94,8 @@
                                                         </h4>
                                                         {{-- <p class="text-dark lh-1 ls-m mb-4">প্যকেজ কিনে বাড়তি সুবিধা পান !
                                                         </p> --}}
-                                                        <a href="{{ route('productDetails') }}"
-                                                            class="btn btn-white btn-rounded">এখুনি কিনুন</a>
+                                                        {{-- <a href="{{ route('productDetails') }}"
+                                                            class="btn btn-white btn-rounded">এখুনি কিনুন</a> --}}
                                                     </div>
                                                 </div>
                                             </div>

@@ -223,7 +223,7 @@
                                                 </td>
                                             </tr>`
                           $("#CartListItem").html(cartItem)
-                          $("#quantity").inputSpinner();
+                          $(".quantity").inputSpinner();
 
                           // remove cart / 
                           $('.cartRemove').click(function(e) {
