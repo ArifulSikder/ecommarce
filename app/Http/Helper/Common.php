@@ -13,3 +13,11 @@ function catWiseProducts($cat_id){
 function SpecialOffer(){
   return Product::where(['status'=> 1, 'special_offer'=> 1])->first();
 }
+
+function dateToday(){
+  return Carbon::now()->format('Y-m-d');
+}
+
+function dateFormater($data){
+  return Carbon::parse($data)->format('D F, Y');
+}

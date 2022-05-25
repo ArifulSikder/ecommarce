@@ -100,6 +100,32 @@
                         </li>
                     </ul>
                 </li>
+
+
+                {{-- coupon --}}
+                <li class="nav-item has-treeview  @yield('coupon')">
+                    <a href="#" class="nav-link  @yield('activeCoupon')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            কুপন
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('coupon-list') }}" class="nav-link  @yield('coupon-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>কুপন তালিকা</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('blogs-list') }}" class="nav-link  @yield('blogs-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>কুপন তালিকা</p>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

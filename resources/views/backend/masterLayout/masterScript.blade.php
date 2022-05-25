@@ -96,7 +96,8 @@
             yearRange: '1920 : ' + '2050',
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'yy-mm-dd',
+            minDate: (new Date()),
         });
         $(".datepicker").datepicker({
             showButtonPanel: true,

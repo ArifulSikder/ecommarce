@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CagegoryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\Coupon\CouponController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductControllerFrontend;
 use App\Http\Controllers\Frontend\CartController;
@@ -68,6 +69,11 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
     Route::get('add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
     Route::post('/store-blog', [BlogController::class, 'storeBlog'])->name('storeBlog');
+
+    //coupon 
+    Route::get('coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');
+    Route::post('store-coupon', [CouponController::class, 'couponStore'])->name('storeCoupon');
+    Route::post('update-coupon', [CouponController::class, 'updateCoupon'])->name('update-coupon');
 
 
     // ************************************frontend**************************************
