@@ -72,4 +72,10 @@ class CouponController extends Controller
         }
         return response()->json($notification);
     }
+
+    //delete coupon
+    function deleteCoupon($coupon_id){
+        Coupon::findOrFail($coupon_id)->update(['status'=> 0]);
+        return redirect()->back();
+    }
 }

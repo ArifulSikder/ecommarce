@@ -33,6 +33,8 @@ Route::get('cart', [CartController::class, 'cartIndex']);
 Route::get('cart-page', [CartController::class, 'cartPage']);
 // incrase cart quantity 
 Route::get('increase-cart-qty', [CartController::class, 'increaseCartQty']);
+// have coupon
+Route::post('have-coupon', [CartController::class, 'haveCoupon']);
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -74,6 +76,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');
     Route::post('store-coupon', [CouponController::class, 'couponStore'])->name('storeCoupon');
     Route::post('update-coupon', [CouponController::class, 'updateCoupon'])->name('update-coupon');
+    Route::get('delete-coupon/{coupon_id}', [CouponController::class, 'deleteCoupon']);
 
 
     // ************************************frontend**************************************

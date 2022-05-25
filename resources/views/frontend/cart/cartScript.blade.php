@@ -1,7 +1,7 @@
   {{-- product cart view --}}
   <script>
       $(document).ready(function() {
-
+          // ************************************************************ product view start ***************************************************************** 
           // product view 
           $(".ViewProduct").click(function() {
               var productId = this.id;
@@ -10,8 +10,9 @@
 
 
           function productView(productId) {
+              var productId = productId;
               $("#quantity").val(1);
-              $("#id").empty();
+              $("#id").val('');
               $("#productName").text('');
               $("#productThumbnail").attr("src", '');
               $("#productCode").empty();
@@ -78,15 +79,13 @@
               });
 
           }
-          //   productView();
-      });
-  </script>
+          // ************************************************************ product view end ***************************************************************** 
 
-  <script>
-      $(document).ready(function() {
-          //   {{-- add to cart --}}
+          // ************************************************************  add to cart start ***************************************************************** 
+
           $(".addToCart").click(function() {
               var id = $("#id").val();
+              console.log(id);
               var quantity = $("#quantity").val();
               addToCart(id, quantity);
           });
@@ -107,18 +106,21 @@
                   },
                   dataType: "json",
                   success: function(response) {
-                      $("#addCartModal").modal('hide');
                       if (response.success) {
                           toastr.success(response.success)
                       } else {
                           toastr.error(response.error)
                       }
-
+                      $("#addCartModal").modal('hide');
                       minicart();
                   }
               });
           }
-          //   minicart section 
+          // ************************************************************  add to cart end ***************************************************************** 
+
+
+          // ************************************************************ minicart section  start ***************************************************************** 
+
           function minicart() {
               $.ajax({
                   type: "GET",
@@ -167,7 +169,13 @@
                   }
               });
           }
-          minicart();
+          //   minicart();
+
+          // ************************************************************ minicart section  end ***************************************************************** 
+
+
+          // ************************************************************ cart page script  start ***************************************************************** 
+
           // cart page script 
           function cartPage() {
 
@@ -248,8 +256,9 @@
               });
           }
           cartPage();
+          // ************************************************************ cart page script  end ***************************************************************** 
 
-          //   {{-- remove product --}}
+          // ************************************************************ remove product  start ***************************************************************** 
 
           function removeCart(rowId) {
               var rowId = rowId;
@@ -266,12 +275,16 @@
                       } else {
                           toastr.error(response.error)
                       }
-                      location.reload();
+                      minicart()
+                      //   location.reload();
                   }
               });
           }
 
-          //   {{-- incrase cart quantity --}}
+          // ************************************************************ remove product  end ***************************************************************** 
+
+          // ************************************************************ incrase cart quantity  start ***************************************************************** 
+
           function increaseCartQty(rowId, quantity) {
               var rowId = rowId;
               var quantity = quantity;
@@ -290,6 +303,9 @@
                   }
               });
           }
+          // ************************************************************ incrase cart quantity  end ***************************************************************** 
+
+          // ************************************************************ wishlist section start ***************************************************************** 
 
           //   {{-- wishlist section --}}
           $(".AddToWishList").click(function(e) {
@@ -394,40 +410,6 @@
                           removeProduct(product_id);
                       });
 
-                      function removeProduct(product_id) {
-                          var id = product_id;
-                          $.ajax({
-                              type: "POST",
-                              url: "{{ url('remove-wishlist') }}",
-                              data: {
-                                  id: id,
-                              },
-                              headers: {
-                                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                              },
-                              dataType: 'json',
-                              success: function(response) {
-                                  if (response.status == 1) {
-                                      Swal.fire({
-                                          icon: 'success',
-                                          title: response.success,
-                                          showConfirmButton: false,
-                                          timer: 1500
-                                      })
-                                  } else {
-                                      Swal.fire({
-                                          icon: 'error',
-                                          title: response.error,
-                                          showConfirmButton: false,
-                                          timer: 1500
-                                      })
-                                  }
-
-                                  location.reload();
-                              }
-                          });
-                      }
-
                       //   {{-- add to cart --}}
                       $(".addToCart").click(function() {
                           var id = $(this).attr("id");
@@ -440,14 +422,89 @@
               });
           }
           wishlistData();
-          //   {{-- remove product from wishlist --}}
-
-      });
-  </script>
 
 
-  <script>
-      $(document).ready(function() {
+          function removeProduct(product_id) {
+              var id = product_id;
+              $.ajax({
+                  type: "POST",
+                  url: "{{ url('remove-wishlist') }}",
+                  data: {
+                      id: id,
+                  },
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  dataType: 'json',
+                  success: function(response) {
+                      if (response.status == 1) {
+                          Swal.fire({
+                              icon: 'success',
+                              title: response.success,
+                              showConfirmButton: false,
+                              timer: 1500
+                          })
+                      } else {
+                          Swal.fire({
+                              icon: 'error',
+                              title: response.error,
+                              showConfirmButton: false,
+                              timer: 1500
+                          })
+                      }
+
+                      wishlistData();
+                      //   location.reload();
+                  }
+              });
+          }
+
+          // ************************************************************ wishlist section start ***************************************************************** 
+
+
+
+          // ************************************************************ coupon section start ***************************************************************** 
+
+          //   apply coupon 
+          $('#couponSubmit').click(function(e) {
+              e.preventDefault();
+              var couponName = $('#coupon').val();
+              haveCoupon(couponName);
+          });
+
+          function haveCoupon(couponName) {
+              var coupon_name = couponName;
+              $.ajax({
+                  type: "POST",
+                  url: "{{ url('have-coupon') }}",
+                  data: {
+                      coupon_name: coupon_name,
+                  },
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  dataType: "json",
+                  success: function(response) {
+                      if (response.status == 1) {
+                          Swal.fire({
+                              icon: 'success',
+                              title: response.success,
+                              showConfirmButton: false,
+                              timer: 1500
+                          })
+                      } else {
+                          Swal.fire({
+                              icon: 'error',
+                              title: response.error,
+                              showConfirmButton: false,
+                              timer: 1500
+                          })
+                      }
+
+                  }
+              });
+          }
+          // ************************************************************ coupon section end ***************************************************************** 
 
       });
   </script>

@@ -39,12 +39,12 @@
                                         <label>Have coupon?</label>
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control email" name="email" id="email2"
+                                                <input type="text" class="form-control email" name="coupon" id="coupon"
                                                     placeholder="Enter Coupon...">
                                             </div>
                                             <div class="col-md-4">
-                                                <button class="btn btn-dark" style="font-size: 11px;"
-                                                    type="submit">SUBMIT</button>
+                                                <button class="btn btn-dark" style="font-size: 11px;" type="submit"
+                                                    id="couponSubmit">SUBMIT</button>
                                             </div>
                                         </div>
 
