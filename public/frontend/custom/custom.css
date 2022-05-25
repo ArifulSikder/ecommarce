@@ -1,0 +1,13 @@
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    border: 1px solid #e3e3e3 !important;
+    padding: 8px !important;
+}
+
+.select2-container--default .select2-selection--single {
+    border: 0px solid #aaa !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 9px !important;
+}

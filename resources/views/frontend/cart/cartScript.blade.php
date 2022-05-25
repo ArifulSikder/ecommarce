@@ -230,27 +230,28 @@
                                                     <p><strong id="productPrice">${value.price}</strong><span>TK</span></p>
                                                 </td>
                                             </tr>`
-                          $("#CartListItem").html(cartItem)
-                          $(".quantity").inputSpinner();
 
-                          // remove cart / 
-                          $('.cartRemove').click(function(e) {
-                              var rowId = $(this).attr('id');
-                              removeCart(rowId);
-                          });
+                      });
 
-                          $(".quantity").change(function(e) {
-                              var rowId = $(this).attr("rowId");
-                              var quantity = $(this).val();
-                              increaseCartQty(rowId, quantity);
-                          });
+                      $("#CartListItem").html(cartItem)
+                      $(".quantity").inputSpinner();
+                      // remove cart / 
+                      $('.cartRemove').click(function(e) {
+                          var rowId = $(this).attr('id');
+                          removeCart(rowId);
+                      });
+                      //increase quantity
+                      $(".quantity").change(function(e) {
+                          var rowId = $(this).attr("rowId");
+                          var quantity = $(this).val();
+                          increaseCartQty(rowId, quantity);
+                      });
 
-                          //   {{-- wishlist section --}}
-                          $(".AddToWishList").click(function(e) {
-                              var authId = $(this).attr("authId");
-                              var product_id = $(this).attr("id");
-                              addToWishList(authId, product_id);
-                          });
+                      //   {{-- wishlist section --}}
+                      $(".AddToWishList").click(function(e) {
+                          var authId = $(this).attr("authId");
+                          var product_id = $(this).attr("id");
+                          addToWishList(authId, product_id);
                       });
                   }
               });
@@ -262,6 +263,7 @@
 
           function removeCart(rowId) {
               var rowId = rowId;
+
               $.ajax({
                   type: "GET",
                   url: "{{ url('remove-cart') }}",
@@ -275,7 +277,8 @@
                       } else {
                           toastr.error(response.error)
                       }
-                      minicart()
+                      minicart();
+                      cartPage();
                       //   location.reload();
                   }
               });
@@ -372,36 +375,35 @@
                       var wishlistData = '';
                       $.each(response, function(index, value) {
                           wishlistData += `  
-                        
-                      <tr>
-                        <td>
-                             <figure class="itemside align-items-center">
-                                   <img width='100px' id="product_thumbnail" src="${value.product_thumbnail}" class="img-sm">
-                              </figure>
-                        </td>
-                        <td>
-                            <figcaption class="info">
-                                <p class="title text-dark" id="product_name">${value.product_name}</p>
-                            </figcaption>
-                        </div>
-                        </td>
-                        <td>
-                            <p><strong id="productPrice">
-                                <span class="badge badge-${value.product_qty >0 ? 'success': 'danger'}">${value.product_qty >0 ? 'IN STOCK': 'STOCK OUT'}</span>
-                                </strong>
-                            </p>
-                        </td>
-                        <td>
-                            ${value.product_price } tk
-                        </td>
-                        <td>
-                            <button type="submit" id='${value.id }' class="btn  float-left btn-link  removeWishList">
-                                <i class="far fa-trash-alt fa-xs"></i>
-                            </button>
-                            <button style='font-size: 14px;' class="btn  btn-link  addToCart float-right" id="${value.id }" title="Add to cart"><i class="d-icon-bag"></i>Add To Cart</button>
-                        </td>
-                    </tr>
-                    `
+                            
+                            <tr>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <img width='100px' id="product_thumbnail" src="${value.product_thumbnail}" class="img-sm">
+                                    </figure>
+                                </td>
+                                <td>
+                                    <figcaption class="info">
+                                        <p class="title text-dark" id="product_name">${value.product_name}</p>
+                                    </figcaption>
+                                </div>
+                                </td>
+                                <td>
+                                    <p><strong id="productPrice">
+                                        <span class="badge badge-${value.product_qty >0 ? 'success': 'danger'}">${value.product_qty >0 ? 'IN STOCK': 'STOCK OUT'}</span>
+                                        </strong>
+                                    </p>
+                                </td>
+                                <td>
+                                    ${value.product_price } tk
+                                </td>
+                                <td>
+                                    <button type="submit" id='${value.id }' class="btn  float-left btn-link  removeWishList">
+                                        <i class="far fa-trash-alt fa-xs"></i>
+                                    </button>
+                                    <button style='font-size: 14px;' class="btn  btn-link  addToCart float-right" id="${value.id }" title="Add to cart"><i class="d-icon-bag"></i>Add To Cart</button>
+                                </td>
+                            </tr>`
                       });
                       $("#wishListData").html(wishlistData);
 
@@ -423,7 +425,7 @@
           }
           wishlistData();
 
-
+          //remove form wishlist
           function removeProduct(product_id) {
               var id = product_id;
               $.ajax({
@@ -501,6 +503,8 @@
                           })
                       }
 
+                      cartPage();
+                      minicart();
                   }
               });
           }

@@ -12,69 +12,79 @@
         <main class="main mt-lg-4">
             <div class="page-content">
                 <div class="container">
-                    <p>আপনার কার্টের পোডাক্ট</p>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="card">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-shopping-cart">
-                                        <thead class="text-bold">
-                                            <tr class="text-uppercase">
-                                                <th scope="col" width="45%">প্রোডাক্ট</th>
-                                                <th scope="col" width="15%">প্রোডাক্টের</th>
-                                                <th scope="col" width="10%">মুল্য</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="CartListItem">
-
-                                        </tbody>
-                                    </table>
+                    <p>আপনার প্রয়োজনিয় তথ্য দিয়ে সাবমিট করুন !</p>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="shipping_name">আপনার নাম</label>
+                                    <input type="taxt" class="form-control" id="shipping_name" aria-describedby="emailHelp"
+                                        placeholder="আপনার নাম দিন">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="shipping_address"> আপনার ঠিকানা</label>
+                                    <input type="taxt" class="form-control" id="shipping_address"
+                                        placeholder="আপনার ঠিকানা নাম">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="shipping_mobile"> আপনার মোবাইল নাম্বার</label>
+                                    <input type="taxt" class="form-control" id="shipping_mobile"
+                                        placeholder="আপনার মোবাইল নাম্বার নাম">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="division">বিভাগ</label>
+                                    <select class="form-control select2" data-placeholder="বিভাগ বাছাই ক্রুন"
+                                        style="width: 100%;">
+                                        <option value=""></option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="district">জেলা</label>
+                                    <select class="form-control select2" style="width: 100%;">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="thana">থানা</label>
+                                    <select class="form-control select2" style="width: 100%;">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-5">
+                                <button type="submit" class="btn btn-block btn-primary">Submit</button>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <form>
-                                        <label>Have coupon?</label>
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control email" name="coupon" id="coupon"
-                                                    placeholder="Enter Coupon...">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button class="btn btn-dark" style="font-size: 11px;" type="submit"
-                                                    id="couponSubmit">SUBMIT</button>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item border-0">Total Item <span class="float-right"
-                                                id="cartQtyy"></span>
-                                        </li>
-                                        <li class="list-group-item border-0">Total Amount <span class="float-right"
-                                                id="cartTotall"></span>
-                                        </li>
-                                        <li class="list-group-item border-0">Other Cost <span class="float-right">0
-                                                TK</span>
-                                        </li>
-                                        <li class="list-group-item border-0">Grand Total <span class="float-right"
-                                                id="grandTotal"></span>
-                                        </li>
-                                    </ul>
-                                    <hr>
-                                    <a href="{{ url('checkout') }}" class="btn btn-out btn-primary btn-square btn-main">
-                                        Check Out
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </main>

@@ -28,24 +28,28 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script> --}}
-
-
     <link rel="stylesheet" type="text/css"
         href="{{ asset('public/frontend/vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/vendor/animate/animate.min.css') }}">
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('public/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('public/frontend/vendor/magnific-popup/magnific-popup.min.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('public/frontend/vendor/owl-carousel/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="public/frontend/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}">
     <!-- Main CSS File -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/demo3.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('public/admin/plugins/fontawesome-free/css/all.min.css') }}">
     {{-- tostr notification --}}
     <link rel="stylesheet" href="{{ URL::asset('admin/css/toastr/toastr.min.css') }}">
+    {{-- custom css --}}
+    <link rel="stylesheet" href="{{ asset('public/frontend/custom/custom.css') }}">
+
 </head>
 
 <body class="@yield('pageClass')">
@@ -72,6 +76,19 @@
     <script src="{{ URL::asset('admin/js/toastr.min.js') }}"></script>
     {{-- sweet alert --}}
     <script src="{{ URL::asset('admin/sweetalert/sweetalert.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('public/admin/plugins/select2/js/select2.full.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                placeholder: function() {
+                    $(this).data('placeholder');
+                }
+            })
+        });
+    </script>
     @include('frontend.cart.cartScript')
     @yield('script')
 </body>
