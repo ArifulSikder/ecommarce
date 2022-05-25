@@ -13,13 +13,7 @@ class WishlistController extends Controller
 {
     //index wishlist 
     function indexWishlist(){
-        $categoriesNav = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 2])
-            ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 1])
-            ->get();
-        return view('frontend.wishlist.wishlistIndex', compact('categoriesNav', 'categoriesPropular'));
+        return view('frontend.wishlist.wishlistIndex');
     }
     //add to wishlist
     function addToWishlist(Request $request){

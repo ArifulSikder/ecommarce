@@ -11,7 +11,7 @@
                 <li><a href="#" class="menu-title">জনপ্রিয়
                         ক্যাটাগরি</a>
                 </li>
-                @foreach ($categoriesPropular as $category)
+                @foreach (categoriesPropular() as $category)
                     <li>
                         <a href="{{ url('show-' . $category->slug) }}">{!! $category->category_icon !!}
                             {{ $category->category_name }}</a>

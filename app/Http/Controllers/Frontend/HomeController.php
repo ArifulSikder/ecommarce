@@ -17,37 +17,21 @@ class HomeController extends Controller
         $singleCategory = Category::where(['status' => 1]);
         $products = Product::latest()->with('category')->get();
         $banners = Banner::where(['status' => 1, 'active_status' => 1])->get();
-        $categoriesNav = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 2])
-            ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 1])
-            ->get();
-        return view('frontend.home.index', compact('banners', 'categoriesNav', 'products', 'categoriesPropular','singleCategory'));
+      
+        return view('frontend.home.index', compact('banners',  'products', 'singleCategory'));
     }
 
     function productDetails()
     {
         $product = Product::latest()->with('category')->first();
-        $categoriesNav = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 2])
-            ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 1])
-            ->get();
-        return view('frontend.product.productDetails', compact('categoriesNav', 'categoriesPropular','product'));
+        return view('frontend.product.productDetails', compact('product'));
     }
 
     function shopping()
     {
         $banners = Banner::where(['status' => 1, 'active_status' => 1])->get();
-        $categoriesNav = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 2])
-            ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 1])
-            ->get();
-        return view('frontend.shop.shopping', compact('categoriesNav', 'categoriesPropular', 'banners'));
+    
+        return view('frontend.shop.shopping', compact( 'banners'));
     }
 
     //location
@@ -71,26 +55,15 @@ class HomeController extends Controller
     function catWiseProduct($category_id)
     {
         $category_id = Category::where('slug', $category_id)->first()->id;
-        $categoriesNav = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 2])
-            ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 1])
-            ->get();
+    
         $products = Product::where(['status' => 1, 'category_id' => $category_id])->get();
-        return view('frontend.product.showProduct', compact('products', 'categoriesNav', 'categoriesPropular'));
+        return view('frontend.product.showProduct', compact('products'));
     }
 
     function productShow($product_slug)
     {
-        $categoriesNav = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 2])
-            ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-            ->where(['status' => 1, 'category_status' => 1])
-            ->get();
         $product = Product::with('category')->where(['status' => 1, 'product_slug' => $product_slug])->first();
         $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
-        return view('frontend.product.productDetails', compact('product', 'categoriesNav', 'categoriesPropular', 'productMultipleImg'));
+        return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
     }
 }

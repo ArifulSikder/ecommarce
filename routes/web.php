@@ -9,6 +9,7 @@ use App\Http\Controllers\Coupon\CouponController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductControllerFrontend;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WishlistController;
 
 Auth::routes();
@@ -20,21 +21,23 @@ Route::get('/location',[HomeController::class, 'location'])->name('location');
 Route::get('/show-{cat_slug}', [HomeController::class, 'catWiseProduct']);
 Route::get('/_{product_slug}', [HomeController::class, 'productShow']);
 // product view ajax
-Route::post('product-view', [CartController::class, 'productView']);
+Route::post('/product-view', [CartController::class, 'productView']);
 // product add to cart ajax
-Route::post('add-to-cart', [CartController::class, 'addToCart']);
+Route::post('/add-to-cart', [CartController::class, 'addToCart']);
 // product mini cart ajax
-Route::get('product-minicart', [CartController::class, 'productMinicart']);
+Route::get('/product-minicart', [CartController::class, 'productMinicart']);
 // product remove from cart ajax
-Route::get('remove-cart', [CartController::class, 'productRemove']);
+Route::get('/remove-cart', [CartController::class, 'productRemove']);
 //cart view ||cart index
-Route::get('cart', [CartController::class, 'cartIndex']);
+Route::get('/cart', [CartController::class, 'cartIndex']);
 // cart page ajax 
-Route::get('cart-page', [CartController::class, 'cartPage']);
+Route::get('/cart-page', [CartController::class, 'cartPage']);
 // incrase cart quantity 
-Route::get('increase-cart-qty', [CartController::class, 'increaseCartQty']);
+Route::get('/increase-cart-qty', [CartController::class, 'increaseCartQty']);
 // have coupon
-Route::post('have-coupon', [CartController::class, 'haveCoupon']);
+Route::post('/have-coupon', [CartController::class, 'haveCoupon']);
+// checkout now
+Route::get('/checkout', [CheckoutController::class, 'checkOut']);
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
 

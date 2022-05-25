@@ -85,11 +85,3 @@
     @include('frontend.include.mobile')
 
 @endsection
-
-
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
-    <script>
-        $("input[type='number']").inputSpinner();
-    </script>
-@endsection

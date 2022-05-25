@@ -22,7 +22,7 @@ class CartController extends Controller
 
     // product add to cart
     function addToCart(Request $request){
-        
+
         $product=Product::findOrFail($request->id);
         if ($product->product_discount > 0) {
             $discount = $product->product_price * $product->product_discount/100;
@@ -85,13 +85,7 @@ class CartController extends Controller
     //cart page || cart view page
 
     function cartIndex(){
-        $categoriesNav = Category::where(['status' => 1])
-        ->where(['status' => 1, 'category_status' => 2])
-        ->get();
-        $categoriesPropular = Category::where(['status' => 1])
-        ->where(['status' => 1, 'category_status' => 1])
-        ->get();
-        return view('frontend.cart.cartIndex', compact('categoriesNav', 'categoriesPropular' ));
+        return view('frontend.cart.cartIndex');
     }
 
     //cart page 
@@ -168,4 +162,5 @@ class CartController extends Controller
         }
         
     }
+    
 }

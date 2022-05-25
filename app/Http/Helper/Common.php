@@ -21,3 +21,15 @@ function dateToday(){
 function dateFormater($data){
   return Carbon::parse($data)->format('D F, Y');
 }
+
+function categoriesNav(){
+ return Category::where(['status' => 1])
+  ->where(['status' => 1, 'category_status' => 2])
+  ->get();
+}
+
+function categoriesPropular(){
+  return Category::where(['status' => 1])
+        ->where(['status' => 1, 'category_status' => 1])
+        ->get();
+}

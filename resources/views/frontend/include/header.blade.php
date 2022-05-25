@@ -99,7 +99,7 @@
                         <li class="active">
                             <a href="{{ url('/') }}">হোম</a>
                         </li>
-                        @foreach ($categoriesNav as $category)
+                        @foreach (categoriesNav() as $category)
                             <li>
                                 <a href="{{ url('show-' . $category->slug) }}">{!! $category->category_icon !!}
                                     {{ $category->category_name }}</a>
