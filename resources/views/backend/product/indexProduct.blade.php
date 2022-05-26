@@ -63,6 +63,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex float-right mt-2">
+                    {!! $products->links('pagination::bootstrap-5') !!}
+                </div>
             </div>
         </div>
     </div>

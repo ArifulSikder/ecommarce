@@ -132,7 +132,7 @@
                     <a href="#" class="nav-link  @yield('activeLocation')">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            বিভাগ
+                            লোকেশন
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -147,6 +147,12 @@
                             <a href="{{ route('district-list') }}" class="nav-link  @yield('district-list')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>জেলার তালিকা</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('thana-list') }}" class="nav-link  @yield('thana-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>থানা তালিকা</p>
                             </a>
                         </li>
                     </ul>

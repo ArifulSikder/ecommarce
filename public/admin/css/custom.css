@@ -1,11 +1,13 @@
 body {
     background-color: #e9ecef
 }
-.table{
+
+.table {
     border-left: 3px solid #007bff;
 }
-/* ********************* multiple preview photo*************************** */
 
+
+/* ********************* multiple preview photo*************************** */
 
 input[type="file"] {
     display: block;
@@ -38,29 +40,6 @@ input[type="file"] {
 }
 
 
-.pagination {
-    display: inline-block;
-}
-
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-}
-
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-}
-
 /* custom treeview style ? */
 
 #page-wrap {
@@ -83,7 +62,6 @@ ul {
 .treeview>li:first-child>label {
     /* style for the root element - IE8 supports :first-child
                                       but not :last-child ..... */
-
 }
 
 .treeview li.last {
@@ -109,6 +87,7 @@ ul {
     padding-left: 20px;
 }
 
+
 /* Unchecked styles */
 
 .treeview .custom-unchecked {
@@ -119,6 +98,7 @@ ul {
     background-position: 0 -21px;
 }
 
+
 /* Checked styles */
 
 .treeview .custom-checked {
@@ -128,6 +108,7 @@ ul {
 .treeview .custom-checked:hover {
     background-position: 0 -101px;
 }
+
 
 /* Indeterminate styles */
 

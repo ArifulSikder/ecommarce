@@ -1,19 +1,19 @@
 @extends('backend.masterLayout.admin-master')
 @section('title')
-    জেলা
+    থানা
 @endsection
 
 {{-- menu active start --}}
 @section('location', 'menu-open')
 @section('activeLocation', 'active')
-@section('district-list', 'active')
+@section('thana-list', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div class="row">
         <div class="col-md-7">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">জেলার তালিকা</h3>
+                    <h3 class="card-title">থানার তালিকা</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -23,26 +23,28 @@
                                 <th style="">সিরিয়াল</th>
                                 <th style="">বিভাগের নাম</th>
                                 <th style="">জেলার নাম</th>
+                                <th style="">থানার নাম</th>
                                 <th style="" class="text-center">আকশন</th>
                             </tr>
                         </thead>
                         @php
-                            $serial = ($districts->currentpage() - 1) * $districts->perpage() + 1;
+                            $serial = ($thanas->currentpage() - 1) * $thanas->perpage() + 1;
                         @endphp
                         <tbody>
-                            @foreach ($districts as $district)
+                            @foreach ($thanas as $thana)
                                 <tr>
                                     <td>{{ $serial++ }}</td>
-                                    <td>{{ $district->division->division_name }}</td>
-                                    <td>{{ $district->district_name }}</td>
+                                    <td>{{ $thana->division->division_name }}</td>
+                                    <td>{{ $thana->district->district_name }}</td>
+                                    <td>{{ $thana->thana_name }}</td>
                                     <td class="text-center">
                                         <!-- Large modal -->
                                         <button type="button" class="btn btn-primary btn-sm getData" data-toggle="modal"
-                                            data-target="#editDivision" data-id="{{ $district->id }}"
-                                            data-division="{{ $district->division_name }}"><i
+                                            data-target="#editDivision" data-id="{{ $thana->id }}"
+                                            data-division="{{ $thana->thana_name }}"><i
                                                 class="far fa-edit"></i></button>
 
-                                        <a href="{{ url('district-delete/' . $district->id) }}"
+                                        <a href="{{ url('division-delete/' . $thana->id) }}}}"
                                             class="btn btn-danger btn-sm" id="delete"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -50,7 +52,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex float-right mt-2">
-                        {!! $districts->links('pagination::bootstrap-5') !!}
+                        {!! $thanas->links('pagination::bootstrap-5') !!}
                     </div>
                 </div>
             </div>
@@ -58,15 +60,15 @@
         <div class="col-md-5">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">জেলা যোগ করুন</h3>
+                    <h3 class="card-title">বিভাগ যোগ করুন</h3>
                 </div>
                 <div class="card-body">
-                    <form role="form" method="POST" action="{{ route('storeDistrict') }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" action="{{ route('storeThana') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="division_id">বিভাগের নাম</label>
-                                <select name="division_id"
+                                <select name="division_id" id="division_id"
                                     class="form-control select2  @error('division_id') is-invalid @enderror"
                                     style="width: 100%;" data-placeholder='বিভাগের নাম বাছাই ক্রুন'>
                                     <option value=""></option>
@@ -81,12 +83,25 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="district_name">জেলার নাম</label>
-                                <input type="text" class="form-control  @error('district_name') is-invalid @enderror"
-                                    name="district_name" placeholder="জেলার নাম দিন" id="district_name"
-                                    value="{{ old('district_name') }}">
+                                <label for="district_id">জেলার নাম</label>
+                                <select name="district_id" id="district_id"
+                                    class="form-control select2  @error('district_id') is-invalid @enderror"
+                                    style="width: 100%;" data-placeholder='জেলার নাম বাছাই ক্রুন'>
+                                    <option value=""></option>
+
+                                </select>
+                                @error('district_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            @error('district_name')
+                            <div class="form-group">
+                                <label for="thana_name">থানার নাম</label>
+                                <input type="text" class="form-control  @error('thana_name') is-invalid @enderror"
+                                    id="thana_name" name="thana_name" placeholder="থানার নাম দিন"
+                                    value="{{ old('thana_name') }}">
+                            </div>
+
+                            @error('thana_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -151,6 +166,41 @@
 
             });
 
+            //division by district get
+            $('#division_id').change(function(e) {
+                e.preventDefault();
+                var division_id = $(this).val();
+
+                divisionByDistrict(division_id);
+            });
+
+
+            function divisionByDistrict(division_id) {
+                var division_id = division_id;
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('division-by-district') }}",
+                    data: {
+                        division_id: division_id,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $("#district_id").empty();
+                        var options = '<option value=""></option>';
+
+                        $.each(response, function(index, value) {
+                            options +=
+                                `<option value="${value.id}">${value.district_name}</option>`;
+                        });
+
+                        $("#district_id").append(options);
+                    }
+                });
+            }
 
             $("#divisionFrom").on('submit', function(e) {
                 e.preventDefault();

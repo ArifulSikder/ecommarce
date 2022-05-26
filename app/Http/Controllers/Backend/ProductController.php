@@ -13,7 +13,7 @@ use illuminate\Support\Facades\File;
 class ProductController extends Controller
 {
     function index(){
-        $products =  Product::with('category')->orderBy("id", 'desc')->where('status', 1)->paginate();
+        $products =  Product::with('category')->orderBy("id", 'desc')->where('status', 1)->paginate(10);
         return view('backend.product.indexProduct',  compact('products'));
     }
     function addProduct(){

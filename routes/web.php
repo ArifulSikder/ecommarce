@@ -86,11 +86,19 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/division-list', [LocationController::class, 'indexDivision'])->name('division-list');
     Route::post('/store-division', [LocationController::class, 'storeDivision'])->name('storeDivision');
     Route::post('/division-update', [LocationController::class, 'updateDivision'])->name('division-update');
+    Route::get('/division-delete/{division_id}', [LocationController::class, 'deleteDivision']);
 
 
     //district
     Route::get('/district-list', [LocationController::class, 'districtIndex'])->name('district-list');
     Route::post('/store-district',  [LocationController::class, 'storeDistrict'])->name('storeDistrict');
+    Route::get('/district-delete/{district_id}', [LocationController::class, 'deleteDistrict']);
+
+
+    //thana 
+    Route::get('/thana-list', [LocationController::class, 'thanaIndex'])->name('thana-list');
+    Route::post('/division-by-district',  [LocationController::class, 'divisionByDistrict']);
+    Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
 
     // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 

@@ -4,8 +4,9 @@
 @endsection
 
 {{-- menu active start --}}
-@section('category', 'menu-open')
-@section('categoryActive', 'active')
+@section('location', 'menu-open')
+@section('activeLocation', 'active')
+@section('division-list', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div class="row">
@@ -46,6 +47,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex float-right mt-2">
+                        {!! $divisions->links('pagination::bootstrap-5') !!}
+                    </div>
                 </div>
             </div>
         </div>
