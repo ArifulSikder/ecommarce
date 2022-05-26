@@ -126,6 +126,31 @@
                         </li> --}}
                     </ul>
                 </li>
+
+                {{-- location --}}
+                <li class="nav-item has-treeview  @yield('location')">
+                    <a href="#" class="nav-link  @yield('activeLocation')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            বিভাগ
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('division-list') }}" class="nav-link  @yield('division-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>বিভাগের তালিকা</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('district-list') }}" class="nav-link  @yield('district-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>জেলার তালিকা</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

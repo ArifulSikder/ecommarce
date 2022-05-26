@@ -23,7 +23,6 @@ class ProductController extends Controller
 
     //store product 
     function storeProduct(Request $request){
-        dd($request->all());
         $validator = $request->validate([
             'category_id' => 'required|max:11',
             'product_name' => 'required|max:255',

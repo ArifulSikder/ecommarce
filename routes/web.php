@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\ProductControllerFrontend;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Location\LocationController;
 
 Auth::routes();
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -38,11 +39,11 @@ Route::get('/increase-cart-qty', [CartController::class, 'increaseCartQty']);
 Route::post('/have-coupon', [CartController::class, 'haveCoupon']);
 // checkout now
 Route::get('/checkout', [CheckoutController::class, 'checkOut']);
-// +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++ frontend routes end ++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
-// +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++ backend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function(){ // added middleware auth
@@ -71,18 +72,27 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/delete-banner/{banner_id}', [BannerController::class, 'deleteBanner']);
 
     //block
-    Route::get('blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
-    Route::get('add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
+    Route::get('/blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
+    Route::get('/add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
     Route::post('/store-blog', [BlogController::class, 'storeBlog'])->name('storeBlog');
 
     //coupon 
-    Route::get('coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');
-    Route::post('store-coupon', [CouponController::class, 'couponStore'])->name('storeCoupon');
-    Route::post('update-coupon', [CouponController::class, 'updateCoupon'])->name('update-coupon');
-    Route::get('delete-coupon/{coupon_id}', [CouponController::class, 'deleteCoupon']);
+    Route::get('/coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');
+    Route::post('/store-coupon', [CouponController::class, 'couponStore'])->name('storeCoupon');
+    Route::post('/update-coupon', [CouponController::class, 'updateCoupon'])->name('update-coupon');
+    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'deleteCoupon']);
+
+    //division 
+    Route::get('/division-list', [LocationController::class, 'indexDivision'])->name('division-list');
+    Route::post('/store-division', [LocationController::class, 'storeDivision'])->name('storeDivision');
+    Route::post('/division-update', [LocationController::class, 'updateDivision'])->name('division-update');
 
 
-    // ************************************frontend**************************************
+    //district
+    Route::get('/district-list', [LocationController::class, 'districtIndex'])->name('district-list');
+    Route::post('/store-district',  [LocationController::class, 'storeDistrict'])->name('storeDistrict');
+
+    // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 
     Route::get('/wishlist',  [WishlistController::class, 'indexWishlist']);
     // wishlist data ajax 
@@ -90,5 +100,6 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     // remove wishlist ajax 
     Route::post('/remove-wishlist',  [WishlistController::class, 'removeWishlist']);
 });
-// +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+// +++++++++++++++++++++++++++++++++++++++++ backend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
