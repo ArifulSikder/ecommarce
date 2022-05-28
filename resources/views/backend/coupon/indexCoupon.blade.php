@@ -62,6 +62,9 @@
                         </tbody>
                     </table>
 
+                    <div class="d-flex float-right mt-2">
+                        {!! $coupons->links('pagination::bootstrap-5') !!}
+                    </div>
                 </div>
             </div>
         </div>

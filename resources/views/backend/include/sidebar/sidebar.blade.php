@@ -157,6 +157,32 @@
                         </li>
                     </ul>
                 </li>
+
+
+                {{-- order --}}
+                <li class="nav-item has-treeview  @yield('order')">
+                    <a href="#" class="nav-link  @yield('activeOrder')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            সকল অর্ডার
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('order-list') }}" class="nav-link  @yield('order-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>অর্ডার তালিকা</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('thana-list') }}" class="nav-link  @yield('thana-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>থানা তালিকা</p>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

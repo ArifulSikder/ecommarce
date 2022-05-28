@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CagegoryController;
+use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Blog\BlogController;
@@ -106,6 +107,10 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/division-by-district',  [LocationController::class, 'divisionByDistrict']);
     Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
     Route::post('/thana-update',  [LocationController::class, 'updateThana'])->name('thana-update');
+
+    //order
+    Route::get('order-list', [OrderController_::class, 'index'])->name('order-list');
+    Route::get('order-items/{order_id}', [OrderController_::class, 'orderItems']);
 
     // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 

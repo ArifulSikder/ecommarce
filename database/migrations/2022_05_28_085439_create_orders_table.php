@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id');
             $table->string('shipping_name');
             $table->string('shipping_mobile', 15);
             $table->string('shipping_email')->nullable();
@@ -34,7 +33,7 @@ return new class extends Migration
             $table->date('delivered_date')->nullable();
             $table->date('cancel_date')->nullable();
             $table->date('return_date')->nullable();
-            $table->integer('type')->default(0)->comment('1=comfirm, 2=precessing, 3=picked, 4=shipped, 5=delivered, 6=cancel, 7=return');
+            $table->string('order_type', 21)->default('Pending');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
