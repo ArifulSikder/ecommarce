@@ -39,6 +39,10 @@ Route::get('/increase-cart-qty', [CartController::class, 'increaseCartQty']);
 Route::post('/have-coupon', [CartController::class, 'haveCoupon']);
 // checkout now
 Route::get('/checkout', [CheckoutController::class, 'checkOut']);
+Route::get('/division-by-district', [CheckoutController::class, 'divisionByDistrict']);
+Route::get('/district-by-thana', [CheckoutController::class, 'districtByThana']);
+//order now
+
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes end ++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -99,6 +103,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/thana-list', [LocationController::class, 'thanaIndex'])->name('thana-list');
     Route::post('/division-by-district',  [LocationController::class, 'divisionByDistrict']);
     Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
+    Route::post('/thana-update',  [LocationController::class, 'updateThana'])->name('thana-update');
 
     // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 

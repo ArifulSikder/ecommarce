@@ -173,6 +173,41 @@ class LocationController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    // update thana
+
+    function updateThana(Request $request){
+        $validator = Validator::make($request->all(), [
+            'division_id' => 'required|max:21',
+            'district_id' => 'required|max:21',
+            'thana_name' => 'required|max:255|unique:thanas,thana_name,'. $request->id,
+        ],[
+            'division_id.required' => 'Please Enter This Filed',
+            'district_id.required' => 'Please Enter This Filed',
+            'thana_name.required' => 'Please Enter This Filed',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([$validator->errors(), 'status' => 0]);
+        }
+
+
+        $division=Thana::findOrFail($request->id)->update($request->all());
+        
+        if ($division == true) {
+            $notification = ([
+                'success' => 'থানা সফলভাবে আপডেট করা হয়েছে !', 
+                'status' => 1,
+            ]);
+        } else{
+            $notification = ([
+                'error' => 'থানা  আপডেট করা ব্যর্থ হয়েছে...!',
+                'status' => 2,
+            ]);
+        }
+
+        return response()->json($notification);
+    }
     // ******************************************************** thana end *****************************************************
 
 

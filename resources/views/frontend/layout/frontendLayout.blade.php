@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
@@ -78,7 +79,6 @@
     <script src="{{ URL::asset('admin/sweetalert/sweetalert.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('public/admin/plugins/select2/js/select2.full.min.js') }}"></script>
-
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -89,8 +89,21 @@
             })
         });
     </script>
+    @if (Session::has('success'))
+        <script>
+            toastr.success("{{ Session::get('success') }}")
+        </script>
+    @elseif (!empty(Session::get('error')))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: "{{ Session::get('error') }}",
+            });
+        </script>
+    @endif
+
     @include('frontend.cart.cartScript')
-    @yield('script')
+    @yield('scriptFontend')
 </body>
 
 </html>

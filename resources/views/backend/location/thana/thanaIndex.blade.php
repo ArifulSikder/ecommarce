@@ -40,8 +40,10 @@
                                     <td class="text-center">
                                         <!-- Large modal -->
                                         <button type="button" class="btn btn-primary btn-sm getData" data-toggle="modal"
-                                            data-target="#editDivision" data-id="{{ $thana->id }}"
-                                            data-division="{{ $thana->thana_name }}"><i
+                                            data-target="#editThana" data-id="{{ $thana->id }}"
+                                            data-division_id="{{ $thana->division_id }}"
+                                            data-district_id="{{ $thana->district_id }}"
+                                            data-thana_name="{{ $thana->thana_name }}"><i
                                                 class="far fa-edit"></i></button>
 
                                         <a href="{{ url('division-delete/' . $thana->id) }}}}"
@@ -117,32 +119,56 @@
     </div>
     <!-- /.row -->
 
-    {{-- edit division --}}
-    <div class="modal fade" id="editDivision" tabindex="-1" role="dialog" aria-labelledby="editDivisionItem"
+    {{-- edit thana --}}
+    <div class="modal fade" id="editThana" tabindex="-1" role="dialog" aria-labelledby="editThanaData"
         aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title" id="editDivisionItem">বিভাগ ইডিট করুন</h5>
+                    <h5 class="modal-title" id="editThanaData">বিভাগ ইডিট করুন</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" id="divisionFrom">
-                        <input type="hidden" id="id_up" name="id">
+                    <form role="form" id="thanaFrom">
+                        <input type="hidden" name="id" id='id_up'>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="division_name">বিভাগের নাম</label>
-                                <input type="text" class="form-control" name="division_name" placeholder="বিভাগের নাম দিন"
-                                    id="division_name_up">
+                                <label for="division_id">বিভাগের নাম</label>
+                                <select name="division_id" id="division_id_up" class="form-control select2  "
+                                    style="width: 100%;" data-placeholder='বিভাগের নাম বাছাই ক্রুন'>
+                                    <option value=""></option>
+                                    @foreach ($divisions as $division)
+                                        <option value="{{ $division->id }}"
+                                            {{ collect(old('division_id'))->contains($division->id) ? 'selected' : '' }}>
+                                            {{ $division->division_name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger" id="divisionError"></span>
                             </div>
-                            <span class="text-danger" id="divisionError"></span>
+                            <div class="form-group">
+                                <label for="district_id">জেলার নাম</label>
+                                <select name="district_id" id="district_id_up" class="form-control select2 "
+                                    style="width: 100%;" data-placeholder='জেলার নাম বাছাই ক্রুন'>
+                                    <option value=""></option>
+
+                                </select>
+
+                                <span class="text-danger" id="districtError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="thana_name">থানার নাম</label>
+                                <input type="text" class="form-control  @error('thana_name') is-invalid @enderror"
+                                    id="thana_name_up" name="thana_name" placeholder="থানার নাম দিন" value="">
+                            </div>
+
+                            <span class="text-danger" id="thanaError"></span>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary btn-block">আপডেট করুন</button>
+                            <button type="submit" class="btn btn-primary btn-block">সেভ করুন</button>
                         </div>
                     </form>
                 </div>
@@ -157,24 +183,30 @@
 @section('script')
     <script>
         $(document).ready(function() {
+
             $('.getData').click(function() {
                 var id = $(this).data("id");
-                var division = $(this).data("division");
+                var division_id = $(this).data("division_id");
+                var district_id = $(this).data("district_id");
+                var thana_name = $(this).data("thana_name");
+
 
                 $('#id_up').val(id);
-                $('#division_name_up').val(division);
-
+                $('#division_id_up').val(division_id).trigger('change');
+                if (division_id != null) {
+                    divisionByDistrictEdit(division_id, district_id);
+                }
+                $('#thana_name_up').val(thana_name);
             });
 
             //division by district get
             $('#division_id').change(function(e) {
                 e.preventDefault();
                 var division_id = $(this).val();
-
                 divisionByDistrict(division_id);
             });
 
-
+            // for insert 
             function divisionByDistrict(division_id) {
                 var division_id = division_id;
 
@@ -201,13 +233,44 @@
                     }
                 });
             }
+            // for edit  get district
+            function divisionByDistrictEdit(division_id, district_id) {
+                var division_id = division_id;
+                var district_id = district_id;
 
-            $("#divisionFrom").on('submit', function(e) {
-                e.preventDefault();
-                var formData = new FormData($("#divisionFrom")[0]);
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('division-update') }}",
+                    url: "{{ url('division-by-district') }}",
+                    data: {
+                        division_id: division_id,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $("#district_id_up").empty();
+                        var options = '<option value=""></option>';
+
+                        $.each(response, function(index, value) {
+                            options +=
+                                `<option value="${value.id}">${value.district_name}</option>`;
+                        });
+
+                        $("#district_id_up").append(options);
+
+                        $('#district_id_up').val(district_id).trigger('change');
+                    }
+                });
+            }
+
+
+            $("#thanaFrom").on('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData($("#thanaFrom")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('thana-update') }}",
                     dataType: "json",
                     contentType: false,
                     processData: false,
@@ -215,17 +278,21 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
+
+
                     success: function(response) {
                         if (response.status == 0) {
                             $.each(response, function(index, value) {
-                                $("#divisionError").text(value.division_name);
+                                $("#divisionError").text(value.division_id);
+                                $("#districtError").text(value.district_id);
+                                $("#thanaError").text(value.thana_name);
                             });
 
                         } else if (response.status == 1) {
                             toastr.success(response.success);
-                            $('#editDivision').modal('hide');
+                            $('#editThana').modal('hide');
                             location.reload();
-                            $("#EditForm")[0].reset();
+                            $("#thanaFrom")[0].reset();
                             // $(".table").load(location.href + " .table");
 
                         } else if (response.status == 2) {
@@ -233,7 +300,9 @@
                         }
                     },
                     error: function(error) {
-                        $("#divisionError").text(error.category_slug);
+                        $("#divisionError").text(error.division_id);
+                        $("#districtError").text(error.district_id);
+                        $("#thanaError").text(error.thana_name);
                     }
                 });
             });
