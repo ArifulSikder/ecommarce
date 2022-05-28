@@ -13,8 +13,9 @@ class CheckoutController extends Controller
     function checkOut(){
         $cartTotal = Cart::count();
         if ($cartTotal >0) {
+            $carts = Cart::content();
             $divisions = Division::where(['status'=> 1])->orderBy("division_name", 'asc')->get();
-            return view('frontend.checkout.checkout', compact('divisions'));
+            return view('frontend.checkout.checkout', compact('divisions', 'carts'));
         } else {
             $notification = ([
                 'error' => 'দুঃখীত! আপনার কার্টে কোনো প্রোডাক্ট নেই...!',

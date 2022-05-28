@@ -20,9 +20,9 @@
                                     <table class="table table-bordered table-shopping-cart">
                                         <thead class="text-bold">
                                             <tr class="text-uppercase">
-                                                <th scope="col" width="45%">প্রোডাক্ট</th>
+                                                <th scope="col" width="40%">প্রোডাক্ট</th>
                                                 <th scope="col" width="15%">প্রোডাক্টের</th>
-                                                <th scope="col" width="10%">মুল্য</th>
+                                                <th scope="col" width="15%">মুল্য</th>
                                             </tr>
                                         </thead>
                                         <tbody id="CartListItem">
@@ -84,12 +84,4 @@
     </div>
     @include('frontend.include.mobile')
 
-@endsection
-
-
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
-    <script>
-        $("input[type='number']").inputSpinner();
-    </script>
 @endsection

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ProductControllerFrontend;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Location\LocationController;
 
@@ -42,6 +43,7 @@ Route::get('/checkout', [CheckoutController::class, 'checkOut']);
 Route::get('/division-by-district', [CheckoutController::class, 'divisionByDistrict']);
 Route::get('/district-by-thana', [CheckoutController::class, 'districtByThana']);
 //order now
+Route::post('/order', [OrderController::class, 'orderStore'])->name('order');
 
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes end ++++++++++++++++++++++++++++++++++++++++++++++++
 

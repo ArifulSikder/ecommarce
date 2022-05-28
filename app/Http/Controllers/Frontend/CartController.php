@@ -129,8 +129,8 @@ class CartController extends Controller
                 $putSession= $request->session()->put("coupon",[
                     'coupon_name' =>  $haveCoupon->coupon_name,
                     'coupon_discount' =>  $haveCoupon->coupon_discount,
-                    'discount_amount' =>  $discountAmount,
-                    'total_amount' =>  $totalAmount,
+                    'discount_amount' => round($discountAmount),
+                    'total_amount' => round($totalAmount),
                     ]);
                     
                     if ($putSession == false) {

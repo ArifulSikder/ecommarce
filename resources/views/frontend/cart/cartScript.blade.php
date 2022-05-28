@@ -227,7 +227,7 @@
                                                 </td>
                                                 <td> <input type="number" id="quantity" class='quantity' rowId='${value.rowId}' value="${value.qty}" min="1"></td>
                                                 <td>
-                                                    <p><strong id="productPrice">${response.cartTotal}</strong><span>TK</span></p>
+                                                    <p><strong id="productPrice">${value.qty} * ${value.price} = ${value.price * value.qty}</strong><span>TK</span></p>
                                                 </td>
                                             </tr>`
 

@@ -91,7 +91,12 @@
     </script>
     @if (Session::has('success'))
         <script>
-            toastr.success("{{ Session::get('success') }}")
+            Swal.fire({
+                icon: 'success',
+                title: "{{ Session::get('success') }}",
+                showConfirmButton: false,
+                timer: 1500
+            })
         </script>
     @elseif (!empty(Session::get('error')))
         <script>
@@ -102,6 +107,10 @@
         </script>
     @endif
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
+    <script>
+        $("input[type='number']").inputSpinner();
+    </script>
     @include('frontend.cart.cartScript')
     @yield('scriptFontend')
 </body>
