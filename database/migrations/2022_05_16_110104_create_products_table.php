@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id');
             
-            $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign("category_id")->references("id")->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('product_name');
             $table->string('product_qty',11);
             $table->string('product_code');
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->string('product_banner');
             $table->string('product_slug')->unique();
             $table->integer('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('division_name')->unique();
             $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

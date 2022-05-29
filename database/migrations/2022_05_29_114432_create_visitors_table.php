@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::create('visitors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('division_id');
-            $table->foreign("division_id")->references("id")->on('divisions')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('district_name')->unique();
+            $table->ipAddress('visitor_ip');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign("category_id")->references("id")->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign("product_id")->references("id")->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('visitors');
     }
 };

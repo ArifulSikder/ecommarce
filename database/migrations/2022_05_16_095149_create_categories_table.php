@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('category_thumbnail');
             $table->integer('category_status')->default(1);
+            $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

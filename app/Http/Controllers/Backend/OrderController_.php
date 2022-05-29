@@ -134,13 +134,13 @@ class OrderController_ extends Controller
         return view('backend.order.deliveredOrder', compact('orders'));
     }
 
-    function delete(){
-        Order::findOrFail(3)->delete();
-        return 'done';
-    }
+    // function delete(){
+    //     Order::findOrFail(3)->delete();
+    //     return 'done';
+    // }
 
-    function d(){
-        Order::withTrashed()->find(3)->restore();
-        return 'done';
-    }
+    // function d(){
+    //     Order::withTrashed()->find(3)->restore();
+    //     return 'done';
+    // }
 }

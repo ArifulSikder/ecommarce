@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('writer');
             $table->date('date');
             $table->string('blog_thumbnail');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

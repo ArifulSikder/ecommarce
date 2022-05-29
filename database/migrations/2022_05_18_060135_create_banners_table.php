@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("banner_photo");
             $table->integer("active_status")->default(1);
             $table->integer("status")->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
