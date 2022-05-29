@@ -89,7 +89,19 @@
                                     SKU:<span class="product-sku">123456701</span>
                                     ক্যাটাগরি:<span class="product-brand"> {{ $product->category->category_name }}</span>
                                 </div>
-                                <div class="product-price">৳ {{ $product->product_price }}/-</div>
+                                @if ($product->product_discount > 0)
+                                    <div class="product-price">
+                                        <ins class="new-price">৳
+                                            {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                            class="old-price">৳
+                                            {{ $product->product_price }}/-</del>
+                                    </div>
+                                @else
+                                    <div class="product-price">
+                                        <ins class="new-price">৳
+                                            {{ $product->product_price }}/-</ins>
+                                    </div>
+                                @endif
                                 <div class="ratings-container">
                                     <div class="ratings-full">
                                         <span class="ratings" style="width:80%"></span>
@@ -98,51 +110,27 @@
                                     <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( ৬ রিভিও )</a>
                                 </div>
                                 <p class="product-short-desc">{!! $product->short_description !!}</p>
-                                <div class="product-form product-color">
-                                    <label>কালার:</label>
-                                    <div class="product-variations">
-                                        <a class="color"
-                                            data-src="{{ asset('public/frontend') }}/images/demos/demo7/products/big1.jpg"
-                                            href="#" style="background-color: #0c0c0c"></a>
-                                        <a class="color"
-                                            data-src="{{ asset('public/frontend') }}/images/demos/demo7/products/2.jpg"
-                                            href="#" style="background-color: #1e73be"></a>
-                                        <a class="color"
-                                            data-src="{{ asset('public/frontend') }}/images/demos/demo7/products/3.jpg"
-                                            href="#" style="background-color: #9e6924"></a>
-                                        <a class="color"
-                                            data-src="{{ asset('public/frontend') }}/images/demos/demo7/products/4.jpg"
-                                            href="#" style="background-color: #83b237"></a>
-                                    </div>
-                                </div>
-                                <div class="product-form product-size">
-                                    <label>সাইজ:</label>
-                                    <div class="product-form-group">
-                                        <div class="product-variations">
-                                            <a class="size" href="#">XL</a>
-                                            <a class="size" href="#">L</a>
-                                            <a class="size" href="#">M</a>
-                                            <a class="size" href="#">S</a>
-                                        </div>
-                                        <a href="#" class="product-variation-clean">Clean All</a>
-                                    </div>
-                                </div>
-                                <div class="product-variation-price">
-                                    <span>৳৫০০/-</span>
-                                </div>
+
+
 
                                 <hr class="product-divider">
-
+                                <input type="hidden" id="product_id" value="{{ $product->id }}">
                                 <div class="product-form product-qty">
                                     <div class="product-form-group">
                                         <div class="input-group mr-2">
-                                            <button class="quantity-minus d-icon-minus"></button>
-                                            <input class="quantity form-control" type="number" min="1" max="1000000">
-                                            <button class="quantity-plus d-icon-plus"></button>
+                                            <input type="number" id="quantityProduct" value="1" min="1">
                                         </div>
-                                        <button type="button"
-                                            class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"
-                                            disabled='false'><i class="d-icon-bag"></i>কার্টে যোগ করুন</button>
+                                        @if ($product->product_qty > 0)
+                                            <button type="button"
+                                                class="shoppingCartBtn AddtoCartFromDetailsPage text-normal ls-normal font-weight-semi-bold"><i
+                                                    class="d-icon-bag"></i>কার্টে
+                                                যোগ
+                                                করুন</button>
+                                        @else
+                                            <button type="button"
+                                                class="shoppingCartBtn text-normal ls-normal font-weight-semi-bold"><i
+                                                    class="d-icon-bag" disabled></i>স্টকে নেই</button>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -156,8 +144,10 @@
                                     </div>
                                     <hr class="divider d-lg-show">
                                     <div class="product-action">
-                                        <a href="#" class="btn-product btn-wishlist mr-6"><i class="d-icon-heart"></i>Add
-                                            to wishlist</a>
+                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                            class="btn-product btn btn-wishlist mr-6 AddToWishList"><i
+                                                class="d-icon-heart"></i>Add
+                                            to wishlist</button>
 
                                         <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
                                             to compare</a>
@@ -382,40 +372,49 @@
 
                         <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4"
                             data-owl-options="{'items': 5, 'nav': false, 'loop': false, 'dots': true, 'margin': 20, 'responsive': { '0': { 'items': 2  }, '768': { 'items': 3 },  '992': { 'items': 4, 'dots': false, 'nav': true }  }   }">
-                            <div class="product text-center">
-                                <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('public/frontend') }}/images/sundorbon/tetul chatni.jpg"
-                                            alt="product" width="280" height="315">
-                                    </a>
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                            data-target="#addCartModal" title="Add to cart"><i
-                                                class="d-icon-bag"></i></a>
-                                        <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                                class="d-icon-heart"></i></a>
-                                    </div>
-                                    <div class="product-action">
-                                        <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত দেখা</a>
-                                    </div>
-                                </figure>
-                                <div class="product-details">
-                                    <div class="product-cat"><a href="demo3-shop.html">চাটনি</a></div>
-                                    <h3 class="product-name">
-                                        <a href="demo3-product.html">তেতুল চাটনি</a>
-                                    </h3>
-                                    <div class="product-price">
-                                        <span class="price">৳ ৫০০/-</span>
-                                    </div>
-                                    <div class="ratings-container">
-                                        <div class="ratings-full">
-                                            <span class="ratings" style="width:20%"></span>
-                                            <span class="tooltiptext tooltip-top"></span>
+                            @foreach (catWiseProducts($product->category->id) as $product)
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="{{ url('_' . $product->product_slug) }}">
+                                            <img src="{{ asset($product->product_thumbnail) }}" alt="product" width="280"
+                                                height="315">
+                                        </a>
+
+                                        <div class="product-action-vertical">
+                                            <button class="btn-product-icon ViewProduct" id="{{ $product->id }}"
+                                                data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i
+                                                    class="d-icon-bag"></i></button>
+                                            <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                                class="btn-product-icon AddToWishList" title="Add to wishlist"><i
+                                                    class="d-icon-heart"></i></button>
+                                        </div>
+                                        <div class="product-action">
+                                            <a href="{{ url('_' . $product->product_slug) }}"
+                                                class="btn-product btn-quickview" title="Quick View">দ্রুত দেখা</a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <div class="product-cat"><a
+                                                href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
+                                        </div>
+                                        <h3 class="product-name">
+                                            <a
+                                                href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                        </h3>
+                                        <div class="product-price">
+                                            <span class="price">৳ {{ $product->product_price }}/-</span>
+                                        </div>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width:20%"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product text-center">
+                            @endforeach
+
+                            {{-- <div class="product text-center">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('public/frontend') }}/images/sundorbon/tetul chatni.jpg"
@@ -520,24 +519,61 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </section>
                 </div>
             </div>
         </main>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="productName">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img id="productThumbnail"
+                                    src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png"
+                                    alt="product image">
+                            </div>
+                            <div class="col-md-7">
+                                <ul class="list-group">
+                                    <input type="hidden" id="id">
+                                    <li class="list-group-item">স্টকে আছে : <strong id="productStock"></strong>
+                                    <li class="list-group-item">প্রোডাক্টের কোড : <strong id="productCode"></strong></li>
+                                    <li class="list-group-item">প্রোডাক্টের সংখ্যা :
+                                        <input type="number" id="quantity" value="1" min="1"></strong>
+                                    </li>
+                                    {{-- <li class="list-group-item"> প্রোডাক্টের দাম (টাকা) : <strong id="productPrice"></strong>
+                            </li> --}}
+                                    <li class="list-group-item product-price" style="font-size: 13px;">বিক্রয় মুল্য(টাকা) :
+                                        <ins class="new-price">৳ <span id="discunt_price"></span>/-</ins><del
+                                            class="old-price">৳
+                                            <span id="product_price"></span>/-</del>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary addToCart">কার্টে যোগ করুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- End of Main -->
         @include('frontend.include.footer')
 
         <!-- End Footer -->
     </div>
     @include('frontend.include.mobile')
-@endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('.btn-cart').disable(false);
-        });
-    </script>
-
 @endsection

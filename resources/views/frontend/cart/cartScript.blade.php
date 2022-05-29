@@ -85,8 +85,14 @@
 
           $(".addToCart").click(function() {
               var id = $("#id").val();
-              console.log(id);
               var quantity = $("#quantity").val();
+              addToCart(id, quantity);
+          });
+
+
+          $(".AddtoCartFromDetailsPage").click(function() {
+              var id = $('#product_id').val();
+              var quantity = $("#quantityProduct").val();
               addToCart(id, quantity);
           });
 

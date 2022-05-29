@@ -108,9 +108,28 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
     Route::post('/thana-update',  [LocationController::class, 'updateThana'])->name('thana-update');
 
-    //order
-    Route::get('order-list', [OrderController_::class, 'index'])->name('order-list');
-    Route::get('order-items/{order_id}', [OrderController_::class, 'orderItems']);
+    //order pending
+    Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');
+    Route::get('/order-items/{order_id}', [OrderController_::class, 'orderItems']);
+    //order confirm
+    Route::get('/confirm-order/{order_id}', [OrderController_::class, 'confirmOrder']);
+    Route::get('/confirm-order', [OrderController_::class, 'confirmOrderList'])->name('confirm-order');
+    //order processing
+    Route::get('/process-order/{order_id}', [OrderController_::class, 'processingOrder']);
+    Route::get('/processing-order', [OrderController_::class, 'processingOrderList'])->name('processing-order');
+    //order picked
+    Route::get('/picked-order/{order_id}', [OrderController_::class, 'pickedOrder']);
+    Route::get('/picked-order', [OrderController_::class, 'pickedOrderList'])->name('picked-order');
+    //order shipped
+    Route::get('/shipped-order/{order_id}', [OrderController_::class, 'shippedOrder']);
+    Route::get('/shipped-order', [OrderController_::class, 'shippedOrderList'])->name('shipped-order');
+    //order delivery
+    Route::get('/delivered-order/{order_id}', [OrderController_::class, 'deliveredOrder']);
+    Route::get('/delivered-order', [OrderController_::class, 'deliveredOrderList'])->name('deliverd-order');
+
+    //delete order
+    // Route::get('delete', [OrderController_::class, 'delete']);
+    // Route::get('d', [OrderController_::class, 'd']);
 
     // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 

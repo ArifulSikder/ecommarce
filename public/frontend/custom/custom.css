@@ -11,3 +11,19 @@
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 9px !important;
 }
+
+
+/* shopping  cart button  */
+
+.shoppingCartBtn {
+    background-color: #28465c;
+    border: 0;
+    flex: 1;
+    min-width: 13rem;
+    font-size: 1.4rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    cursor: pointer;
+    max-width: 20.7rem;
+    height: 4.5rem;
+}

@@ -35,6 +35,7 @@ return new class extends Migration
             $table->date('return_date')->nullable();
             $table->string('order_type', 21)->default('Pending');
             $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

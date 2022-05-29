@@ -1,18 +1,18 @@
 @extends('backend.masterLayout.admin-master')
 @section('title')
-    অর্ডার
+    পেনডিং অর্ডার
 @endsection
 
 {{-- menu active start --}}
 @section('order', 'menu-open')
 @section('activeOrder', 'active')
-@section('order-list', 'active')
+@section('pending-order', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div>
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">অর্ডারের তালিকা</h3>
+                <h3 class="card-title">পেনডিং অর্ডারের তালিকা</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -55,7 +55,7 @@
                                     <td>{{ $order->amount }}(tk)</td>
 
                                     <td class="text-center">
-                                        <a href="{{ url('confirm-order/' . $order->id) }}"
+                                        <a title="Confirm Order" href="{{ url('confirm-order/' . $order->id) }}"
                                             class="btn btn-primary btn-sm">Confirm</a>
                                         <a href="{{ url('order-items/' . $order->id) }}" class="btn btn-success btn-sm"><i
                                                 class="far fa-eye"></i></a>

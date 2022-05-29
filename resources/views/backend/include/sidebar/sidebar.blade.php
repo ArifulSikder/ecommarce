@@ -170,17 +170,41 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('order-list') }}" class="nav-link  @yield('order-list')">
+                            <a href="{{ route('pending-order') }}" class="nav-link  @yield('pending-order')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>অর্ডার তালিকা</p>
+                                <p>পেনডিং অর্ডার</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('thana-list') }}" class="nav-link  @yield('thana-list')">
+                        <li class="nav-item">
+                            <a href="{{ route('confirm-order') }}" class="nav-link  @yield('confirm-order')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>থানা তালিকা</p>
+                                <p>কনফার্ম অর্ডার</p>
                             </a>
-                        </li> --}}
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('processing-order') }}" class="nav-link  @yield('processing-order')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>প্রক্রিয়াধিন অর্ডার</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('picked-order') }}" class="nav-link  @yield('picked-order')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>পিক্ট অর্ডার</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('shipped-order') }}" class="nav-link  @yield('shipped-order')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>সিফট অর্ডার</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('deliverd-order') }}" class="nav-link  @yield('deliverd-order')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ডেলিভারি অর্ডার</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

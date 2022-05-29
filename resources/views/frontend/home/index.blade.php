@@ -365,9 +365,9 @@
                                                             id="{{ $product->id }}" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
-                                                        <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product-icon btn-wishlist"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></a>
+                                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                                            class="btn-product-icon AddToWishList"
+                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button>
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
@@ -598,8 +598,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-5">
-                            <img id="productThumbnail" src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png"
-                                alt="product image">
+                            <img id="productThumbnail"
+                                src="{{ asset('public/frontend/images/loading/dribbble-spinner-800x600.gif') }}">
                         </div>
                         <div class="col-md-7">
                             <ul class="list-group">
@@ -622,7 +622,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary addToCart">Add To Cart</button>
+                    <button type="button" class="btn btn-primary addToCart">কার্টে যোগ করুন</button>
                 </div>
             </div>
         </div>
