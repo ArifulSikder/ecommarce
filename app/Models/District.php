@@ -11,8 +11,8 @@ class District extends Model
     use HasFactory, SoftDeletes;
     protected $guarded =[];
 
-    
+   
     function division(){
-        return $this->belongsTo(Division::class, 'division_id');
+        return $this->belongsTo(Division::class, 'division_id')->withTrashed();
     }
 }

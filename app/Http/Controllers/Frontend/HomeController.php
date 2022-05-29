@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductMultipleImage;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 
@@ -63,6 +64,18 @@ class HomeController extends Controller
     function productShow($product_slug)
     {
         $product = Product::with('category')->where(['status' => 1, 'product_slug' => $product_slug])->first();
+        
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $UserIP = geoip()->getLocation($_SERVER['HTTP_X_FORWARDED_FOR']);
+        } else {
+            $UserIP = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        }
+        
+        Visitor::create([
+            'visitor_ip' => $UserIP->ip,
+            'category_id' => $product->id,
+            'product_id' => $product->category_id,
+        ]);
         $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
         return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
     }

@@ -77,7 +77,7 @@ class LocationController extends Controller
     // delete division
 
     function deleteDivision($division_id){
-        Division::findOrFail($division_id)->update(['status'=> 0]);
+        Division::findOrFail($division_id)->delete();
         return redirect()->back();
     }
 

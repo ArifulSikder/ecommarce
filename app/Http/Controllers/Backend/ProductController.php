@@ -35,7 +35,7 @@ class ProductController extends Controller
             'product_thumbnail' => 'required',
             'multiple_image' => 'required',
             'product_slider_img' => 'required',
-            'product_slug' => 'required|max:255|unique:products|regex:/^[a-zA-ZÑñ\s]+$/',
+            'product_slug' => 'required|max:255|unique:products',
         ],[
             'category_id.required' => 'Please Enter This Filed',
             'product_name.required' => 'Please Enter This Filed',

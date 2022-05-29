@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('product_thumbnail');
             $table->string('product_slider_img');
             $table->string('special_offer', 11)->nullable();
-            $table->string('product_banner');
             $table->string('product_slug')->unique();
             $table->integer('status')->default(1);
             $table->softDeletes();
