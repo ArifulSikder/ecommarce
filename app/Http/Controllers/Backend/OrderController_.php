@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\District;
+use App\Models\Division;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
@@ -139,8 +142,8 @@ class OrderController_ extends Controller
     //     return 'done';
     // }
 
-    // function d(){
-    //     Order::withTrashed()->find(3)->restore();
-    //     return 'done';
-    // }
+    function d(){
+        Category::withTrashed()->find(3)->restore();
+        return 'done';
+    }
 }

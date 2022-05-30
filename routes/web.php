@@ -129,7 +129,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
 
     //delete order
     // Route::get('delete', [OrderController_::class, 'delete']);
-    // Route::get('d', [OrderController_::class, 'd']);
+    Route::get('d', [OrderController_::class, 'd']);
 
     // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 

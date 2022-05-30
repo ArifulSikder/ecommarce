@@ -131,7 +131,7 @@ class CagegoryController extends Controller
     //delete Category
     function deleteCategory($cat_id)
     {
-        Category::findOrFail($cat_id)->update(['status' => 0]);
+        Category::findOrFail($cat_id)->delete();
         return redirect()->back();
     }
 }

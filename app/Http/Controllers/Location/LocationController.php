@@ -124,7 +124,7 @@ class LocationController extends Controller
     //district delete 
 
     function deleteDistrict($district_id){
-        District::findOrFail($district_id)->update(['status'=> 0]);
+        District::findOrFail($district_id)->delete();
         return redirect()->back();
     }
 
