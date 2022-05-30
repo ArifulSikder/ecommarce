@@ -143,7 +143,7 @@ class OrderController_ extends Controller
     // }
 
     function d(){
-        Division::withTrashed()->find(5)->restore();
+        Category::withTrashed()->find(3)->restore();
         return 'done';
     }
 }

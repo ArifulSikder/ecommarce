@@ -37,12 +37,8 @@ class Category extends Model
         });
 
         //category by product restore
-        static::restoring(function($data){
-            // dd($data->id);
-            dd($data->products()->withTrashed()->where('category_id', $data->id));
-            foreach ($data->products()->withTrashed()->get() as $product) {
-               $product->restore();
-            }
+        static::restoring(function ($data) {
+            Product::onlyTrashed()->where('category_id',$data->id)->restore();
         });
     }
 }
