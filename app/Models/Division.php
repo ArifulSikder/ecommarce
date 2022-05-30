@@ -34,20 +34,25 @@ class Division extends Model
 
         //division with district soft delete restore
         static::restoring(function ($data) {
-            $data->districts()->withTrashed()->first()->restore();
+            $districts= District::onlyTrashed()->where('division_id',$data->id)->restore();
+            // foreach($districts as $district){
+            //     $district->restore();
+            // }
+            // $data->districts()->withTrashed()->each()->restore();
         });
-
-        
+   
         //division with thana soft delete
         static::deleting(function ($data) {
-            foreach($data->thanas as $district){
-                $district->delete();
+            
+            foreach($data->thanas as $thana){
+                $thana->delete();
             }
         });
 
         //division with thana soft delete restore
         static::restoring(function ($data) {
-            $data->thanas()->withTrashed()->first()->restore();
+            $districts= Thana::onlyTrashed()->where('division_id',$data->id)->restore();
+            // $data->thanas()->withTrashed()->first()->restore();
         });
 
     }
