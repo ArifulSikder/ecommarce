@@ -389,8 +389,8 @@
                                                     class="d-icon-heart"></i></button>
                                         </div>
                                         <div class="product-action">
-                                            <a href="{{ url('_' . $product->product_slug) }}"
-                                                class="btn-product btn-quickview" title="Quick View">দ্রুত দেখা</a>
+                                            <a href="{{ url('_' . $product->product_slug) }}" class="btn-product"
+                                                title="Quick View">দ্রুত দেখা</a>
                                         </div>
                                     </figure>
                                     <div class="product-details">

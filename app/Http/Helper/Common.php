@@ -25,9 +25,9 @@ function dateFormater($data){
 }
 
 function categoriesNav(){
- return Category::where(['status' => 1])
-  ->where(['status' => 1, 'category_status' => 2])
-  ->get();
+  return Category::where(['status' => 1])
+        ->where(['status' => 1, 'category_status' => 2])
+        ->get();
 }
 
 function categoriesPropular(){
@@ -40,4 +40,10 @@ function categoriesPropular(){
 
 function allOrders(){
   return Order::with('division', 'district','thana')->where(['status'=> 1])->latest();
+}
+
+//latest product
+
+function latestProduct(){
+  return Product::where("status", 1)->latest()->get();
 }
