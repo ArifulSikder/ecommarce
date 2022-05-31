@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductMultipleImage;
 use App\Models\Visitor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -15,10 +16,20 @@ class HomeController extends Controller
 {
     function index()
     {
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $UserIP = geoip()->getLocation($_SERVER['HTTP_X_FORWARDED_FOR']);
+        } else {
+            $UserIP = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        }
+        $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1])->latest()->first();
+        $query = Product::latest();
+        if ($visitor == null) {
+            $products = $query->with('category')->get();
+        } else {
+            $products = $query->with('category')->where('category_id',$visitor->category_id)->get();
+        }
         $singleCategory = Category::where(['status' => 1]);
-        $products = Product::latest()->with('category')->get();
         $banners = Banner::where(['status' => 1, 'active_status' => 1])->get();
-      
         return view('frontend.home.index', compact('banners',  'products', 'singleCategory'));
     }
 
@@ -31,7 +42,6 @@ class HomeController extends Controller
     function shopping()
     {
         $banners = Banner::where(['status' => 1, 'active_status' => 1])->get();
-    
         return view('frontend.shop.shopping', compact( 'banners'));
     }
 
@@ -66,9 +76,8 @@ class HomeController extends Controller
         
         $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $category_id])->first();
        
-        if ($visitor != null) {
-            return view('frontend.product.showProduct', compact('products'));
-        } else{
+        if ($visitor == null) {
+            
             if (count($products) > 0) {
                 Visitor::create([
                     'visitor_ip' => $UserIP->ip,
@@ -76,6 +85,12 @@ class HomeController extends Controller
                     'product_id' => $products[0]->id,
                 ]);
             }
+            return view('frontend.product.showProduct', compact('products'));
+        } else{
+            
+            Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $category_id])->update([
+                'updated_at' => Carbon::now(),
+            ]); 
             return view('frontend.product.showProduct', compact('products'));
         }
     }
@@ -90,16 +105,18 @@ class HomeController extends Controller
         }
         $product = Product::with('category')->where(['status' => 1, 'product_slug' => $product_slug])->first();
         $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $product->category_id])->first();
-        if (!empty($visitor)) {
-            $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
-            return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
-        } else{
+        if ($visitor == null) {
             Visitor::create([
                 'visitor_ip' => $UserIP->ip,
                 'category_id' => $product->category_id,
                 'product_id' => $product->id,
             ]);
-                
+            $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
+            return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
+        } else{
+            Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $product->category_id])->update([
+                'updated_at' => Carbon::now(),
+            ]); 
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
             return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
         }

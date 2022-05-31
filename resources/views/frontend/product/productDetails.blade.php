@@ -144,13 +144,12 @@
                                     </div>
                                     <hr class="divider d-lg-show">
                                     <div class="product-action">
-                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                             class="btn-product btn btn-wishlist mr-6 AddToWishList"><i
                                                 class="d-icon-heart"></i>Add
-                                            to wishlist</button>
-
-                                        <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
-                                            to compare</a>
+                                            to wishlist</button> --}}
+                                        {{-- <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
+                                            to compare</a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -384,9 +383,9 @@
                                             <button class="btn-product-icon ViewProduct" id="{{ $product->id }}"
                                                 data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i
                                                     class="d-icon-bag"></i></button>
-                                            <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                            {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                 class="btn-product-icon AddToWishList" title="Add to wishlist"><i
-                                                    class="d-icon-heart"></i></button>
+                                                    class="d-icon-heart"></i></button> --}}
                                         </div>
                                         <div class="product-action">
                                             <a href="{{ url('_' . $product->product_slug) }}" class="btn-product"

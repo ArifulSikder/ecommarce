@@ -34,9 +34,9 @@
                     </div>
                 </a>
                 <span class="divider"></span>
-                <a href="{{ url('wishlist') }}" class="wishlist">
+                {{-- <a href="{{ url('wishlist') }}" class="wishlist">
                     <i class="d-icon-heart"></i>
-                </a>
+                </a> --}}
                 <span class="divider"></span>
                 <div class="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
                     <a href="#" class="cart-toggle label-block link">

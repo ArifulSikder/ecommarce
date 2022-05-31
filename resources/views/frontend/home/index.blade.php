@@ -106,9 +106,9 @@
                                                             id="{{ $product->id }}" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
-                                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button>
+                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
@@ -182,9 +182,9 @@
                                                             id="{{ $product->id }}" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
-                                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button>
+                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
@@ -259,9 +259,9 @@
                                                             id="{{ $product->id }}" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
-                                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button>
+                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
@@ -336,9 +336,9 @@
                                                             id="{{ $product->id }}" data-toggle="modal"
                                                             data-target="#addCartModal" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
-                                                        <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button>
+                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
