@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -46,4 +47,10 @@ function allOrders(){
 
 function latestProduct(){
   return Product::where("status", 1)->latest()->get();
+}
+
+//admin dashboard
+//category visited times
+function  categoryVisitedTimes($category_id){
+ return Visitor::where('category_id', $category_id)->sum('category_visit_times');
 }

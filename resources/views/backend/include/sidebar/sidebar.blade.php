@@ -10,8 +10,8 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview @yield('dashboard')">
+                    <a href="{{ route('home') }}" class="nav-link @yield('dashboardActive')">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -96,6 +96,31 @@
                             <a href="{{ route('blogs-list') }}" class="nav-link  @yield('blogs-list')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ব্লোগ তালিকা</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- testimonial --}}
+                <li class="nav-item has-treeview  @yield('testimonial')">
+                    <a href="#" class="nav-link  @yield('testimonialActive')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            প্রশংসাপত্র
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('indexTestimonial') }}" class="nav-link  @yield('indexTestimonial')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>প্রশংসাপত্র করুন</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blogs-list') }}" class="nav-link  @yield('blogs-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>প্রশংসাপত্র তালিকা</p>
                             </a>
                         </li>
                     </ul>

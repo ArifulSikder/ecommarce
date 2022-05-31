@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign("category_id")->references("id")->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('product_id');
             $table->foreign("product_id")->references("id")->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('product_visit_times');
+            $table->unsignedBigInteger('category_visit_times');
             $table->boolean('status')->default(1);
             $table->softDeletes();
             $table->timestamps();

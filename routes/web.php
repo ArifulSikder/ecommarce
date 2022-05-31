@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CagegoryController;
 use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Coupon\CouponController;
 use Illuminate\Support\Facades\Route;
@@ -78,12 +79,15 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/update-banner', [BannerController::class, 'updateBanner'])->name('updateBanner');
     Route::get('/delete-banner/{banner_id}', [BannerController::class, 'deleteBanner']);
 
-    //block
+    //blog
     Route::get('/blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
     Route::get('/add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
     Route::post('/store-blog', [BlogController::class, 'storeBlog'])->name('storeBlog');
     Route::get('/blog-edit/{blog_id}', [BlogController::class, 'editBlog']);
     Route::post('/update-blog', [BlogController::class, 'updateBlog'])->name('updateBlog');
+
+    //testimonial
+    Route::get('/testimonial-list', [TestimonialController::class, 'indexTestimonial'])->name('indexTestimonial');
 
     //coupon 
     Route::get('/coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');

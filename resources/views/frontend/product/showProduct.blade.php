@@ -82,7 +82,7 @@
                                                     </div>
                                                     <div class="product-action">
                                                         <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                            class="btn-product" title="Quick View">দ্রুত
                                                             দেখুন</a>
                                                     </div>
                                                 </figure>

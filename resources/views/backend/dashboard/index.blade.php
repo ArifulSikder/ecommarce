@@ -4,44 +4,46 @@
 @endsection
 
 {{-- menu active start --}}
-@section('dashboard', 'active')
+@section('dashboardActive', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div class="card">
         <div class="card-body">
+            <!-- Small boxes (Stat box) -->
+            <h4>Categories</h4>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card" style="width: auto;">
-                        <div class="card-title">
-                            <h2>
-                                Donor Infornation
-                            </h2>
+                @foreach ($categories as $category)
+                    <div class="col-lg-3 col-6 text-white">
+                        <!-- small box -->
+                        <div class="small-box"
+                            style="background-color: rgb( {{ mt_rand(100, 250) }},40, {{ mt_rand(100, 250) }});">
+                            <div class="inner">
+                                <h3>{{ $category->category_name }}</h3>
+
+                                <h5>মোট ভ্রমন করেছেঃ {{ categoryVisitedTimes($category->id) }} বার</h5>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Donor Name</li>
-                            <li class="list-group-item">Number</li>
-                            <li class="list-group-item">Blood Group</li>
-                            <li class="list-group-item">Blood Group</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card" style="width: auto;">
-                        <div class="card-header">
-                            Donor Infornation
+                @endforeach
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                            <p>Bounce Rate</p>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Donor Name</li>
-                            <li class="list-group-item">Number</li>
-                            <li class="list-group-item">Blood Group</li>
-                            <li class="list-group-item">Blood Group</li>
-                        </ul>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-
-
         </div>
     </div>
 

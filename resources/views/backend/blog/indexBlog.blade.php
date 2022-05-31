@@ -10,6 +10,9 @@
 {{-- menu active end --}}
 @section('maincontant')
     <div>
+        <div class="my-2">
+            <a href="{{ url('add-blog') }}" class="btn btn-success"><i class="fas fa-plus-circle"></i> ব্লোগ যোগ করুন</a>
+        </div>
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">প্রোডাক্টের তালিকা</h3>
@@ -21,6 +24,7 @@
                         <tr>
                             <th style="width: 5%">সিরিয়াল</th>
                             <th style="width: 20%">ব্লোগ থাম্বনেল</th>
+                            <th style="width: 10%">ব্লোগ স্লাগ </th>
                             <th style="width: 10%">লেখক </th>
                             <th style="width: 15%"> তারিখ নাম</th>
                             <th style="width: 20%">শিরোনাম নাম</th>
@@ -46,8 +50,6 @@
                                             class="far fa-edit"></i></a>
                                     <a href="{{ url('product-delete/' . $blog->id) }}" class="btn btn-danger btn-sm"
                                         id="delete"><i class="far fa-trash-alt"></i></a>
-                                    <a href="{{ url('product-view/' . $blog->id) }}" class="btn btn-success btn-sm"><i
-                                            class="far fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach

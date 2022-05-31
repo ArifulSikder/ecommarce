@@ -83,6 +83,8 @@ class HomeController extends Controller
                     'visitor_ip' => $UserIP->ip,
                     'category_id' => $category_id,
                     'product_id' => $products[0]->id,
+                    'category_visit_times' =>  1,
+                    'product_visit_times'=> 0,
                 ]);
             }
             return view('frontend.product.showProduct', compact('products'));
@@ -90,6 +92,7 @@ class HomeController extends Controller
             
             Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $category_id])->update([
                 'updated_at' => Carbon::now(),
+                'category_visit_times' => $visitor->category_visit_times + 1,
             ]); 
             return view('frontend.product.showProduct', compact('products'));
         }
@@ -110,12 +113,15 @@ class HomeController extends Controller
                 'visitor_ip' => $UserIP->ip,
                 'category_id' => $product->category_id,
                 'product_id' => $product->id,
+                'category_visit_times' =>  0,
+                'product_visit_times'=> 1,
             ]);
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
             return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
         } else{
             Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $product->category_id])->update([
                 'updated_at' => Carbon::now(),
+                'product_visit_times'=> $visitor->product_visit_times+ 1,
             ]); 
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
             return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
