@@ -4,9 +4,9 @@
 @endsection
 
 {{-- menu active start --}}
-@section('product', 'menu-open')
-@section('productActive', 'active')
-@section('productList', 'active')
+@section('blog', 'menu-open')
+@section('blogActive', 'active')
+@section('blogs-list', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div>
@@ -20,44 +20,38 @@
                     <thead>
                         <tr>
                             <th style="width: 5%">সিরিয়াল</th>
-                            <th style="width: 10%">ব্লোগ থাম্বনেল</th>
+                            <th style="width: 20%">ব্লোগ থাম্বনেল</th>
                             <th style="width: 10%">লেখক </th>
-                            <th style="width: 10%"> তারিখ নাম</th>
-                            <th style="width: 10%">শিরোনাম নাম</th>
+                            <th style="width: 15%"> তারিখ নাম</th>
+                            <th style="width: 20%">শিরোনাম নাম</th>
                             <th style="width: 10%" class="text-center">আকশন</th>
                         </tr>
                     </thead>
-                    {{-- @php
-                        $serial = ($products->currentpage() - 1) * $products->perpage() + 1;
+                    @php
+                        $serial = ($blogs->currentpage() - 1) * $blogs->perpage() + 1;
                     @endphp
                     <tbody>
-                        @foreach ($products as $product)
+                        @foreach ($blogs as $blog)
                             <tr>
                                 <td>{{ $serial++ }}</td>
-                                <td><img src="{{ asset($product->product_thumbnail) }}" width="100px"
-                                        alt="Product Thumbnail">
+                                <td><img src="{{ asset($blog->blog_thumbnail) }}" width="100px" alt="blog Thumbnail">
                                 </td>
-                                <td><img src="{{ asset($product->product_slider_img) }}" width="100px"
-                                        alt="Product slider">
-                                </td>
-                                <td>{{ $product->category->category_name }}</td>
-                                <td>{{ $product->product_name }}</td>
-                                <td>{{ $product->product_qty }}</td>
-                                <td>{{ $product->product_code }}</td>
-                                <td>{{ $product->product_price }}</td>
-                                <td>{{ $product->product_discount }}</td>
+                                <td>{{ $blog->blog_title }}</td>
+                                <td>{{ $blog->blog_slug }}</td>
+                                <td>{{ $blog->writer }}</td>
+                                <td>{{ dateFormater($blog->date) }}</td>
 
                                 <td class="text-center">
-                                    <a href="{{ url('product-edit/' . $product->id) }}" class="btn btn-primary btn-sm"><i
+                                    <a href="{{ url('blog-edit/' . $blog->id) }}" class="btn btn-primary btn-sm"><i
                                             class="far fa-edit"></i></a>
-                                    <a href="{{ url('product-delete/' . $product->id) }}" class="btn btn-danger btn-sm"
+                                    <a href="{{ url('product-delete/' . $blog->id) }}" class="btn btn-danger btn-sm"
                                         id="delete"><i class="far fa-trash-alt"></i></a>
-                                    <a href="{{ url('product-view/' . $product->id) }}" class="btn btn-success btn-sm"><i
+                                    <a href="{{ url('product-view/' . $blog->id) }}" class="btn btn-success btn-sm"><i
                                             class="far fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
         </div>

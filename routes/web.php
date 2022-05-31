@@ -82,6 +82,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/blogs-list', [BlogController::class, 'indexBlog'])->name('blogs-list');
     Route::get('/add-blog', [BlogController::class, 'addBlog'])->name('addBlog');
     Route::post('/store-blog', [BlogController::class, 'storeBlog'])->name('storeBlog');
+    Route::get('/blog-edit/{blog_id}', [BlogController::class, 'editBlog']);
+    Route::post('/update-blog', [BlogController::class, 'updateBlog'])->name('updateBlog');
 
     //coupon 
     Route::get('/coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');
