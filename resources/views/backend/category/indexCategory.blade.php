@@ -146,6 +146,7 @@
         </div>
     </div>
     <!-- /.row -->
+    {{-- edit modal --}}
     <div class="modal fade" id="categoryEdit" tabindex="-1" role="dialog" aria-labelledby="editModalCategory"
         aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">
