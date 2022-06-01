@@ -215,9 +215,9 @@
                                                                 <div class="row">
                                                                     <div class="col-md-2">
                                                                        
-                                                                        <a id="${value.id}" authId='{{ Auth::id() }}' class="wishlist AddToWishList"
+                                                                <!--        <a id="${value.id}" authId='{{ Auth::id() }}' class="wishlist AddToWishList"
                                                                             title="Add To Wishlist">
-                                                                            <i class="d-icon-heart"></i>
+                                                                            <i class="d-icon-heart"></i> -->
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-md-2">
