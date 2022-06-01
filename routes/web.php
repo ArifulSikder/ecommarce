@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
 
     //testimonial
     Route::get('/testimonial-list', [TestimonialController::class, 'indexTestimonial'])->name('indexTestimonial');
+    Route::post('/store-testimonial', [TestimonialController::class, 'testimonialStore'])->name('testimonialStore');
 
     //coupon 
     Route::get('/coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');

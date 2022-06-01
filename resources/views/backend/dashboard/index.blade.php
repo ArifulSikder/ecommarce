@@ -43,7 +43,7 @@
                 <div class="col-lg-3 col-6 text-white">
                     <!-- small box -->
                     <div
-                        class="small-box {{ $serial < 7 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                        class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
                         <div class="inner">
                             <h4>সর্বশেষ ভ্রমনের সময় </h4>
                             <h5>{{ banglaNumber(timeFormater($lastVisitTime->date)) }}</h5>
@@ -64,8 +64,7 @@
                 @foreach ($categories as $category)
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
-                        <div
-                            class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
+                        <div class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = 1)] }}">
                             <div class="inner">
                                 <h4>{{ $category->category_name }}</h4>
                                 <h5>মোট ভ্রমন করেছেঃ {{ banglaNumber(categoryVisitedTimes($category->id)) }} বার</h5>
@@ -88,8 +87,10 @@
                 @foreach ($products as $product)
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
-                        <div
-                            class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
+                        {{-- @php
+                            dd(other($serial++));
+                        @endphp --}}
+                        <div class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = 1)] }}">
                             <div class="inner">
                                 <h4>{{ $product->product_name }}</h4>
                                 <h5>মোট ভ্রমন করেছেঃ {{ banglaNumber(productVisitedTimes($product->id)) }} বার</h5>
