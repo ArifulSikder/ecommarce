@@ -30,7 +30,7 @@
                                             <div class="banner-content y-50 text-right">
                                                 <h4 class="banner-subtitle text-body font-weight-semi-bold mb-3 slide-animate"
                                                     data-animation-options="{'name': 'fadeInDownShorter','duration': '1s'}">
-                                                    {{ $product_banner->product_discount }}% ছাড়ে পাচ্ছেন
+                                                    {{ banglaNumber($product_banner->product_discount) }}% ছাড়ে পাচ্ছেন
                                                 </h4>
                                                 <h2 class="product_banner-title text-uppercase ls-l slide-animate text-white"
                                                     data-animation-options="{'name': 'fadeInDownShorter','delay': '.3s','duration': '1s' }">
@@ -38,7 +38,7 @@
                                                 </h2>
                                                 <p class="font-weight-semi-bold ls-m text-body mb-6 slide-animate"
                                                     data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
-                                                    মূল্য ৳ {{ $product_banner->product_price }}/-
+                                                    মূল্য ৳ {{ banglaNumber($product_banner->product_price) }}/-
                                                 </p>
                                                 {{-- <a href="{{ route('productDetails') }}"
                                                     class="btn btn-dark btn-rounded slide-animate"

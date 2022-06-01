@@ -92,14 +92,14 @@
                                 @if ($product->product_discount > 0)
                                     <div class="product-price">
                                         <ins class="new-price">৳
-                                            {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                            {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
                                             class="old-price">৳
-                                            {{ $product->product_price }}/-</del>
+                                            {{ banglaNumber($product->product_price) }}/-</del>
                                     </div>
                                 @else
                                     <div class="product-price">
                                         <ins class="new-price">৳
-                                            {{ $product->product_price }}/-</ins>
+                                            {{ banglaNumber($product->product_price) }}/-</ins>
                                     </div>
                                 @endif
                                 <div class="ratings-container">
@@ -400,9 +400,19 @@
                                             <a
                                                 href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                         </h3>
-                                        <div class="product-price">
-                                            <span class="price">৳ {{ $product->product_price }}/-</span>
-                                        </div>
+                                        @if ($product->product_discount > 0)
+                                            <div class="product-price">
+                                                <ins class="new-price">৳
+                                                    {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
+                                                    class="old-price">৳
+                                                    {{ banglaNumber($product->product_price) }}/-</del>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <ins class="new-price">৳
+                                                    {{ banglaNumber($product->product_price) }}/-</ins>
+                                            </div>
+                                        @endif
                                         <div class="ratings-container">
                                             <div class="ratings-full">
                                                 <span class="ratings" style="width:20%"></span>
