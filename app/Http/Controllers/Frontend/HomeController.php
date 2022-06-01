@@ -21,7 +21,8 @@ class HomeController extends Controller
         } else {
             $UserIP = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         }
-        $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1])->latest()->first();
+        $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1])->orderBy('date','desc')->first();
+        // dd($visitor);
         $query = Product::latest();
         if ($visitor == null) {
             $products = $query->with('category')->get();
@@ -85,13 +86,14 @@ class HomeController extends Controller
                     'product_id' => $products[0]->id,
                     'category_visit_times' =>  1,
                     'product_visit_times'=> 0,
+                    'date'=> Carbon::now(),
                 ]);
             }
             return view('frontend.product.showProduct', compact('products'));
         } else{
             
             Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $category_id])->update([
-                'updated_at' => Carbon::now(),
+                'date'=> Carbon::now(),
                 'category_visit_times' => $visitor->category_visit_times + 1,
             ]); 
             return view('frontend.product.showProduct', compact('products'));
@@ -115,12 +117,13 @@ class HomeController extends Controller
                 'product_id' => $product->id,
                 'category_visit_times' =>  0,
                 'product_visit_times'=> 1,
+                'date'=> Carbon::now(),
             ]);
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
             return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
         } else{
             Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $product->category_id])->update([
-                'updated_at' => Carbon::now(),
+                'date'=> Carbon::now(),
                 'product_visit_times'=> $visitor->product_visit_times+ 1,
             ]); 
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
