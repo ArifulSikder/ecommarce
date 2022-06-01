@@ -8,7 +8,8 @@ use App\Models\Coupon;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Carbon\Carbon;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
+// use Cart;
 use Illuminate\Contracts\Session\Session;
 
 class CartController extends Controller
