@@ -103,11 +103,10 @@
                                     </div>
                                 @endif
                                 <div class="ratings-container">
-                                    <div class="ratings-full">
+                                    {{-- <div class="ratings-full">
                                         <span class="ratings" style="width:80%"></span>
                                         <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                    <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( ৬ রিভিও )</a>
+                                    </div> --}}
                                 </div>
                                 <p class="product-short-desc">{!! $product->short_description !!}</p>
 
@@ -414,10 +413,10 @@
                                             </div>
                                         @endif
                                         <div class="ratings-container">
-                                            <div class="ratings-full">
+                                            {{-- <div class="ratings-full">
                                                 <span class="ratings" style="width:20%"></span>
                                                 <span class="tooltiptext tooltip-top"></span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

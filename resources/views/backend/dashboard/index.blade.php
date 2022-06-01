@@ -15,7 +15,9 @@
         4 => 'bg-secondary',
         5 => 'bg-dark',
         6 => 'bg-warning',
-        7 => 'bg-danger',
+    ];
+    $color2 = [
+        1 => 'bg-danger',
     ];
     $serial = 1;
     @endphp
@@ -28,7 +30,7 @@
                 <div class="col-lg-3 col-6 text-white">
                     <!-- small box -->
                     <div
-                        class="small-box {{ $serial < 8 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                        class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
                         <div class="inner">
                             <h4>মোট ভ্রমনকারির সংখ্যা </h4>
                             <h5>{{ $allVisitor }} জন</h5>
@@ -41,7 +43,7 @@
                 <div class="col-lg-3 col-6 text-white">
                     <!-- small box -->
                     <div
-                        class="small-box {{ $serial < 8 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                        class="small-box {{ $serial < 7 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
                         <div class="inner">
                             <h4>সর্বশেষ ভ্রমনের সময় </h4>
                             <h5>{{ banglaNumber(timeFormater($lastVisitTime->date)) }}</h5>
@@ -63,7 +65,7 @@
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
                         <div
-                            class="small-box {{ $serial < 8 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                            class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
                             <div class="inner">
                                 <h4>{{ $category->category_name }}</h4>
                                 <h5>মোট ভ্রমন করেছেঃ {{ banglaNumber(categoryVisitedTimes($category->id)) }} বার</h5>
@@ -87,7 +89,7 @@
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
                         <div
-                            class="small-box {{ $serial < 8 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                            class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
                             <div class="inner">
                                 <h4>{{ $product->product_name }}</h4>
                                 <h5>মোট ভ্রমন করেছেঃ {{ banglaNumber(productVisitedTimes($product->id)) }} বার</h5>

@@ -33,10 +33,10 @@
                                     </div>
                                 @endif
                                 <div class="ratings-container">
-                                    <div class="ratings-full">
+                                    {{-- <div class="ratings-full">
                                         <span class="ratings" style="width:40%"></span>
                                         <span class="tooltiptext tooltip-top"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -76,10 +76,10 @@
                                     </div>
                                 @endif
                                 <div class="ratings-container">
-                                    <div class="ratings-full">
+                                    {{-- <div class="ratings-full">
                                         <span class="ratings" style="width:40%"></span>
                                         <span class="tooltiptext tooltip-top"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -119,10 +119,10 @@
                                     </div>
                                 @endif
                                 <div class="ratings-container">
-                                    <div class="ratings-full">
+                                    {{-- <div class="ratings-full">
                                         <span class="ratings" style="width:40%"></span>
                                         <span class="tooltiptext tooltip-top"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
