@@ -37,7 +37,7 @@
                                                     </h2>
                                                     <p class="font-weight-semi-bold ls-m text-body mb-6 slide-animate"
                                                         data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
-                                                        মূল্য ৳ {{ $banner->product_price }}/-
+                                                        মূল্য ৳ {{ banglaNumber($banner->product_price) }}/-
                                                     </p>
                                                     {{-- <a href="{{ route('productDetails') }}"
                                                         class="btn btn-dark btn-rounded slide-animate"
@@ -61,7 +61,7 @@
                                                         </h2>
                                                         <h4 class="banner-price-info text-uppercase ls-l">মূল্য <strong
                                                                 class="text-primary">৳
-                                                                {{ $banner->product_price }}/-</strong>
+                                                                {{ banglaNumber($banner->product_price) }}/-</strong>
                                                         </h4>
                                                         {{-- <p class="text-dark lh-1 ls-m mb-4">প্যকেজ কিনে বাড়তি সুবিধা পান !
                                                         </p> --}}
@@ -96,7 +96,7 @@
                                                         <label class="product-label label-new">নতুন</label>
                                                         @if ($product->product_discount > 0)
                                                             <label class="product-label label-sale">
-                                                                {{ $product->product_discount }}% off
+                                                                {{ banglaNumber($product->product_discount) }}% off
                                                             </label>
                                                         @endif
 
@@ -127,14 +127,14 @@
                                                     @if ($product->product_discount > 0)
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
                                                                 class="old-price">৳
-                                                                {{ $product->product_price }}/-</del>
+                                                                {{ banglaNumber($product->product_price) }}/-</del>
                                                         </div>
                                                     @else
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price }}/-
+                                                                {{ banglaNumber($product->product_price) }}/-
                                                             </ins>
                                                         </div>
                                                     @endif
@@ -172,7 +172,7 @@
                                                         <label class="product-label label-new">নতুন</label>
                                                         @if ($product->product_discount > 0)
                                                             <label class="product-label label-sale">
-                                                                {{ $product->product_discount }}% off
+                                                                {{ banglaNumber($product->product_discount) }}% off
                                                             </label>
                                                         @endif
 
@@ -203,14 +203,14 @@
                                                     @if ($product->product_discount > 0)
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
                                                                 class="old-price">৳
-                                                                {{ $product->product_price }}/-</del>
+                                                                {{ banglaNumber($product->product_price) }}/-</del>
                                                         </div>
                                                     @else
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price }}/-
+                                                                {{ banglaNumber($product->product_price) }}/-
                                                             </ins>
                                                         </div>
                                                     @endif
@@ -249,7 +249,7 @@
                                                         <label class="product-label label-new">নতুন</label>
                                                         @if ($product->product_discount > 0)
                                                             <label class="product-label label-sale">
-                                                                {{ $product->product_discount }}% off
+                                                                {{ banglaNumber($product->product_discount) }}% off
                                                             </label>
                                                         @endif
 
@@ -280,14 +280,14 @@
                                                     @if ($product->product_discount > 0)
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
                                                                 class="old-price">৳
-                                                                {{ $product->product_price }}/-</del>
+                                                                {{ banglaNumber($product->product_price) }}/-</del>
                                                         </div>
                                                     @else
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price }}/-
+                                                                {{ banglaNumber($product->product_price) }}/-
                                                             </ins>
                                                         </div>
                                                     @endif
@@ -326,7 +326,7 @@
                                                         <label class="product-label label-new">নতুন</label>
                                                         @if ($product->product_discount > 0)
                                                             <label class="product-label label-sale">
-                                                                {{ $product->product_discount }}% off
+                                                                {{ banglaNumber($product->product_discount) }}% off
                                                             </label>
                                                         @endif
 
@@ -357,14 +357,14 @@
                                                     @if ($product->product_discount > 0)
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price - ($product->product_price * $product->product_discount) / 100 }}/-</ins><del
+                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
                                                                 class="old-price">৳
-                                                                {{ $product->product_price }}/-</del>
+                                                                {{ banglaNumber($product->product_price) }}/-</del>
                                                         </div>
                                                     @else
                                                         <div class="product-price">
                                                             <ins class="new-price">৳
-                                                                {{ $product->product_price }}/-
+                                                                {{ banglaNumber($product->product_price) }}/-
                                                             </ins>
                                                         </div>
                                                     @endif

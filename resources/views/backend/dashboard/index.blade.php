@@ -16,14 +16,14 @@
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
                         <div class="small-box"
-                            style="background-color: rgb( {{ mt_rand(100, 250) }},40, {{ mt_rand(100, 250) }});">
+                            style="background-color: rgb( {{ mt_rand(50, 100) }},168, {{ mt_rand(50, 260) }});">
                             <div class="inner">
                                 <h3>{{ $category->category_name }}</h3>
 
-                                <h5>মোট ভ্রমন করেছেঃ {{ categoryVisitedTimes($category->id) }} বার</h5>
+                                <h5>মোট ভ্রমন করেছেঃ {{ banglaNumber(categoryVisitedTimes($category->id)) }} বার</h5>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                {{-- <i class="ion ion-bag"></i> --}}
                             </div>
                         </div>
                     </div>

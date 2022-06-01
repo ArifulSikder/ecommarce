@@ -54,3 +54,13 @@ function latestProduct(){
 function  categoryVisitedTimes($category_id){
  return Visitor::where('category_id', $category_id)->sum('category_visit_times');
 }
+
+//bangla price
+
+function banglaNumber($str)
+{
+    $english = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    $bangla = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
+    $str = str_replace($english, $bangla, $str);
+    return $str;
+}
