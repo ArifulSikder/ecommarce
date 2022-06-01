@@ -55,6 +55,11 @@ function  categoryVisitedTimes($category_id){
  return Visitor::where('category_id', $category_id)->sum('category_visit_times');
 }
 
+//product visited times
+function productVisitedTimes($product_id){
+  return Visitor::where('product_id', $product_id)->sum('product_visit_times');
+}
+
 //bangla price
 
 function banglaNumber($str)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AllVisitor;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
@@ -21,8 +22,11 @@ class HomeController extends Controller
         } else {
             $UserIP = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         }
+        AllVisitor::create([
+            'visitor_ip' => $UserIP->ip,
+            'date' => Carbon::now(),
+        ]);
         $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1])->orderBy('date','desc')->first();
-        // dd($visitor);
         $query = Product::latest();
         if ($visitor == null) {
             $products = $query->with('category')->get();
