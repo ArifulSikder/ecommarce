@@ -25,6 +25,10 @@ function dateFormater($data){
   return Carbon::parse($data)->format('D F, Y');
 }
 
+function timeFormater($data){
+  return Carbon::parse($data)->format('h:i:i a');
+}
+
 function categoriesNav(){
   return Category::where(['status' => 1])
         ->where(['status' => 1, 'category_status' => 2])

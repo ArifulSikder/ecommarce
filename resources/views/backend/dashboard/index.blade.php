@@ -17,19 +17,49 @@
         6 => 'bg-warning',
         7 => 'bg-danger',
     ];
+    $serial = 1;
     @endphp
+
+    <div class="card">
+        <div class="card-body">
+            <!-- Small boxes (Stat box) -->
+            <h4>Total Visitor</h4>
+            <div class="row">
+                <div class="col-lg-3 col-6 text-white">
+                    <!-- small box -->
+                    <div
+                        class="small-box {{ $serial < 8 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                        <div class="inner">
+                            <h4>মোট ভ্রমনকারির সংখ্যা </h4>
+                            <h5>{{ $allVisitor }} জন</h5>
+                        </div>
+                        <div class="icon">
+                            {{-- <i class="ion ion-bag"></i> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6 text-white">
+                    <!-- small box -->
+                    <div
+                        class="small-box {{ $serial < 8 ? $color[$serial++] : $color[($serial = $serial - ($serial - 1))] }}">
+                        <div class="inner">
+                            <h4>সর্বশেষ ভ্রমনের সময় </h4>
+                            <h5>{{ banglaNumber(timeFormater($lastVisitTime->date)) }}</h5>
+                        </div>
+                        <div class="icon">
+                            {{-- <i class="ion ion-bag"></i> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
             <!-- Small boxes (Stat box) -->
             <h4>Categories</h4>
-            @php
-                $serial = 1;
-            @endphp
             <div class="row">
                 @foreach ($categories as $category)
-                    @php
-                        // $key = 1;
-                    @endphp
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
                         <div
@@ -52,14 +82,8 @@
         <div class="card-body">
             <!-- Small boxes (Stat box) -->
             <h4>Products</h4>
-            @php
-                $serial = 1;
-            @endphp
             <div class="row">
                 @foreach ($products as $product)
-                    @php
-                        // $key = 1;
-                    @endphp
                     <div class="col-lg-3 col-6 text-white">
                         <!-- small box -->
                         <div

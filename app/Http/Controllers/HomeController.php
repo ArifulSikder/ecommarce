@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AllVisitor;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class HomeController extends Controller
     {
         $categories = Category::latest()->where('status', 1)->get();
         $products = Product::latest()->where('status', 1)->get();
-        return view('backend.dashboard.index', compact('categories','products'));
+        $allVisitor = AllVisitor::count();
+        $lastVisitTime = AllVisitor::orderBy('date', 'desc')->first();
+        return view('backend.dashboard.index', compact('categories','products','allVisitor','lastVisitTime'));
     }
 }
