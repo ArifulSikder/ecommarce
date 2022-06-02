@@ -68,7 +68,12 @@
                                                     </a>
                                                     <div class="product-label-group">
                                                         <label class="product-label label-new">নতুন</label>
-                                                        <label class="product-label label-sale">35% off</label>
+                                                        @if ($product->product_discount > 0)
+                                                            <label class="product-label label-sale">
+                                                                {{ banglaNumber($product->product_discount) }}% off
+                                                            </label>
+                                                        @endif
+
                                                     </div>
 
                                                     <div class="product-action-vertical">
