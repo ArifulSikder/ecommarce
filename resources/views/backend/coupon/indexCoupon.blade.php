@@ -5,7 +5,8 @@
 
 {{-- menu active start --}}
 @section('coupon', 'menu-open')
-@section('couponActive', 'active')
+@section('activeCoupon', 'active')
+@section('coupon-list', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div class="row">

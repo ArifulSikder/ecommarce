@@ -75,16 +75,6 @@ class CagegoryController extends Controller
     // store category
     function updateCategory(Request $request)
     {
-        // dd($request->all());
-
-        // dd(
-        //     $request->id,
-        //     $request->category_name,
-        //     $request->category_icon,
-        //     $request->category_slug,
-        //     $request->category_thumbnail,
-        //     $request->category_status,
-        // );
         $validator = Validator::make($request->all(), [
             'category_name' => 'required|max:255|unique:categories,category_name,' . $request->id,
             'category_icon' => 'required|max:255',

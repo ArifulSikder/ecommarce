@@ -137,8 +137,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" enctype="multipart/form-data">
-                        @csrf
+                    <form role="form" id="EditForm" enctype="multipart/form-data">
+                        <input type="text" name="id" id="id_up">
                         <div class="form-group">
                             <label for="name">নাম</label>
                             <input type="text" class="form-control" name="name" placeholder="নাম দিন" value=''
@@ -205,7 +205,7 @@
                 var formData = new FormData($("#EditForm")[0]);
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('updateCategory') }}",
+                    url: "{{ route('updateTestimonial') }}",
                     dataType: "json",
                     contentType: false,
                     processData: false,
@@ -214,18 +214,19 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
+                        console.log(response);
                         if (response.status == 0) {
                             $.each(response, function(index, value) {
-                                $("#slugError").text(value.category_slug);
-                                $("#nameError").text(value.category_name);
-                                $("#iconError").text(value.category_icon);
+                                $("#errorName").text(value.name);
+                                $("#errorDesignation").text(value.designation);
+                                $("#errorDescription").text(value.description);
                             });
 
                         } else if (response[0].status == 1) {
                             toastr.success(response[0].success);
                             $("#EditForm")[0].reset();
                             location.reload();
-                            $('#categoryEdit').modal('hide');
+                            $('#editTestimonial').modal('hide');
                             // $(".table").load(location.href + " .table");
 
                         } else if (response[0].status == 2) {
@@ -233,13 +234,9 @@
                         }
                     },
                     error: function(error) {
-                        if (response[0].category_slug[0]) {
-                            $("#slugError").text(response[0].category_slug[0]);
-                        } else if (response[0].category_name) {
-                            $("#nameError").text(response[0].category_name[0]);
-                        } else if (response.category_icon) {
-                            $("#iconError").text(response[0].category_icon[0]);
-                        }
+                        $("#errorName").text(error.name);
+                        $("#errorDesignation").text(error.designation);
+                        $("#errorDescription").text(error.description);
                     }
                 });
             });

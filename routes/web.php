@@ -89,6 +89,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     //testimonial
     Route::get('/testimonial-list', [TestimonialController::class, 'indexTestimonial'])->name('indexTestimonial');
     Route::post('/store-testimonial', [TestimonialController::class, 'testimonialStore'])->name('testimonialStore');
+    Route::post('/update-testimonial', [TestimonialController::class, 'updateTestimonial'])->name('updateTestimonial');
+    Route::get('/testimonial-delete/{id}', [TestimonialController::class, 'deleteTestimonial']);
 
     //coupon 
     Route::get('/coupon-list', [CouponController::class, 'indexCoupon'])->name('coupon-list');
@@ -118,6 +120,9 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     //order pending
     Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');
     Route::get('/order-items/{order_id}', [OrderController_::class, 'orderItems']);
+    //order cancel
+    Route::get('/cencel-order', [OrderController_::class, 'cancelOrderlist'])->name('cancelOrderlist');
+    Route::get('/cancel-order/{order_id}', [OrderController_::class, 'cancelOrder']);
     //order confirm
     Route::get('/confirm-order/{order_id}', [OrderController_::class, 'confirmOrder']);
     Route::get('/confirm-order', [OrderController_::class, 'confirmOrderList'])->name('confirm-order');

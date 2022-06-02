@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AllVisitor;
 use App\Models\Category;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,9 @@ class HomeController extends Controller
         $categories = Category::latest()->where('status', 1)->get();
         $products = Product::latest()->where('status', 1)->get();
         $allVisitor = AllVisitor::count();
+        $todaysVisitor = AllVisitor::whereDate('date', Carbon::today())->count();
+        $currentMonthVisitor = AllVisitor::whereMonth('date', date('m'))->count();
         $lastVisitTime = AllVisitor::orderBy('date', 'desc')->first();
-        return view('backend.dashboard.index', compact('categories','products','allVisitor','lastVisitTime'));
+        return view('backend.dashboard.index', compact('categories','products','allVisitor','lastVisitTime', 'todaysVisitor', 'currentMonthVisitor'));
     }
 }

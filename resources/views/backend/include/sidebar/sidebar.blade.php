@@ -114,12 +114,6 @@
                         <li class="nav-item">
                             <a href="{{ route('indexTestimonial') }}" class="nav-link  @yield('indexTestimonial')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>প্রশংসাপত্র করুন</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('blogs-list') }}" class="nav-link  @yield('blogs-list')">
-                                <i class="far fa-circle nav-icon"></i>
                                 <p>প্রশংসাপত্র তালিকা</p>
                             </a>
                         </li>
@@ -228,6 +222,13 @@
                             <a href="{{ route('deliverd-order') }}" class="nav-link  @yield('deliverd-order')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ডেলিভারি অর্ডার</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('cancelOrderlist') }}" class="nav-link  @yield('cancelOrderlist')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ক্যান্সেল অর্ডার</p>
                             </a>
                         </li>
                     </ul>

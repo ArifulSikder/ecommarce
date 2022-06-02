@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('designation');
-            $table->string('description');
+            $table->string('description',1000);
             $table->string('photo');
             $table->boolean('status')->default(1);
             $table->softDeletes();

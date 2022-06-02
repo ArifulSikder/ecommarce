@@ -40,6 +40,33 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-3 col-6 text-white">
+                    <!-- small box -->
+                    <div
+                        class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
+                        <div class="inner">
+                            <h4>মোট এই মাসের ভ্রমন </h4>
+                            <h5>{{ banglaNumber($currentMonthVisitor) }} জন</h5>
+                        </div>
+                        <div class="icon">
+                            {{-- <i class="ion ion-bag"></i> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6 text-white">
+                    <!-- small box -->
+                    <div
+                        class="small-box {{ $serial < 7 ? $color[$serial++] : $color2[($serial = $serial - ($serial - 1))] }}">
+                        <div class="inner">
+                            <h4>মোট আজকের ভ্রমন </h4>
+                            <h5>{{ banglaNumber($todaysVisitor) }} জন</h5>
+                        </div>
+                        <div class="icon">
+                            {{-- <i class="ion ion-bag"></i> --}}
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-6 text-white">
                     <!-- small box -->
                     <div

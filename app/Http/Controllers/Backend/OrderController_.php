@@ -24,6 +24,28 @@ class OrderController_ extends Controller
         $orderItems=OrderItem::with('product')->where(['status'=> 1, 'order_id'=> $order_id])->get();
         return view('backend.order.orderItems', compact('orderItems'));
     }
+    //cancel order
+    function cancelOrder($order_id){
+        $cancelOrder=Order::findOrFail($order_id)->update(['order_type'=> 'Cancel', 'cancel_date'=> Carbon::now()]);
+           
+        if ($cancelOrder == false) {
+            $notification = ([
+                'success' => 'অর্ডার প্ররিত্যাক্ত করা ব্যর্থ হয়েছে !',
+            ]);
+        } else{
+            $notification = ([
+                'error' => 'অর্ডার প্ররিত্যাক্ত করা হয়েছে...!',
+            ]);
+        }
+
+        return redirect()->route('cancelOrderlist');
+    }
+    
+    //order item
+    function cancelOrderlist(){
+        $orders=allOrders()->where(['order_type'=> 'Cancel'])->paginate(10);
+        return view('backend.order.cancelOrder', compact('orders'));
+    }
     //confirm order
     function confirmOrder($order_id){
         $confirmOrder=Order::findOrFail($order_id)->update(['order_type'=> 'Confirmed', 'confirm_date'=> Carbon::now()]);
