@@ -261,9 +261,13 @@ class ProductController extends Controller
                 File::delete($content->content_file);
                 $image = $request->file('content_file');
                 $imageName =hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                Image::make($image)->resize(835,552)->save('public/uploads/product/productContent/' . $imageName);
-                $input['content_file'] = 'public/uploads/product/productContent/' . $imageName;
-               
+                if ($input['file_type']=='Image') {
+                    Image::make($image)->resize(835,552)->save('public/uploads/product/productContent/' . $imageName);
+                    $input['content_file'] = 'public/uploads/product/productContent/' . $imageName;
+                } else{
+                    $input['content_file'] = $image->move('public/uploads/product/productContent/'.hexdec(uniqid()) . '.' . $image->getClientOriginalExtension());
+                    // dd($input['content_file']);
+                }
             }
             $productContent=$content->update($input);
         } else{

@@ -171,7 +171,7 @@
                                     <div class="col-md-6">
                                         <h5 class="description-title mb-4 font-weight-semi-bold ls-m">বৈশিষ্ট্য </h5>
                                         <p class="mb-2">
-                                            {{ productContent($product->id)->long_description }}
+                                            {!! productContent($product->id)->long_description !!}
                                             {{-- শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। হাড় ও দাঁত গঠনে: মধুর গুরুত্বপূর্ণ
                                             উপকরণ ক্যালসিয়াম। ক্যালসিয়াম দাঁত, হাড়, চুলের গোড়া শক্ত রাখে, নখের ঔজ্জ্বল্য
                                             বৃদ্ধি করে, ভঙ্গুরতা রোধ করে। --}}
@@ -182,9 +182,9 @@
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                         </ul> --}}
-                                        <h5 class="description-title mb-3 font-weight-semi-bold ls-m">স্পেসিফিকেশন
-                                        </h5>
-                                        <table class="table">
+                                        {{-- <h5 class="description-title mb-3 font-weight-semi-bold ls-m">স্পেসিফিকেশন
+                                        </h5> --}}
+                                        {{-- <table class="table">
                                             <tbody>
                                                 <tr>
                                                     <th class="font-weight-semi-bold text-dark pl-0">Material</th>
@@ -207,28 +207,43 @@
                                                     <td class="border-no pl-4">Praesent id enim</td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table> --}}
                                     </div>
                                     <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
-                                        <h5 class="description-title font-weight-semi-bold ls-m mb-5">
-                                            ভিডিও বিবরণ
-                                        </h5>
-                                        <figure class="p-relative d-inline-block mb-2">
-                                            <img src="{{ asset(productContent($product->id)->content_file) }}"
-                                                width="559" height="370" alt="Product" class="w-100"
-                                                style="background-color: #f5f5f5;" />
-                                            <a class="btn-play btn-iframe" href="video/memory-of-a-woman.mp4">
-                                                <i class="d-icon-play-solid"></i>
-                                            </a>
-                                        </figure>
+                                        @if (productContent($product->id)->file_type == 'Image')
+                                            <h5 class="description-title font-weight-semi-bold ls-m mb-5">
+                                                ছবিতে বিবরণ
+                                            </h5>
+                                            <figure class="p-relative d-inline-block mb-2">
+                                                <img src="{{ asset(productContent($product->id)->content_file) }}"
+                                                    width="559" height="370" alt="Product" class="w-100"
+                                                    style="background-color: #f5f5f5;" />
+                                            </figure>
+                                        @else
+                                            <h5 class="description-title font-weight-semi-bold ls-m mb-5">
+                                                ভিডিও বিবরণ
+                                            </h5>
+                                            <figure class="p-relative d-inline-block mb-2">
+                                                <iframe width="560" height="315"
+                                                    src="{{ asset(productContent($product->id)->content_file) }}"
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen width="559" height="370"></iframe>
+
+                                                <a class="btn-play btn-iframe"
+                                                    href="{{ asset(productContent($product->id)->content_file) }}">
+                                                    <i class="d-icon-play-solid"></i>
+                                                </a>
+                                            </figure>
+                                        @endif
                                         <div class="icon-box-wrap d-flex flex-wrap">
                                             <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
                                                 <div class="icon-box-icon">
                                                     <i class="d-icon-lock"></i>
                                                 </div>
                                                 <div class="icon-box-content">
-                                                    <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">2 year
-                                                        warranty</h4>
+                                                    <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">
+                                                        {{ productContent($product->id)->product_warrenty }}</h4>
                                                     <p>Guarantee with no doubt</p>
                                                 </div>
                                             </div>
@@ -237,11 +252,13 @@
                                                 <div class="icon-box-icon">
                                                     <i class="d-icon-truck"></i>
                                                 </div>
-                                                <div class="icon-box-content">
-                                                    <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free shipping
-                                                    </h4>
-                                                    <p>On orders over $50.00</p>
-                                                </div>
+                                                @if (productContent($product->id)->free_shipping)
+                                                    <div class="icon-box-content">
+                                                        <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free shipping
+                                                        </h4>
+                                                        <p>{{ productContent($product->id)->free_shipping }}</p>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
