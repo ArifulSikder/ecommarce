@@ -25,7 +25,7 @@
     <div class="card">
         <div class="card-body">
             <!-- Small boxes (Stat box) -->
-            <h4>Total Visitor</h4>
+            <h4>ভ্রমনকারির তথ্য</h4>
             <div class="row">
                 <div class="col-lg-3 col-6 text-white">
                     <!-- small box -->
@@ -86,7 +86,7 @@
     <div class="card">
         <div class="card-body">
             <!-- Small boxes (Stat box) -->
-            <h4>Categories</h4>
+            <h4>ক্যাটাগরির তথ্য</h4>
             <div class="row">
                 @foreach ($categories as $category)
                     <div class="col-lg-3 col-6 text-white">
@@ -109,7 +109,7 @@
     <div class="card">
         <div class="card-body">
             <!-- Small boxes (Stat box) -->
-            <h4>Products</h4>
+            <h4>প্রোডাক্টের তথ্য</h4>
             <div class="row">
                 @foreach ($products as $product)
                     <div class="col-lg-3 col-6 text-white">
