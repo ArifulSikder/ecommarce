@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Testimonial;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,15 +43,18 @@ function categoriesPropular(){
 }
 
 // all orders
-
 function allOrders(){
   return Order::with('division', 'district','thana')->where(['status'=> 1])->latest();
 }
 
 //latest product
-
 function latestProduct(){
   return Product::where("status", 1)->latest()->get();
+}
+
+//sidebar testimonial 
+function testimonialData(){
+ return Testimonial::where('status',1)->orderBy('id','desc')->take(4)->get();
 }
 
 //admin dashboard

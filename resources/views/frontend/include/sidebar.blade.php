@@ -132,21 +132,22 @@
                 <div class="widget-body">
                     <div class="owl-carousel owl-nav-top"
                         data-owl-options="{ 'items': 1,'loop': false,'nav': true,'dots': false, 'margin': 20}">
-                        <div class="testimonial">
-                            <blockquote class="comment">আমি আমার আঙ্গুল রাখছি
-                                প্রতি বছর আমাদের শপ! এটি আমাকে প্রবণতার ভাল ধারণা দেয়। আমার পরিবার
-                                এটা পছন্দ করে, খুব.</blockquote>
-                            <div class="testimonial-info">
-                                <figure class="testimonial-author-thumbnail">
-                                    <img src="{{ asset('public/frontend') }}/images/demos/demo3/agent.png" alt="user"
-                                        width="40" height="40" />
-                                </figure>
-                                <cite class="font-weight-semi-bold text-capitalize">
-                                    মারজুক রাসেল
-                                    <span> বিনিয়োগকারি</span>
-                                </cite>
+
+                        @foreach (testimonialData() as $testimonial)
+                            <div class="testimonial">
+                                <blockquote class="comment">{{ $testimonial->description }}</blockquote>
+                                <div class="testimonial-info">
+                                    <figure class="testimonial-author-thumbnail">
+                                        <img src="{{ asset($testimonial->photo) }}" alt="user" width="40"
+                                            height="40" />
+                                    </figure>
+                                    <cite class="font-weight-semi-bold text-capitalize">
+                                        {{ $testimonial->name }}
+                                        <span> {{ $testimonial->designation }}</span>
+                                    </cite>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                         <div class="testimonial">
                             <blockquote class="comment">আমি আমার আঙ্গুল রাখছি
                                 প্রতি বছর আমাদের শপ! এটি আমাকে প্রবণতার ভাল ধারণা দেয়। আমার পরিবার

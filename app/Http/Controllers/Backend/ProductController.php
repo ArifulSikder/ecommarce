@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductContent;
 use App\Models\ProductMultipleImage;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -233,12 +234,75 @@ class ProductController extends Controller
 
     //add product content 
     function addProductContent($product_id){
-        return view('backend.product.content.addProductContent', compact('product_id'));
+        $productContentData =ProductContent::where('product_id',$product_id)->first();
+        return view('backend.product.content.addProductContent', compact('product_id', 'productContentData'));
     }
 
     //store product content 
     function storeProductContent(Request $request){
-        dd($request->all());
+        $input=$request->all();
+      
+        if ($request->update==='update') {
+            $request->validate([
+                'product_warrenty' => 'required|max:255',
+                'free_shipping' => 'required|max:255',
+                'file_type' => 'required|max:255',
+                'long_description' => 'required',
+            ],[
+                'product_warrenty.required' => 'Please Enter This Filed',
+                'free_shipping.required' => 'Please Enter This Filed',
+                'file_type.required' => 'Please Enter This Filed',
+                'long_description.required' => 'Please Enter This Filed',
+            ]);
+            $content=ProductContent::where('product_id',$input['product_id'])->first();
+            $input['content_file'] = $content->content_file;
+            if ($request->file('content_file')) {
+                dd($content->content_file);
+                File::delete($content->content_file);
+                $image = $request->file('content_file');
+                $imageName =hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(835,552)->save('public/uploads/product/productContent/' . $imageName);
+                $input['content_file'] = 'public/uploads/product/productContent/' . $imageName;
+            }
+    
+            $input=$request->except('update','_token');
+            $productContent=$content->update($input);
+        } else{
+            $request->validate([
+                'product_warrenty' => 'required|max:255',
+                'free_shipping' => 'required|max:255',
+                'file_type' => 'required|max:255',
+                'long_description' => 'required',
+                'content_file' => 'required',
+            ],[
+                'product_warrenty.required' => 'Please Enter This Filed',
+                'free_shipping.required' => 'Please Enter This Filed',
+                'file_type.required' => 'Please Enter This Filed',
+                'long_description.required' => 'Please Enter This Filed',
+                'content_file.required' => 'Please Enter This Filed',
+            ]);
+            $input['content_file'] = '';
+            if ($request->file('content_file')) {
+                $image = $request->file('content_file');
+                $imageName =hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(835,552)->save('public/uploads/product/productContent/' . $imageName);
+                $input['content_file'] = 'public/uploads/product/productContent/' . $imageName;
+            }
+
+            $productContent=ProductContent::create($input);
+        }
+            
+        if ($productContent == true) {
+            $notification = ([
+                'success' => 'প্রোডাক্ট কন্টেন সফলভাবে আপডেট করা হয়েছে !',
+            ]);
+        } else{
+            $notification = ([
+                'error' => 'প্রোডাক্ট কন্টেন  আপডেট করা ব্যর্থ হয়েছে...!',
+            ]);
+        }
+
+        return redirect()->route('productList')->with($notification);
     }
 
 
