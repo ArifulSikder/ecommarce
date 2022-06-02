@@ -23,12 +23,12 @@
                             <th style="width: 10%">প্রোডাক্টের থাম্বনেল</th>
                             <th style="width: 10%">প্রোডাক্টের স্লাইডার</th>
                             <th style="width: 10%">ক্যাটেগরির নাম</th>
-                            <th style="width: 10%">প্রোডাক্টের নাম</th>
+                            <th style="width: 12%">প্রোডাক্টের নাম</th>
                             <th style="width: 6%">প্রোডাক্টের পরিমান</th>
-                            <th style="width: 12%">প্রোডাক্টের কোড</th>
+                            <th style="width: 10%">প্রোডাক্টের কোড</th>
                             <th style="width: 5%">প্রোডাক্টের দাম (টাকা)</th>
                             <th style="width: 5%">প্রোডাক্টের ডিস্কাউন্ট (%)</th>
-                            <th style="width: 10%" class="text-center">আকশন</th>
+                            <th style="width: 10%">আকশন</th>
                         </tr>
                     </thead>
                     @php
@@ -48,16 +48,23 @@
                                 <td>{{ $product->product_name }}</td>
                                 <td>{{ $product->product_qty }}</td>
                                 <td>{{ $product->product_code }}</td>
-                                <td>{{ $product->product_price }}</td>
-                                <td>{{ $product->product_discount }}</td>
+                                <td>{{ banglaNumber($product->product_price) }} (টাকা)</td>
+                                <td>{{ banglaNumber($product->product_discount) }} %</td>
 
                                 <td class="text-center">
-                                    <a href="{{ url('product-edit/' . $product->id) }}" class="btn btn-primary btn-sm"><i
-                                            class="far fa-edit"></i></a>
-                                    <a href="{{ url('product-delete/' . $product->id) }}" class="btn btn-danger btn-sm"
-                                        id="delete"><i class="far fa-trash-alt"></i></a>
-                                    <a href="{{ url('product-view/' . $product->id) }}" class="btn btn-success btn-sm"><i
-                                            class="far fa-eye"></i></a>
+                                    <span class="d-flex m-1">
+                                        <a href="{{ url('add-product-content/' . $product->id) }}"
+                                            class="btn btn-primary btn-sm">Add
+                                            Content</a>
+                                    </span>
+                                    <span class="d-flex">
+                                        <a href="{{ url('product-edit/' . $product->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="far fa-edit"></i></a>
+                                        <a href="{{ url('product-delete/' . $product->id) }}"
+                                            class="btn btn-danger btn-sm" id="delete"><i class="far fa-trash-alt"></i></a>
+                                        <a href="{{ url('product-view/' . $product->id) }}"
+                                            class="btn btn-success btn-sm"><i class="far fa-eye"></i></a>
+                                    </span>
                                 </td>
                             </tr>
                         @endforeach

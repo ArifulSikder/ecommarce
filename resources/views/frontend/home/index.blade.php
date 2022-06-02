@@ -103,8 +103,7 @@
                                                     </div>
                                                     <div class="product-action-vertical">
                                                         <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" data-toggle="modal"
-                                                            data-target="#addCartModal" title="Add to cart"><i
+                                                            id="{{ $product->id }}" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
                                                         {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
@@ -179,8 +178,7 @@
                                                     </div>
                                                     <div class="product-action-vertical">
                                                         <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" data-toggle="modal"
-                                                            data-target="#addCartModal" title="Add to cart"><i
+                                                            id="{{ $product->id }}" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
                                                         {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
@@ -256,8 +254,7 @@
                                                     </div>
                                                     <div class="product-action-vertical">
                                                         <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" data-toggle="modal"
-                                                            data-target="#addCartModal" title="Add to cart"><i
+                                                            id="{{ $product->id }}" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
                                                         {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
@@ -333,8 +330,7 @@
                                                     </div>
                                                     <div class="product-action-vertical">
                                                         <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" data-toggle="modal"
-                                                            data-target="#addCartModal" title="Add to cart"><i
+                                                            id="{{ $product->id }}" title="Add to cart"><i
                                                                 class="d-icon-bag"></i></button>
                                                         {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"

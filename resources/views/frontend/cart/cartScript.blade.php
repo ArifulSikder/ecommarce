@@ -75,6 +75,8 @@
                           $("#productStock").append(
                               '<span class="badge badge-danger">Out Of Stock</span>');
                       }
+
+                      $('#addCartModal').modal('show');
                   }
               });
 

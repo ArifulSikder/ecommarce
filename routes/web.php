@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/store-category', [CagegoryController::class, 'storeCategory'])->name('storeCategory');
     Route::post('/update-category', [CagegoryController::class, 'updateCategory'])->name('updateCategory');
     Route::get('/category/{id}', [CagegoryController::class, 'deleteCategory'])->name('deleteCategory');
+
     //product 
     Route::get('/product-list', [ProductController::class, 'index'])->name('productList');
     Route::get('/add-product', [ProductController::class, 'addProduct'])->name('addProduct');
@@ -70,6 +71,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/product-view/{id}', [ProductController::class, 'viewProduct']);
     Route::get('/product-image-delete/{img_id}', [ProductController::class, 'ImageDelete']);
     Route::post('/image-update', [ProductController::class, 'imageUpdate'])->name('image-update');
+    Route::get('/add-product-content/{product_id}', [ProductController::class, 'addProductContent']);
+    Route::post('/store-product-content', [ProductController::class, 'storeProductContent'])->name('storeProductContent');
 
     //banner
     Route::get('/banner', [BannerController::class, 'bannerIndex'])->name('banner');

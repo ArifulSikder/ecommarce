@@ -60,7 +60,7 @@
                                         <li>বিস্তারিত</li>
                                     </ul>
 
-                                    <ul class="product-nav">
+                                    {{-- <ul class="product-nav">
                                         <li class="product-nav-prev">
                                             <a href="#">
                                                 <i class="d-icon-arrow-left"></i> Prev
@@ -81,7 +81,7 @@
                                                 </span>
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
 
                                 <h1 class="product-name">{{ $product->product_name }}</h1>
@@ -275,8 +275,7 @@
 
                                         <div class="product-action-vertical">
                                             <button class="btn-product-icon ViewProduct" id="{{ $product->id }}"
-                                                data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i
-                                                    class="d-icon-bag"></i></button>
+                                                title="Add to cart"><i class="d-icon-bag"></i></button>
                                             {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                 class="btn-product-icon AddToWishList" title="Add to wishlist"><i
                                                     class="d-icon-heart"></i></button> --}}

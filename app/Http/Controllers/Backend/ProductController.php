@@ -231,5 +231,15 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    //add product content 
+    function addProductContent($product_id){
+        return view('backend.product.content.addProductContent', compact('product_id'));
+    }
+
+    //store product content 
+    function storeProductContent(Request $request){
+        dd($request->all());
+    }
+
 
 }
