@@ -171,16 +171,17 @@
                                     <div class="col-md-6">
                                         <h5 class="description-title mb-4 font-weight-semi-bold ls-m">বৈশিষ্ট্য </h5>
                                         <p class="mb-2">
-                                            শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। হাড় ও দাঁত গঠনে: মধুর গুরুত্বপূর্ণ
+                                            {{ productContent($product->id)->long_description }}
+                                            {{-- শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। হাড় ও দাঁত গঠনে: মধুর গুরুত্বপূর্ণ
                                             উপকরণ ক্যালসিয়াম। ক্যালসিয়াম দাঁত, হাড়, চুলের গোড়া শক্ত রাখে, নখের ঔজ্জ্বল্য
-                                            বৃদ্ধি করে, ভঙ্গুরতা রোধ করে।
+                                            বৃদ্ধি করে, ভঙ্গুরতা রোধ করে। --}}
                                         </p>
-                                        <ul class="mb-8">
+                                        {{-- <ul class="mb-8">
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
-                                        </ul>
+                                        </ul> --}}
                                         <h5 class="description-title mb-3 font-weight-semi-bold ls-m">স্পেসিফিকেশন
                                         </h5>
                                         <table class="table">
@@ -213,7 +214,7 @@
                                             ভিডিও বিবরণ
                                         </h5>
                                         <figure class="p-relative d-inline-block mb-2">
-                                            <img src="{{ asset('public/frontend') }}/images/product/product.jpg"
+                                            <img src="{{ asset(productContent($product->id)->content_file) }}"
                                                 width="559" height="370" alt="Product" class="w-100"
                                                 style="background-color: #f5f5f5;" />
                                             <a class="btn-play btn-iframe" href="video/memory-of-a-woman.mp4">

@@ -55,7 +55,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <div class="form-group">
-                            <label for="content_file">প্রোডাক্টের থাম্বনেল</label>
+                            <label for="content_file">কন্টেন্ট ফাইল</label>
                             <input type="file" class="form-control  @error('content_file') is-invalid @enderror"
                                 id="photoUpload" name="content_file" value='{{ old('content_file') }}'>
                         </div>
@@ -116,9 +116,9 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <div class="form-group">
-                            <label for="content_file">প্রোডাক্টের থাম্বনেল</label>
+                            <label for="content_file">কন্টেন্ট ফাইল</label>
                             <input type="file" class="form-control  @error('content_file') is-invalid @enderror"
-                                id="photoUpload" name="content_file" value='{{ $productContentData->content_file }}'>
+                                id="photoUpload" name="content_file">
                         </div>
                         @error('content_file')
                             <span class="text-danger">{{ $message }}</span>

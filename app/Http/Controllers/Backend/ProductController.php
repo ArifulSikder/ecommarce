@@ -9,7 +9,7 @@ use App\Models\ProductContent;
 use App\Models\ProductMultipleImage;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -243,6 +243,7 @@ class ProductController extends Controller
         $input=$request->all();
       
         if ($request->update==='update') {
+            $input=$request->except('update');
             $request->validate([
                 'product_warrenty' => 'required|max:255',
                 'free_shipping' => 'required|max:255',
@@ -257,15 +258,13 @@ class ProductController extends Controller
             $content=ProductContent::where('product_id',$input['product_id'])->first();
             $input['content_file'] = $content->content_file;
             if ($request->file('content_file')) {
-                dd($content->content_file);
                 File::delete($content->content_file);
                 $image = $request->file('content_file');
                 $imageName =hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
                 Image::make($image)->resize(835,552)->save('public/uploads/product/productContent/' . $imageName);
                 $input['content_file'] = 'public/uploads/product/productContent/' . $imageName;
+               
             }
-    
-            $input=$request->except('update','_token');
             $productContent=$content->update($input);
         } else{
             $request->validate([

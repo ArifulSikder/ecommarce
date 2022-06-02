@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductContent;
 use App\Models\Testimonial;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,10 @@ function latestProduct(){
 function testimonialData(){
  return Testimonial::where('status',1)->orderBy('id','desc')->take(4)->get();
 }
-
+//product content
+function productContent($product_id){
+  return ProductContent::where('product_id',$product_id)->first();
+}
 //admin dashboard
 //category visited times
 function  categoryVisitedTimes($category_id){
