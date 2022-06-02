@@ -154,37 +154,37 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab tab-nav-simple product-tabs mb-5">
-                        <ul class="nav nav-tabs justify-content-center" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#product-tab-description">বিস্তারিত</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#product-tab-shipping-returns">পণ্য পৌছানো সংক্রান্ত
-                                    তথ্য</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active in mb-3" id="product-tab-description">
-                                <div class="row mt-6">
-                                    <div class="col-md-6">
-                                        <h5 class="description-title mb-4 font-weight-semi-bold ls-m">বৈশিষ্ট্য </h5>
-                                        <p class="mb-2">
-                                            {!! productContent($product->id)->long_description !!}
-                                            {{-- শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। হাড় ও দাঁত গঠনে: মধুর গুরুত্বপূর্ণ
+                    @if (!empty(productContent($product->id)->long_description))
+                        <div class="tab tab-nav-simple product-tabs mb-5">
+                            <ul class="nav nav-tabs justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#product-tab-description">বিস্তারিত</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#product-tab-shipping-returns">পণ্য পৌছানো সংক্রান্ত
+                                        তথ্য</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active in mb-3" id="product-tab-description">
+                                    <div class="row mt-6">
+                                        <div class="col-md-6">
+                                            <h5 class="description-title mb-4 font-weight-semi-bold ls-m">বৈশিষ্ট্য </h5>
+                                            <p class="mb-2">
+                                                {!! productContent($product->id)->long_description !!}
+                                                {{-- শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। হাড় ও দাঁত গঠনে: মধুর গুরুত্বপূর্ণ
                                             উপকরণ ক্যালসিয়াম। ক্যালসিয়াম দাঁত, হাড়, চুলের গোড়া শক্ত রাখে, নখের ঔজ্জ্বল্য
                                             বৃদ্ধি করে, ভঙ্গুরতা রোধ করে। --}}
-                                        </p>
-                                        {{-- <ul class="mb-8">
+                                            </p>
+                                            {{-- <ul class="mb-8">
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                             <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
                                         </ul> --}}
-                                        {{-- <h5 class="description-title mb-3 font-weight-semi-bold ls-m">স্পেসিফিকেশন
+                                            {{-- <h5 class="description-title mb-3 font-weight-semi-bold ls-m">স্পেসিফিকেশন
                                         </h5> --}}
-                                        {{-- <table class="table">
+                                            {{-- <table class="table">
                                             <tbody>
                                                 <tr>
                                                     <th class="font-weight-semi-bold text-dark pl-0">Material</th>
@@ -208,75 +208,77 @@
                                                 </tr>
                                             </tbody>
                                         </table> --}}
-                                    </div>
-                                    <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
-                                        @if (productContent($product->id)->file_type == 'Image')
-                                            <h5 class="description-title font-weight-semi-bold ls-m mb-5">
-                                                ছবিতে বিবরণ
-                                            </h5>
-                                            <figure class="p-relative d-inline-block mb-2">
-                                                <img src="{{ asset(productContent($product->id)->content_file) }}"
-                                                    width="559" height="370" alt="Product" class="w-100"
-                                                    style="background-color: #f5f5f5;" />
-                                            </figure>
-                                        @else
-                                            <h5 class="description-title font-weight-semi-bold ls-m mb-5">
-                                                ভিডিও বিবরণ
-                                            </h5>
-                                            <figure class="p-relative d-inline-block mb-2">
-                                                <iframe width="560" height="315"
-                                                    src="{{ asset(productContent($product->id)->content_file) }}"
-                                                    title="YouTube video player" frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowfullscreen width="559" height="370"></iframe>
+                                        </div>
+                                        <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
+                                            @if (productContent($product->id)->file_type == 'Image')
+                                                <h5 class="description-title font-weight-semi-bold ls-m mb-5">
+                                                    ছবিতে বিবরণ
+                                                </h5>
+                                                <figure class="p-relative d-inline-block mb-2">
+                                                    <img src="{{ asset(productContent($product->id)->content_file) }}"
+                                                        width="559" height="370" alt="Product" class="w-100"
+                                                        style="background-color: #f5f5f5;" />
+                                                </figure>
+                                            @else
+                                                <h5 class="description-title font-weight-semi-bold ls-m mb-5">
+                                                    ভিডিও বিবরণ
+                                                </h5>
+                                                <figure class="p-relative d-inline-block mb-2">
+                                                    <iframe width="560" height="315"
+                                                        src="{{ asset(productContent($product->id)->content_file) }}"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen width="559" height="370"></iframe>
 
-                                                <a class="btn-play btn-iframe"
-                                                    href="{{ asset(productContent($product->id)->content_file) }}">
-                                                    <i class="d-icon-play-solid"></i>
-                                                </a>
-                                            </figure>
-                                        @endif
-                                        <div class="icon-box-wrap d-flex flex-wrap">
-                                            <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
-                                                <div class="icon-box-icon">
-                                                    <i class="d-icon-lock"></i>
-                                                </div>
-                                                <div class="icon-box-content">
-                                                    <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">
-                                                        {{ productContent($product->id)->product_warrenty }}</h4>
-                                                    <p>Guarantee with no doubt</p>
-                                                </div>
-                                            </div>
-                                            <div class="divider d-xl-show mr-10"></div>
-                                            <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4">
-                                                <div class="icon-box-icon">
-                                                    <i class="d-icon-truck"></i>
-                                                </div>
-                                                @if (productContent($product->id)->free_shipping)
-                                                    <div class="icon-box-content">
-                                                        <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free shipping
-                                                        </h4>
-                                                        <p>{{ productContent($product->id)->free_shipping }}</p>
+                                                    <a class="btn-play btn-iframe"
+                                                        href="{{ asset(productContent($product->id)->content_file) }}">
+                                                        <i class="d-icon-play-solid"></i>
+                                                    </a>
+                                                </figure>
+                                            @endif
+                                            <div class="icon-box-wrap d-flex flex-wrap">
+                                                <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
+                                                    <div class="icon-box-icon">
+                                                        <i class="d-icon-lock"></i>
                                                     </div>
-                                                @endif
+                                                    <div class="icon-box-content">
+                                                        <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">
+                                                            {{ productContent($product->id)->product_warrenty }}</h4>
+                                                        <p>Guarantee with no doubt</p>
+                                                    </div>
+                                                </div>
+                                                <div class="divider d-xl-show mr-10"></div>
+                                                <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4">
+                                                    <div class="icon-box-icon">
+                                                        <i class="d-icon-truck"></i>
+                                                    </div>
+                                                    @if (productContent($product->id)->free_shipping)
+                                                        <div class="icon-box-content">
+                                                            <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free
+                                                                shipping
+                                                            </h4>
+                                                            <p>{{ productContent($product->id)->free_shipping }}</p>
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane " id="product-tab-shipping-returns">
-                                <h6 class="mb-2">Free Shipping</h6>
-                                <p class="mb-0">We deliver to over 100 countries around the world. For full
-                                    details of
-                                    the delivery options we offer, please view our <a href="#"
-                                        class="text-primary">Delivery
-                                        information</a> We hope you’ll love every
-                                    purchase, but if you ever need to return an item you can do so within a month of
-                                    receipt. For full details of how to make a return, please view our <a href="#"
-                                        class="text-primary">Returns information</a></p>
+                                <div class="tab-pane " id="product-tab-shipping-returns">
+                                    <h6 class="mb-2">Free Shipping</h6>
+                                    <p class="mb-0">We deliver to over 100 countries around the world. For full
+                                        details of
+                                        the delivery options we offer, please view our <a href="#"
+                                            class="text-primary">Delivery
+                                            information</a> We hope you’ll love every
+                                        purchase, but if you ever need to return an item you can do so within a month of
+                                        receipt. For full details of how to make a return, please view our <a href="#"
+                                            class="text-primary">Returns information</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
 
                     <section class="related-product mt-10">
                         <h2 class="title title-center mb-1 ls-normal">সংশ্লিষ্ট পণ্য</h2>
