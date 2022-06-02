@@ -88,20 +88,31 @@
                                                 </figure>
                                                 <div class="product-details">
                                                     <div class="product-cat"><a
-                                                            href="{{ route('productDetails') }}">মধু</a></div>
-                                                    <h3 class="product-name">
-                                                        <a href="{{ route('productDetails') }}">মিশ্র ফুলের মধু</a>
-                                                    </h3>
-                                                    <div class="product-price">
-                                                        <ins class="new-price">৳ ১০০/-</ins><del
-                                                            class="old-price">৳
-                                                            ১১০/-</del>
+                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
                                                     </div>
+                                                    <h3 class="product-name">
+                                                        <a
+                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    </h3>
+                                                    @if ($product->product_discount > 0)
+                                                        <div class="product-price">
+                                                            <ins class="new-price">৳
+                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
+                                                                class="old-price">৳
+                                                                {{ banglaNumber($product->product_price) }}/-</del>
+                                                        </div>
+                                                    @else
+                                                        <div class="product-price">
+                                                            <ins class="new-price">৳
+                                                                {{ banglaNumber($product->product_price) }}/-
+                                                            </ins>
+                                                        </div>
+                                                    @endif
                                                     <div class="ratings-container">
-                                                        <div class="ratings-full">
+                                                        {{-- <div class="ratings-full">
                                                             <span class="ratings" style="width:80%"></span>
                                                             <span class="tooltiptext tooltip-top"></span>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>
