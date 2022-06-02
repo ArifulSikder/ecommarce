@@ -100,7 +100,7 @@
                             <a href="{{ url('/') }}">হোম</a>
                         </li>
                         @foreach (categoriesNav() as $category)
-                            <li>
+                            <li class="@yield('navActive')">
                                 <a href="{{ url('show-' . $category->slug) }}">{!! $category->category_icon !!}
                                     {{ $category->category_name }}</a>
                             </li>

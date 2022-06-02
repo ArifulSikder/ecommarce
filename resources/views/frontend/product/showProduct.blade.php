@@ -3,6 +3,7 @@
 @section('title', 'আমাদের শপ ।। হোম')
 @section('pageClass', 'home')
 
+{{-- @section('navActive', 'active') --}}
 
 @section('mainSection')
     <div class="page-wrapper">
