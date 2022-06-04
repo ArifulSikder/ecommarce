@@ -6,10 +6,10 @@
           <i class="d-icon-home"></i>
           <span>Home</span>
       </a>
-      <a href="{{ route('productDetails') }}" class="sticky-link">
+      {{-- <a href="{{ route('productDetails') }}" class="sticky-link">
           <i class="d-icon-volume"></i>
           <span>Categories</span>
-      </a>
+      </a> --}}
       {{-- <a href="wishlist.html" class="sticky-link">
           <i class="d-icon-heart"></i>
           <span>Wishlist</span>
