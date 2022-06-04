@@ -99,8 +99,8 @@
                         <li class="active">
                             <a href="{{ url('/') }}">হোম</a>
                         </li>
-                        @foreach (categoriesNav() as $category)
-                            <li class="@yield('navActive')">
+                        @foreach (categoriesNav() as $index => $category)
+                            <li class="{{ request()->is('show-' . $category->slug) ? 'active' : '' }}">
                                 <a href="{{ url('show-' . $category->slug) }}">{!! $category->category_icon !!}
                                     {{ $category->category_name }}</a>
                             </li>
