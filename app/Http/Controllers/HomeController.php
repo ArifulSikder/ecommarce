@@ -35,4 +35,5 @@ class HomeController extends Controller
         $lastVisitTime = AllVisitor::orderBy('date', 'desc')->first();
         return view('backend.dashboard.index', compact('categories','products','allVisitor','lastVisitTime', 'todaysVisitor', 'currentMonthVisitor'));
     }
+
 }

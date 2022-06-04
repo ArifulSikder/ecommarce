@@ -42,12 +42,16 @@
       <!-- End of CloseButton -->
       <div class="mobile-menu-container scrollable">
           <form action="#" class="input-wrapper">
-              <input type="text" class="form-control" name="search" autocomplete="off"
+              <input type="text" class="form-control" id="searchKeyWordMobile" name="search"
                   placeholder="Search your keyword..." required />
               <button class="btn btn-search" type="submit">
                   <i class="d-icon-search"></i>
               </button>
           </form>
+
+          <div class="searchAutoComplete">
+              {{-- live search content will render here --}}
+          </div>
           <!-- End of Search Form -->
           <ul class="mobile-menu mmenu-anim">
               <li>

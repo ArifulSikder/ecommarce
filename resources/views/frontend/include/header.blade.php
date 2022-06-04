@@ -14,12 +14,16 @@
 
                 <div class="header-search hs-simple">
                     <form action="#" class="input-wrapper">
-                        <input type="text" class="form-control" name="search" autocomplete="off"
+                        <input type="text" class="form-control" name="search" id="searchKeyWord"
                             placeholder="Search..." required />
                         <button class="btn btn-search" type="submit">
                             <i class="d-icon-search"></i>
                         </button>
                     </form>
+                    <div class="searchAutoComplete">
+                        {{-- live search content will render here --}}
+                    </div>
+
                 </div>
                 <!-- End Header Search -->
             </div>

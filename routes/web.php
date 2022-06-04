@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Location\LocationController;
+use App\Http\Controllers\frontend\SearchController;
 
 Auth::routes();
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -46,6 +47,9 @@ Route::get('/division-by-district', [CheckoutController::class, 'divisionByDistr
 Route::get('/district-by-thana', [CheckoutController::class, 'districtByThana']);
 //order now
 Route::post('/order', [OrderController::class, 'orderStore'])->name('order');
+//live serarch
+Route::post('/live-search', [SearchController::class, 'liveSearch']);
+
 
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes end ++++++++++++++++++++++++++++++++++++++++++++++++
 

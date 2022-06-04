@@ -134,4 +134,5 @@ class HomeController extends Controller
             return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
         }
     }
+
 }

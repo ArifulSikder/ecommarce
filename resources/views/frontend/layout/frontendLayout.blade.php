@@ -112,6 +112,7 @@
         $("input[type='number']").inputSpinner();
     </script>
     @include('frontend.cart.cartScript')
+    @include('frontend.include.searchScript')
     @yield('scriptFontend')
 </body>
 
