@@ -25,9 +25,9 @@
                             <th style="width: 10%">ক্যাটেগরির নাম</th>
                             <th style="width: 12%">প্রোডাক্টের নাম</th>
                             <th style="width: 6%">প্রোডাক্টের পরিমান</th>
-                            <th style="width: 10%">প্রোডাক্টের কোড</th>
+                            <th style="width: 8%">প্রোডাক্টের কোড</th>
                             <th style="width: 5%">প্রোডাক্টের দাম (টাকা)</th>
-                            <th style="width: 5%">প্রোডাক্টের ডিস্কাউন্ট (%)</th>
+                            <th style="width: 7%">প্রোডাক্টের ডিস্কাউন্ট (%)</th>
                             <th style="width: 10%">আকশন</th>
                         </tr>
                     </thead>
@@ -46,7 +46,7 @@
                                 </td>
                                 <td>{{ $product->category->category_name }}</td>
                                 <td>{{ $product->product_name }}</td>
-                                <td>{{ $product->product_qty }}</td>
+                                <td>{{ banglaNumber($product->product_qty) }} টি</td>
                                 <td>{{ $product->product_code }}</td>
                                 <td>{{ banglaNumber($product->product_price) }} (টাকা)</td>
                                 <td>{{ banglaNumber($product->product_discount) }} %</td>
