@@ -145,6 +145,9 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     //order delivery
     Route::get('/delivered-order/{order_id}', [OrderController_::class, 'deliveredOrder']);
     Route::get('/delivered-order', [OrderController_::class, 'deliveredOrderList'])->name('deliverd-order');
+    //order return
+    Route::get('/return-order/{order_id}', [OrderController_::class, 'returnOrder']);
+    Route::get('/return-order', [OrderController_::class, 'retrunOrderList'])->name('return-order');
 
     //delete order
     // Route::get('delete', [OrderController_::class, 'delete']);

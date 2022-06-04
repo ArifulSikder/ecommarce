@@ -83,7 +83,7 @@
                                                         data-placeholder="মুল্য পরিশোধের পদ্ধতি বাছাই করুন"
                                                         style="width: 100%;">
                                                         <option value=""></option>
-                                                        <option value="Cash On Delivary">প্রদানোত্তর পরিশোধ</option>
+                                                        <option value="Cash On Delivery">প্রদানোত্তর পরিশোধ</option>
                                                     </select>
                                                 </div>
                                             </div>

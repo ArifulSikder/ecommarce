@@ -159,6 +159,28 @@ class OrderController_ extends Controller
         return view('backend.order.deliveredOrder', compact('orders'));
     }
 
+    //return order
+    function returnOrder($order_id){
+        $confirmOrder=Order::findOrFail($order_id)->update(['order_type'=> 'Return', 'return_date'=> Carbon::now()]);
+        if ($confirmOrder == true) {
+            $notification = ([
+                'success' => 'অর্ডার রিটার্ন করা হয়েছে !',
+            ]);
+        } else{
+            $notification = ([
+                'error' => 'অর্ডার রিটার্ন করা ব্যর্থ হয়েছে...!',
+            ]);
+        }
+
+        return redirect('/return-order');
+    }
+
+    //return order list
+    function retrunOrderList(){
+        $orders = allOrders()->where(['order_type'=> 'Return'])->paginate(10);
+        return view('backend.order.returnOrder', compact('orders'));
+    }
+
     // function delete(){
     //     Order::findOrFail(3)->delete();
     //     return 'done';

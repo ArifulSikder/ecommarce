@@ -224,6 +224,12 @@
                                 <p>ডেলিভারি অর্ডার</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('return-order') }}" class="nav-link  @yield('return-order')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>রিটার্ন অর্ডার</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{ route('cancelOrderlist') }}" class="nav-link  @yield('cancelOrderlist')">

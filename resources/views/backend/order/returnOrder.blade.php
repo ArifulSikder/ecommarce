@@ -1,18 +1,18 @@
 @extends('backend.masterLayout.admin-master')
 @section('title')
-    ডেলিভারি অর্ডার
+    রিটার্ন অর্ডার
 @endsection
 
 {{-- menu active start --}}
 @section('order', 'menu-open')
 @section('activeOrder', 'active')
-@section('deliverd-order', 'active')
+@section('return-order', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div>
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">ডেলিভারি অর্ডার তালিকা</h3>
+                <h3 class="card-title">রিটার্ন অর্ডার তালিকা</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -54,8 +54,6 @@
                                 <td>{{ $order->amount }}(tk)</td>
 
                                 <td class="text-center">
-                                    <a title="Return Order" href="{{ url('return-order/' . $order->id) }}"
-                                        class="btn btn-danger btn-sm">Return Order</a>
                                     <a href="{{ url('order-items/' . $order->id) }}" class="btn btn-success btn-sm"><i
                                             class="far fa-eye"></i></a>
                                 </td>

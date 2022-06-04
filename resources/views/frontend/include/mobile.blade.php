@@ -55,7 +55,7 @@
           <!-- End of Search Form -->
           <ul class="mobile-menu mmenu-anim">
               <li>
-                  <a href="{{ url('/') }}">Home</a>
+                  <a href="{{ url('/') }}"><i class="fas fa-home"></i>Home</a>
               </li>
               @foreach (categoriesNav() as $category)
                   <li><a href="{{ url('show-' . $category->slug) }}">{!! $category->category_icon !!}

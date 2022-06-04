@@ -17,7 +17,7 @@
                             {{ $category->category_name }}</a>
                     </li>
                 @endforeach
-                <li><a href="{{ route('shopping') }}" class="menu-title mt-1">আজকের কুপন</a>
+                {{-- <li><a href="{{ route('shopping') }}" class="menu-title mt-1">আজকের কুপন</a>
                 </li>
                 <li>
                     <a href="{{ route('shopping') }}">
@@ -28,7 +28,7 @@
                     <a href="{{ route('shopping') }}">
                         <i class="d-icon-card"></i>প্রতিদিনের কুপন
                     </a>
-                </li>
+                </li> --}}
             </ul>
             <div class="banner banner-fixed overlay-zoom overlay-dark">
                 <figure>
@@ -72,24 +72,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="post overlay-dark overlay-zoom">
-                            <figure class="post-media">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('public/frontend') }}/images/demos/demo3/blog/2.jpg"
-                                        width="280" height="195" alt="post" style="background-color: #a1a7b6;" />
-                                </a>
-                            </figure>
-                            <div class="post-details">
-                                <div class="post-meta">
-                                    by <a href="#" class="post-author">John Doe</a>
-                                    on <a href="#" class="post-date">Nov 22, 2018</a>
-                                </div>
-                                <h3 class="post-title"><a href="post-single.html">Just a
-                                        cool blog post with Images</a></h3>
-                                <a href="post-single.html" class="btn btn-link btn-underline btn-primary btn-sm">Read
-                                    More<i class="d-icon-arrow-right"></i></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -114,22 +96,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="testimonial">
-                            <blockquote class="comment">আমি আমার আঙ্গুল রাখছি
-                                প্রতি বছর আমাদের শপ! এটি আমাকে প্রবণতার ভাল ধারণা দেয়। আমার পরিবার
-                                এটা পছন্দ করে, খুব.</blockquote>
-                            <div class="testimonial-info">
-                                <figure class="testimonial-author-thumbnail">
-                                    <img src="{{ asset('public/frontend') }}/images/demos/demo3/agent.png" alt="user"
-                                        width="40" height="40" />
-                                </figure>
-                                <cite>
-                                    মারজুক রাসেল
-                                    <span>বিনিয়োগকারি</span>
-                                </cite>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
