@@ -105,7 +105,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="long_description">প্রোডাক্টের বড় বিবরন</label>
                                 <textarea class="textarea" name="long_description" id="long_description"
@@ -114,7 +114,7 @@
                             @error('long_description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="product_thumbnail">প্রোডাক্টের থাম্বনেল</label>

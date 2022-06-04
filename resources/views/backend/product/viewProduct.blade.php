@@ -18,7 +18,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <p><strong>প্রোডাক্টের ছোট বিবরন :</strong> {!! $productData->short_description !!}</p>
-                    <p><strong>প্রোডাক্টের বড় বিবরন :</strong> {!! $productData->long_description !!}</p>
+                    {{-- <p><strong>প্রোডাক্টের বড় বিবরন :</strong> {!! $productData->long_description !!}</p> --}}
                 </div>
             </div>
         </div>
