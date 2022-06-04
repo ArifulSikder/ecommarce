@@ -20,7 +20,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10%">সিরিয়াল</th>
-                                <th style="width: 20%">ক্যাটেগরির ছবি</th>
+                                {{-- <th style="width: 20%">ক্যাটেগরির ছবি</th> --}}
                                 <th style="width: 40%">ক্যাটেগরির তথ্য</th>
                                 <th style="width: 15%">ক্যাটেগরির আইকন</th>
                                 <th style="width: 20%" class="text-center">আকশন</th>
@@ -33,7 +33,7 @@
                             @foreach ($categories as $category)
                                 <tr>
                                     <td>{{ $serial++ }}</td>
-                                    <td><img width="100px" src="{{ asset($category->category_thumbnail) }}" alt=""></td>
+                                    {{-- <td><img width="100px" src="{{ asset($category->category_thumbnail) }}" alt=""></td> --}}
                                     <td>
                                         <strong>ক্যাটেগরির নাম :</strong> {{ $category->category_name }} <br>
                                         <strong>ক্যাটেগরির স্লাগ :</strong> {{ $category->slug }} <br>
@@ -47,8 +47,7 @@
                                             data-target="#categoryEdit" data-id="{{ $category->id }}"
                                             data-category="{{ $category->category_name }}"
                                             data-icon="{{ $category->category_icon }}" data-slug="{{ $category->slug }}"
-                                            data-thumbnail="{{ asset($category->category_thumbnail) }}"
-                                            data-status="{{ $category->category_status }}"
+                                            {{-- data-thumbnail="{{ asset($category->category_thumbnail) }}" --}} data-status="{{ $category->category_status }}"
                                             data-slug="{{ $category->slug }}"><i class="far fa-edit"></i></button>
 
                                         <a href="{{ url('category/' . $category->id) }}}}" class="btn btn-danger btn-sm"
@@ -124,7 +123,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="category_thumbnail">ক্যাটেগরির ছবি</label>
                                 <input id="photoUpload" type="file"
                                     class="form-control  @error('category_thumbnail') is-invalid @enderror"
@@ -132,8 +131,8 @@
                             </div>
                             @error('category_thumbnail')
                                 <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                            <img id="previewHolder" src="" alt="">
+                            @enderror --}}
+                            {{-- <img id="previewHolder" src="" alt=""> --}}
                         </div>
                         <!-- /.card-body -->
 
@@ -200,15 +199,14 @@
                             </div>
 
                             <span class="text-danger" id="categoryStatusError"></span>
-
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="category_thumbnail">ক্যাটেগরির ছবি</label>
                                 <input type="file"
                                     class="form-control photoUpload @error('category_thumbnail') is-invalid @enderror"
                                     name="category_thumbnail" value="">
                             </div>
                             <img class="previewHolder" src="" alt="">
-                            <span class="text-danger" id="thumbnailError"></span>
+                            <span class="text-danger" id="thumbnailError"></span> --}}
                         </div>
                         <!-- /.card-body -->
 
@@ -233,7 +231,7 @@
                 var category = $(this).data("category");
                 var icon = $(this).data("icon");
                 var slug = $(this).data("slug");
-                var thumbnail = $(this).data('thumbnail');
+                // var thumbnail = $(this).data('thumbnail');
                 var status = $(this).data("status");
 
                 $('#idUpdate').val(id);
@@ -241,7 +239,7 @@
                 $('#category_icon').val(icon);
                 $('#slugCAt').val(slug);
                 $('#category_status').val(status).trigger('change');
-                $('.previewHolder').attr('src', thumbnail).css('width', '100px');
+                // $('.previewHolder').attr('src', thumbnail).css('width', '100px');
 
             })
         });

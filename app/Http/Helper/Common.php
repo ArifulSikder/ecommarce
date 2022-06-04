@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -43,6 +44,10 @@ function categoriesPropular(){
         ->get();
 }
 
+function blogSidebar(){
+  return Blog::where(['status'=> 1])->orderBy('id', "desc")->take(3)->get();
+}
+
 // all orders
 function allOrders(){
   return Order::with('division', 'district','thana')->where(['status'=> 1])->latest();
@@ -71,7 +76,6 @@ function  categoryVisitedTimes($category_id){
 function productVisitedTimes($product_id){
   return Visitor::where('product_id', $product_id)->sum('product_visit_times');
 }
-
 //bangla price
 
 function banglaNumber($str)

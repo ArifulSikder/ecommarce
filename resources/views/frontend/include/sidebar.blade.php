@@ -52,65 +52,31 @@
                 <div class="widget-body">
                     <div class="owl-carousel owl-nav-top"
                         data-owl-options="{'items': 1,'loop': false,'nav': true,'dots': false,'margin': 20 }">
-                        <div class="post overlay-dark overlay-zoom">
-                            <figure class="post-media">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('public/frontend') }}/images/sundorbon/sandalwood3.jpg"
-                                        width="280" height="195" alt="post" style="background-color: #bcc3ca;" />
-                                </a>
-                            </figure>
-                            <div class="post-details">
-                                <div class="post-meta">
-                                    লেখক <a href="#" class="post-author"> আরিফ</a>
-                                    on <a href="#" class="post-date">Nov 22, 2018</a>
+                        @foreach (blogSidebar() as $blog)
+                            <div class="post overlay-dark overlay-zoom">
+                                <figure class="post-media">
+                                    <a href="#">
+                                        <img src="{{ asset($blog->blog_thumbnail) }}" width="280" height="195"
+                                            alt="post" style="background-color: #bcc3ca;" />
+                                    </a>
+                                </figure>
+                                <div class="post-details">
+                                    <div class="post-meta">
+                                        লেখক <a href="#" class="post-author"> {{ $blog->writer }}</a>
+                                        on <a href="#" class="post-date">{{ dateFormater($blog->date) }}</a>
+                                    </div>
+                                    <h3 class="post-title"><a href="#">{{ $blog->blog_title }}</a>
+                                    </h3>
+                                    <a href="#" class="btn btn-primary btn-link btn-underline btn-sm">Read
+                                        More<i class="d-icon-arrow-right"></i></a>
                                 </div>
-                                <h3 class="post-title"><a href="post-single.html">চন্দনের কাঠের
-                                        সাথে এর গুরা</a></h3>
-                                <a href="post-single.html" class="btn btn-primary btn-link btn-underline btn-sm">Read
-                                    More<i class="d-icon-arrow-right"></i></a>
                             </div>
-                        </div>
+                        @endforeach
                         <div class="post overlay-dark overlay-zoom">
                             <figure class="post-media">
                                 <a href="post-single.html">
                                     <img src="{{ asset('public/frontend') }}/images/demos/demo3/blog/2.jpg"
                                         width="280" height="195" alt="post" style="background-color: #a1a7b6;" />
-                                </a>
-                            </figure>
-                            <div class="post-details">
-                                <div class="post-meta">
-                                    by <a href="#" class="post-author">John Doe</a>
-                                    on <a href="#" class="post-date">Nov 22, 2018</a>
-                                </div>
-                                <h3 class="post-title"><a href="post-single.html">Just a
-                                        cool blog post with Images</a></h3>
-                                <a href="post-single.html" class="btn btn-link btn-underline btn-primary btn-sm">Read
-                                    More<i class="d-icon-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="post overlay-dark overlay-zoom">
-                            <figure class="post-media">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('public/frontend') }}/images/demos/demo3/blog/3.jpg"
-                                        width="280" height="195" alt="post" style="background-color: #acb9bf;" />
-                                </a>
-                            </figure>
-                            <div class="post-details">
-                                <div class="post-meta">
-                                    by <a href="#" class="post-author">John Doe</a>
-                                    on <a href="#" class="post-date">Nov 22, 2018</a>
-                                </div>
-                                <h3 class="post-title"><a href="post-single.html">Just a
-                                        cool blog post with Images</a></h3>
-                                <a href="post-single.html" class="btn btn-link btn-underline btn-primary btn-sm">Read
-                                    More<i class="d-icon-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="post overlay-dark overlay-zoom">
-                            <figure class="post-media">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('public/frontend') }}/images/demos/demo3/blog/4.jpg"
-                                        width="280" height="195" alt="post" style="background-color: #2d3635;" />
                                 </a>
                             </figure>
                             <div class="post-details">
