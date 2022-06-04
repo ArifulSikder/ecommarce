@@ -429,7 +429,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-sm-3">
                             <img id="productThumbnail"
                                 src="{{ asset('public/frontend/images/loading/dribbble-spinner-800x600.gif') }}">
                         </div>

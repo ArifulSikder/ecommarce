@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-sm-5">
                         <img id="productThumbnail" src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png"
                             alt="product image">
                     </div>
