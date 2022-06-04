@@ -223,18 +223,18 @@
                                                 <h5 class="description-title font-weight-semi-bold ls-m mb-5">
                                                     ভিডিও বিবরণ
                                                 </h5>
-                                                <figure class="p-relative d-inline-block mb-2">
-                                                    <iframe width="560" height="315"
-                                                        src="{{ asset(productContent($product->id)->content_file) }}"
-                                                        title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen width="559" height="370"></iframe>
+                                                {{-- <figure class="p-relative d-inline-block mb-2"> --}}
+                                                {{-- <iframe width="560" height="315"
+                                                    src="{{ asset(productContent($product->id)->content_file) }}"
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen width="559" height="370"></iframe> --}}
+                                                <video width="560" height="315" controls>
+                                                    <source src="{{ asset(productContent($product->id)->content_file) }}"
+                                                        type="video/mp4">
+                                                </video>
 
-                                                    <a class="btn-play btn-iframe"
-                                                        href="{{ asset(productContent($product->id)->content_file) }}">
-                                                        <i class="d-icon-play-solid"></i>
-                                                    </a>
-                                                </figure>
+                                                {{-- </figure> --}}
                                             @endif
                                             <div class="icon-box-wrap d-flex flex-wrap">
                                                 <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">

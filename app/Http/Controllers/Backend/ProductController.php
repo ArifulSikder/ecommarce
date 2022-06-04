@@ -127,7 +127,7 @@ class ProductController extends Controller
             'product_discount' => 'required|max:50',
             'short_description' => 'required|max:500',
             // 'long_description' => 'required',
-            'product_slider_img' => 'required',
+            // 'product_slider_img' => 'required',
             'product_slug' => 'required|max:255|unique:products,product_slug,'.$request->id,
         ],[
             'category_id.required' => 'Please Enter This Filed',
@@ -138,7 +138,7 @@ class ProductController extends Controller
             'product_discount.required' => 'Please Enter This Filed',
             'short_description.required' => 'Please Enter This Filed',
             // 'long_description.required' => 'Please Enter This Filed',
-            'product_slider_img.required' => 'Please Enter This Filed',
+            // 'product_slider_img.required' => 'Please Enter This Filed',
             'product_slug.required' => 'Please Enter This Filed',
         ]);
         $singleProduct = Product::findOrFail($request->id);

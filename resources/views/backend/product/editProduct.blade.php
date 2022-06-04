@@ -117,6 +117,20 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div> --}}
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="givenSlug">প্রোডাক্টের স্লাগ(English)</label>
+                                <input type="text" class="form-control  @error('product_slug') is-invalid @enderror"
+                                    id="givenSlug" placeholder="প্রোডাক্টের স্লাগ(English) দিন"
+                                    value='{{ $productData->product_slug }}'>
+                            </div>
+                            <input type="hidden" id="product_slug" name="product_slug"
+                                value='{{ $productData->product_slug }}'>
+                            @error('product_slug')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="product_thumbnail">প্রোডাক্টের থাম্বনেল</label>
@@ -140,7 +154,8 @@
                             @error('product_slider_img')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                            <img id="previewHolderr" src="" alt="">
+                            <img id="previewHolderr" height="100px" src="{{ asset($productData->product_slider_img) }}"
+                                alt="">
                         </div>
                         {{-- <div class="col-md-6">
                             <div class="form-group">
@@ -163,19 +178,6 @@
                             </div>
                         </div> --}}
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="givenSlug">প্রোডাক্টের স্লাগ(English)</label>
-                                <input type="text" class="form-control  @error('product_slug') is-invalid @enderror"
-                                    id="givenSlug" placeholder="প্রোডাক্টের স্লাগ(English) দিন"
-                                    value='{{ $productData->product_slug }}'>
-                            </div>
-                            <input type="hidden" id="product_slug" name="product_slug"
-                                value='{{ $productData->product_slug }}'>
-                            @error('product_slug')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="special_offer">স্পেশাল অফার</label> &nbsp; &nbsp; &nbsp; &nbsp;
