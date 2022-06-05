@@ -4,8 +4,9 @@
 @endsection
 
 {{-- menu active start --}}
-@section('category', 'menu-open')
-@section('categoryActive', 'active')
+@section('product', 'menu-open')
+@section('productActive', 'active')
+@section('shippingInformation', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div class="row">
@@ -20,34 +21,34 @@
                         <thead>
                             <tr>
                                 <th style="width: 10%">সিরিয়াল</th>
-                                <th style="width: 40%">শিরোনাম</th>
-                                <th style="width: 15%"> বর্ননা</th>
+                                <th style="width: 15%">শিরোনাম</th>
+                                <th style="width: 40%"> বর্ননা</th>
                                 <th style="width: 20%" class="text-center">আকশন</th>
                             </tr>
                         </thead>
-                        {{-- @php
-                            $serial = ($categories->currentpage() - 1) * $categories->perpage() + 1;
-                        @endphp --}}
-                        {{-- <tbody>
-                            @foreach ($categories as $category)
+                        @php
+                            $serial = ($shippingInfo->currentpage() - 1) * $shippingInfo->perpage() + 1;
+                        @endphp
+                        <tbody>
+                            @foreach ($shippingInfo as $info)
                                 <tr>
                                     <td>{{ $serial++ }}</td>
-                                    <td></td>
-                                    <td>{!! $category->category_icon !!}</td>
+                                    <td>{{ $info->title }}</td>
+                                    <td>{!! Str::limit($info->description, 100) !!}<br></td>
                                     <td class="text-center">
                                         <!-- Large modal -->
                                         <button type="button" class="btn btn-primary btn-sm getData" data-toggle="modal"
                                             data-target="#categoryEdit"><i class=" far fa-edit"></i></button>
-                                        <a href="{{ url('category/' . $category->id) }}}}" class="btn btn-danger btn-sm"
+                                        <a href="{{ url('category/' . $info->id) }}}}" class="btn btn-danger btn-sm"
                                             id="delete"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
 
                     <div class="d-flex float-right mt-2">
-                        {{-- {!! $categories->links('pagination::bootstrap-5') !!} --}}
+                        {!! $shippingInfo->links('pagination::bootstrap-5') !!}
                     </div>
                 </div>
             </div>
@@ -58,7 +59,7 @@
                     <h3 class="card-title"> পণ্য পৌছানো সংক্রান্ত তথ্য যোগ করুন</h3>
                 </div>
                 <div class="card-body">
-                    <form role="form" method="POST" action="{{ route('storeCategory') }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" action="{{ route('storeShipping') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -71,7 +72,7 @@
                             @enderror
                             <div class="form-group">
                                 <label for="description">বর্ননা </label>
-                                <textarea type="text" class="form-control  @error('description') is-invalid @enderror" id="description"
+                                <textarea type="text" class="form-control textarea @error('description') is-invalid @enderror" id="description"
                                     name="description" placeholder="বর্ননা দিন"
                                     value="{{ old('description') }}"></textarea>
                             </div>

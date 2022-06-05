@@ -73,12 +73,12 @@
                                 <p>প্রোডাক্ট তালিকা</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('shippingInformation') }}" class="nav-link  @yield('shippingInformation')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>পণ্য পৌছানো সংক্রান্ত তথ্য</p>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </li>
 
@@ -143,12 +143,6 @@
                                 <p>কুপন তালিকা</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('blogs-list') }}" class="nav-link  @yield('blogs-list')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>কুপন তালিকা</p>
-                            </a>
-                        </li> --}}
                     </ul>
                 </li>
 

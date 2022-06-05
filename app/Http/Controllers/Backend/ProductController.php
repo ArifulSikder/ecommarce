@@ -315,10 +315,5 @@ class ProductController extends Controller
         return redirect()->route('productList')->with($notification);
     }
 
-    //shipping information
-    function shippingInformation(){
-        return view('backend.product.shipping.shippingInformation');
-    }
-
 
 }

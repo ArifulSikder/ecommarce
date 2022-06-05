@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\Role\RoleController;
+use App\Http\Controllers\Backend\ShippingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
@@ -79,7 +80,9 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/image-update', [ProductController::class, 'imageUpdate'])->name('image-update');
     Route::get('/add-product-content/{product_id}', [ProductController::class, 'addProductContent']);
     Route::post('/store-product-content', [ProductController::class, 'storeProductContent'])->name('storeProductContent');
-    Route::get('/shipping-information', [ProductController::class, 'shippingInformation'])->name('shippingInformation');
+    //product shipping
+    Route::get('/shipping-information', [ShippingController::class, 'shippingInformation'])->name('shippingInformation');
+    Route::post('/store-shipping',  [ShippingController::class, 'storeShipping'])->name('storeShipping');
 
     //banner
     Route::get('/banner', [BannerController::class, 'bannerIndex'])->name('banner');
@@ -126,6 +129,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/division-by-district',  [LocationController::class, 'divisionByDistrict']);
     Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
     Route::post('/thana-update',  [LocationController::class, 'updateThana'])->name('thana-update');
+
+
 
     //order pending
     Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');
