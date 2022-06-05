@@ -40,6 +40,8 @@ Route::get('/remove-cart', [CartController::class, 'productRemove']);
 Route::get('/cart', [CartController::class, 'cartIndex']);
 // cart page ajax 
 Route::get('/cart-page', [CartController::class, 'cartPage']);
+//check product quantity ajax
+Route::get('/check-product-qty-ajax', [CartController::class, 'checkProductQtyAjax']);
 // incrase cart quantity 
 Route::get('/increase-cart-qty', [CartController::class, 'increaseCartQty']);
 // have coupon

@@ -127,7 +127,7 @@
                                                 করুন</button>
                                         @else
                                             <button type="button"
-                                                class="shoppingCartBtn text-normal ls-normal font-weight-semi-bold"><i
+                                                class="shoppingCartBtn bg-danger text-normal ls-normal font-weight-semi-bold"><i
                                                     class="d-icon-bag" disabled></i>স্টকে নেই</button>
                                         @endif
                                     </div>

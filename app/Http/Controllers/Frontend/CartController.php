@@ -100,6 +100,24 @@ class CartController extends Controller
             'cartTotal' => $cartTotal,
         ]);
     }
+
+    //check product quantity
+
+    function checkProductQtyAjax(Request $request){
+        $product=Product::findOrFail($request->id);
+        if ($product->product_qty < $request->product_qty) {
+            $notification = ([
+                'error' => 'দুঃখিত! এই পরিমান প্রোডাক্ট স্টকে নেই। দয়া করে কমিয়ে কিনুন...!',
+                'stock'=> 'empty'
+            ]);
+            return response()->json($notification);
+        } else{
+            $notification = ([
+                'success' => 'OK',
+            ]);
+            return response()->json($notification);
+        }
+    }
     //increment of product 
     function increaseCartQty(Request $request){
        $cart= Cart::update($request->rowId, $request->quantity); // Will update the quantity
