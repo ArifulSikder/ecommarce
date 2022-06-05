@@ -23,16 +23,30 @@ class ShippingController extends Controller
             'title.required'=> 'Title Is Required Field',
             'description.required'=> 'Description Is Required Field',
         ]);
-        $shipping = ShippingInfo::create($input);         
-        if ($shipping == true) {
-            $notification = ([
-                'success' => 'পণ্য পৌছানো সংক্রান্ত তথ্য যোগ করা হয়েছে !',
-            ]);
-        } else{
-            $notification = ([
-                'error' => 'পণ্য পৌছানো সংক্রান্ত তথ্য যোগ করা ব্যর্থ হয়েছে...!',
-            ]);
-        }
+        if ($input['id']) {
+            $input = $request->except('id');
+            $shipping = ShippingInfo::findOrFail($request->id)->update($input);  
+            if ($shipping == true) {
+                $notification = ([
+                    'success' => 'পণ্য পৌছানো সংক্রান্ত তথ্য আপডেট করা হয়েছে !',
+                ]);
+            } else{
+                $notification = ([
+                    'error' => 'পণ্য পৌছানো সংক্রান্ত তথ্য আপডেট করা ব্যর্থ হয়েছে...!',
+                ]);
+            }
+        }else{
+            $shipping = ShippingInfo::create($input);  
+            if ($shipping == true) {
+                $notification = ([
+                    'success' => 'পণ্য পৌছানো সংক্রান্ত তথ্য যোগ করা হয়েছে !',
+                ]);
+            } else{
+                $notification = ([
+                    'error' => 'পণ্য পৌছানো সংক্রান্ত তথ্য যোগ করা ব্যর্থ হয়েছে...!',
+                ]);
+            }
+        }       
         return redirect()->back()->with($notification);
 
     }
