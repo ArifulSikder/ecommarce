@@ -30,22 +30,24 @@
                     </a>
                 </li> --}}
             </ul>
-            <div class="banner banner-fixed overlay-zoom overlay-dark">
-                <figure>
-                    <img src="{{ asset(SpecialOffer()->product_thumbnail) }}" width="280" height="312" alt="banner"
-                        style="background-color: #26303c;" />
-                </figure>
-                <div class="banner-price-info font-weight-bold text-white text-uppercase">
-                    20-22<sup>th</sup> April</div>
-                <div class="banner-content text-center w-100">
-                    <h4 class="banner-subtitle d-inline-block bg-primary font-weight-semi-bold text-uppercase">
-                        Ultimate Sale</h4>
-                    <h3 class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
-                        Up
-                        to {{ SpecialOffer()->product_discount }}%</h3>
-                    <p class="mb-4 font-primary text-white lh-1">Discount Selected Items</p>
+            @if (SpecialOffer() != null)
+                <div class="banner banner-fixed overlay-zoom overlay-dark">
+                    <figure>
+                        <img src="{{ asset(SpecialOffer()->product_thumbnail) }}" width="280" height="312"
+                            alt="banner" style="background-color: #26303c;" />
+                    </figure>
+                    <div class="banner-price-info font-weight-bold text-white text-uppercase">
+                        20-22<sup>th</sup> April</div>
+                    <div class="banner-content text-center w-100">
+                        <h4 class="banner-subtitle d-inline-block bg-primary font-weight-semi-bold text-uppercase">
+                            Ultimate Sale</h4>
+                        <h3 class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
+                            Up
+                            to {{ SpecialOffer()->product_discount }}%</h3>
+                        <p class="mb-4 font-primary text-white lh-1">Discount Selected Items</p>
+                    </div>
                 </div>
-            </div>
+            @endif
 
             <div class="widget widget-blog border-no" data-animation-options="{'delay': '.3s'}">
                 <h4 class="widget-title text-capitalize font-weight-bold">সর্বশেষ ব্লোগ</h4>

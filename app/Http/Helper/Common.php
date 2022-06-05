@@ -19,6 +19,7 @@ function catWiseProducts($cat_id){
 
 function SpecialOffer(){
   return Product::where(['status'=> 1, 'special_offer'=> 1])->latest()->first();
+  
 }
 
 function dateToday(){
