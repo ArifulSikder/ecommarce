@@ -73,6 +73,12 @@
                                 <p>প্রোডাক্ট তালিকা</p>
                             </a>
                         </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('shippingInformation') }}" class="nav-link  @yield('shippingInformation')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>পণ্য পৌছানো সংক্রান্ত তথ্য</p>
+                            </a>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -235,6 +241,62 @@
                             <a href="{{ route('cancelOrderlist') }}" class="nav-link  @yield('cancelOrderlist')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ক্যান্সেল অর্ডার</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                {{-- @can('user') --}}
+                <li class="nav-item has-treeview  @yield('user')">
+                    <a href=" #" class="nav-link  @yield('activeUser')">
+                        <i class=" nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Users
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('createuser') }}" class="nav-link  @yield('registerUser')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('userList') }}" class="nav-link  @yield('userList')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- @endcan --}}
+                <li class="nav-item has-treeview  @yield('roleAndPermission')">
+                    <a href=" #" class="nav-link  @yield('roleAndPermissionActive')">
+                        <i class=" nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Role And Permission
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('roles') }}" class="nav-link  @yield('rolesList')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Roles List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('permissions') }}" class="nav-link @yield('permissions')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Permissions List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('givePermission') }}" class="nav-link @yield('givePermission')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Give Permission</p>
                             </a>
                         </li>
                     </ul>

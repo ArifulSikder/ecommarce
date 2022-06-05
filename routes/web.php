@@ -5,7 +5,9 @@ use App\Http\Controllers\Backend\CagegoryController;
 use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\Role\RoleController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Coupon\CouponController;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +79,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/image-update', [ProductController::class, 'imageUpdate'])->name('image-update');
     Route::get('/add-product-content/{product_id}', [ProductController::class, 'addProductContent']);
     Route::post('/store-product-content', [ProductController::class, 'storeProductContent'])->name('storeProductContent');
+    Route::get('/shipping-information', [ProductController::class, 'shippingInformation'])->name('shippingInformation');
 
     //banner
     Route::get('/banner', [BannerController::class, 'bannerIndex'])->name('banner');
@@ -149,6 +152,28 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::get('/return-order/{order_id}', [OrderController_::class, 'returnOrder']);
     Route::get('/return-order', [OrderController_::class, 'retrunOrderList'])->name('return-order');
 
+       //role and permission
+    Route::controller(RoleController::class)->group(function () {
+        //role
+        Route::get('/roles', 'indexRole')->name('roles');
+        Route::post('/create-role', 'createRole')->name('create_role');
+        Route::post('/update-role', 'updateRole')->name('updateRole');
+        Route::get('/role-permission-list/{roll_id}', 'rolePermissionList');
+        //permission
+        Route::get('/permissions', 'indexPermission')->name('permissions');
+        Route::post('/create-permission', 'createPermission')->name('createPermission');
+        Route::get('/give-permission', 'givePermission')->name('givePermission');
+        Route::post('/give-permission', 'givePermissionStore')->name('givePermission');
+
+    });
+    //user controller
+    Route::controller(UserController::class)->group(function () {
+        //role
+        Route::get('/user-list', 'indexUser')->name('userList');
+        Route::get('/register-user', 'registerUser')->name('createuser');
+        Route::post('/register-user', 'registerUserStore')->name('registerUser');
+
+    });
     //delete order
     // Route::get('delete', [OrderController_::class, 'delete']);
     Route::get('d', [OrderController_::class, 'd']);

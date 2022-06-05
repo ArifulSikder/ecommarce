@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
+use function Ramsey\Uuid\v1;
+
 class ProductController extends Controller
 {
     function index(){
@@ -311,6 +313,11 @@ class ProductController extends Controller
         }
 
         return redirect()->route('productList')->with($notification);
+    }
+
+    //shipping information
+    function shippingInformation(){
+        return view('backend.product.shipping.shippingInformation');
     }
 
 

@@ -9,6 +9,7 @@ use App\Models\Testimonial;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
 //frontend category wise product 
 
@@ -85,3 +86,9 @@ function banglaNumber($str)
     $str = str_replace($english, $bangla, $str);
     return $str;
 }
+// role user type/ 
+function getUserType($user_user){
+  $UserRole =  DB::table('model_has_roles')->where('model_id', $user_user)->first();
+  $role = Role::findOrFail($UserRole->role_id);
+  return $role->name;
+ }
