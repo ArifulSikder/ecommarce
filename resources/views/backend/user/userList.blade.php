@@ -21,9 +21,9 @@
                         <thead>
                             <tr>
                                 <th style="width: 10%">Serial</th>
-                                <th>User Name</th>
-                                <th>Email</th>
-                                <th>User Type</th>
+                                <th>নাম</th>
+                                <th>ইমেইল</th>
+                                <th>রোল</th>
                                 <th style="width: 20%">Action</th>
                             </tr>
                         </thead>
@@ -49,27 +49,25 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Create Role</h4>
+                                                <h4 class="modal-title">ইডিট করুন ব্যবহারকারি</h4>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-
-                                                <!-- form start -->
-                                                <form role="form" action="{{ route('updateRole') }}" method="POST">
+                                                <form role="form" action="{{ route('updateUser') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $user->id }}">
-                                                    <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="name">Name</label>
-                                                            <input type="text"
-                                                                class="form-control @error('name') is-invalid @enderror"
-                                                                name="name" id="roleName"
-                                                                placeholder="Ex: Admin, Moderator..."
-                                                                value="{{ $user->name }}">
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <label for="name"
+                                                            class="col-form-label text-md-end">{{ __(' ব্যবহারকারির নাম') }}</label>
+
+                                                        <input id="name" type="text"
+                                                            class="form-control @error('name') is-invalid @enderror"
+                                                            name="name" value="{{ $user->name }}" required
+                                                            autocomplete="name" autofocus
+                                                            placeholder="ব্যবহারকারির নাম দিন">
 
                                                         @error('name')
                                                             <span class="invalid-feedback" role="alert">
@@ -77,10 +75,67 @@
                                                             </span>
                                                         @enderror
                                                     </div>
-                                                    <!-- /.card-body -->
-                                                    <div class="card-footer">
-                                                        <button type="submit"
-                                                            class="btn btn-primary btn-block">Submit</button>
+
+                                                    <div class="form-group">
+                                                        <label for="email"
+                                                            class="col-form-label text-md-end">{{ __('ব্যবহারকারির  ইমেইল') }}</label>
+
+                                                        <input id="email" type="email"
+                                                            class="form-control @error('email') is-invalid @enderror"
+                                                            name="email" value="{{ $user->email }}" required
+                                                            autocomplete="email" placeholder="ব্যবহারকারির  ইমেইল দিন">
+
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="password"
+                                                            class="col-form-label text-md-end">{{ __('পাসওয়ার্ড') }}</label>
+
+                                                        <input id="password" type="password"
+                                                            class="form-control @error('password') is-invalid @enderror"
+                                                            name="password" required autocomplete="new-password"
+                                                            placeholder="পাসওয়ার্ড দিন">
+
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="password-confirm"
+                                                            class="col-form-label text-md-end">{{ __('কনফার্ম পাসওয়ার্ড') }}</label>
+
+                                                        <input id="password-confirm" type="password" class="form-control"
+                                                            name="password_confirmation" required
+                                                            autocomplete="new-password" placeholder="কনফার্ম পাসওয়ার্ড দিন">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="user_role"
+                                                            class="col-form-label text-md-end">ব্যবহারকারির রোল</label>
+                                                        <select class="form-control select2 select2-danger" id="user_role"
+                                                            name="user_role" data-dropdown-css-class="select2-info"
+                                                            data-placeholder="রোল বাছাই করুন" style="width: 100%;" required>
+                                                            <option selected="selected" value="">Select User Role</option>
+                                                            @foreach ($roles as $role)
+                                                                <option value="{{ $role->id }}">{{ $role->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary btn-block">
+                                                                {{ __('আপডেট') }}
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </form>
                                             </div>
@@ -103,7 +158,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">নিবন্ধন করুন ব্যবহার কারি</h3>
+                    <h3 class="card-title">নিবন্ধন করুন ব্যবহারকারি</h3>
                 </div>
                 <div class="card-body">
                     <!-- form start -->
@@ -173,7 +228,7 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary btn-block">
-                                    {{ __('Register') }}
+                                    {{ __('নিবন্ধন') }}
                                 </button>
                             </div>
                         </div>

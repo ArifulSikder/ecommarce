@@ -172,8 +172,11 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
         Route::get('/user-list', 'indexUser')->name('userList');
         Route::get('/register-user', 'registerUser')->name('createuser');
         Route::post('/register-user', 'registerUserStore')->name('registerUser');
+        Route::post('/update-user', 'updateUser')->name('updateUser');
 
     });
+
+
     //delete order
     // Route::get('delete', [OrderController_::class, 'delete']);
     Route::get('d', [OrderController_::class, 'd']);

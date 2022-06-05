@@ -252,21 +252,21 @@
                     <a href=" #" class="nav-link  @yield('activeUser')">
                         <i class=" nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Users
+                            ব্যবহারকারি
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('createuser') }}" class="nav-link  @yield('registerUser')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create User</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('userList') }}" class="nav-link  @yield('userList')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>User List</p>
+                                <p>ব্যবহারকারির তালিকা</p>
                             </a>
                         </li>
                     </ul>
