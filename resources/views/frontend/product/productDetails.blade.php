@@ -172,42 +172,9 @@
                                             <h5 class="description-title mb-4 font-weight-semi-bold ls-m">বৈশিষ্ট্য </h5>
                                             <p class="mb-2">
                                                 {!! productContent($product->id)->long_description !!}
-                                                {{-- শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। হাড় ও দাঁত গঠনে: মধুর গুরুত্বপূর্ণ
-                                            উপকরণ ক্যালসিয়াম। ক্যালসিয়াম দাঁত, হাড়, চুলের গোড়া শক্ত রাখে, নখের ঔজ্জ্বল্য
-                                            বৃদ্ধি করে, ভঙ্গুরতা রোধ করে। --}}
+
                                             </p>
-                                            {{-- <ul class="mb-8">
-                                            <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
-                                            <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
-                                            <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
-                                            <li>শরীরের সামগ্রিক শক্তি ও তারুণ্য বাড়ায়। </li>
-                                        </ul> --}}
-                                            {{-- <h5 class="description-title mb-3 font-weight-semi-bold ls-m">স্পেসিফিকেশন
-                                        </h5> --}}
-                                            {{-- <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <th class="font-weight-semi-bold text-dark pl-0">Material</th>
-                                                    <td class="pl-4">Praesent id enim sit amet.Tdio</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="font-weight-semi-bold text-dark pl-0">Claimed Size</th>
-                                                    <td class="pl-4">Praesent id enim sit</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="font-weight-semi-bold text-dark pl-0">Recommended Use
-                                                    </th>
-                                                    <td class="pl-4">Praesent id enim sit amet.Tdio vulputate
-                                                        eleifend
-                                                        in in tortor. ellus massa. siti</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="font-weight-semi-bold text-dark border-no pl-0">
-                                                        Manufacturer</th>
-                                                    <td class="border-no pl-4">Praesent id enim</td>
-                                                </tr>
-                                            </tbody>
-                                        </table> --}}
+
                                         </div>
                                         <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
                                             @if (productContent($product->id)->file_type == 'Image')
@@ -223,12 +190,7 @@
                                                 <h5 class="description-title font-weight-semi-bold ls-m mb-5">
                                                     ভিডিও বিবরণ
                                                 </h5>
-                                                {{-- <figure class="p-relative d-inline-block mb-2"> --}}
-                                                {{-- <iframe width="560" height="315"
-                                                    src="{{ asset(productContent($product->id)->content_file) }}"
-                                                    title="YouTube video player" frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowfullscreen width="559" height="370"></iframe> --}}
+
                                                 <video width="560" height="315" controls>
                                                     <source src="{{ asset(productContent($product->id)->content_file) }}"
                                                         type="video/mp4">
@@ -266,15 +228,8 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane " id="product-tab-shipping-returns">
-                                    <h6 class="mb-2">Free Shipping</h6>
-                                    <p class="mb-0">We deliver to over 100 countries around the world. For full
-                                        details of
-                                        the delivery options we offer, please view our <a href="#"
-                                            class="text-primary">Delivery
-                                            information</a> We hope you’ll love every
-                                        purchase, but if you ever need to return an item you can do so within a month of
-                                        receipt. For full details of how to make a return, please view our <a href="#"
-                                            class="text-primary">Returns information</a></p>
+                                    <h6 class="mb-2">{{ $shippingInfo->title }}</h6>
+                                    <p class="mb-0">{!! $shippingInfo->description !!}</p>
                                 </div>
                             </div>
                         </div>

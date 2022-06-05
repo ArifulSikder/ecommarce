@@ -40,8 +40,8 @@
                                         <button type="button" class="btn btn-primary btn-sm getData" data-toggle="modal"
                                             data-target="#editShippingInfo{{ $info->id }}"><i
                                                 class=" far fa-edit"></i></button>
-                                        <a href="{{ url('category/' . $info->id) }}}}" class="btn btn-danger btn-sm"
-                                            id="delete"><i class="far fa-trash-alt"></i></a>
+                                        <a href="{{ url('shipping-info-delete/' . $info->id) }}}}"
+                                            class="btn btn-danger btn-sm" id="delete"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
 

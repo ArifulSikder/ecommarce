@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductMultipleImage;
+use App\Models\ShippingInfo;
 use App\Models\Visitor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -107,13 +108,14 @@ class HomeController extends Controller
     function productShow($product_slug)
     {
         
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { //get ip address with proper location
             $UserIP = geoip()->getLocation($_SERVER['HTTP_X_FORWARDED_FOR']);
         } else {
             $UserIP = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         }
         $product = Product::with('category')->where(['status' => 1, 'product_slug' => $product_slug])->first();
         $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $product->category_id])->first();
+        $shippingInfo=ShippingInfo::where('status', 1)->orderBy('id', 'desc')->first();
         if ($visitor == null) {
             Visitor::create([
                 'visitor_ip' => $UserIP->ip,
@@ -124,14 +126,14 @@ class HomeController extends Controller
                 'date'=> Carbon::now(),
             ]);
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
-            return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
+            return view('frontend.product.productDetails', compact('product',  'productMultipleImg','shippingInfo'));
         } else{
             Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1, 'category_id'=> $product->category_id])->update([
                 'date'=> Carbon::now(),
                 'product_visit_times'=> $visitor->product_visit_times+ 1,
             ]); 
             $productMultipleImg = ProductMultipleImage::where(['product_id' => $product->id, 'status' => 1])->get();
-            return view('frontend.product.productDetails', compact('product',  'productMultipleImg'));
+            return view('frontend.product.productDetails', compact('product',  'productMultipleImg','shippingInfo'));
         }
     }
 

@@ -50,5 +50,10 @@ class ShippingController extends Controller
         return redirect()->back()->with($notification);
 
     }
+    //delete shipping information
+    function shippingInfoDelete($shippingInfo_id){
+        ShippingInfo::findOrFail($shippingInfo_id)->delete();
+        return redirect()->back();
+    }
 
 }

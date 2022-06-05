@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     //product shipping
     Route::get('/shipping-information', [ShippingController::class, 'shippingInformation'])->name('shippingInformation');
     Route::post('/store-shipping',  [ShippingController::class, 'storeShipping'])->name('storeShipping');
+    Route::get('/shipping-info-delete/{id}', [ShippingController::class, 'shippingInfoDelete']);
 
     //banner
     Route::get('/banner', [BannerController::class, 'bannerIndex'])->name('banner');
