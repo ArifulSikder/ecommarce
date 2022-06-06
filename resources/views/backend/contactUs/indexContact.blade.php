@@ -35,17 +35,17 @@
                                     <td class="text-center">
                                         <!-- Large modal -->
                                         <button type="button" class="btn btn-primary btn-sm getCouponData"
-                                            data-toggle="modal" data-target="#mainLogo{{ $contact->id }}"><i
+                                            data-toggle="modal" data-target="#contact{{ $contact->id }}"><i
                                                 class="far fa-edit"></i></button>
                                     </td>
                                 </tr>
                                 <!-- modal edit -->
-                                <div class="modal fade" id="mainLogo{{ $contact->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="editBrandModal" aria-hidden="true">
+                                <div class="modal fade" id="contact{{ $contact->id }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="editContact" aria-hidden="true">
                                     <div class="modal-dialog  modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary">
-                                                <h5 class="modal-title" id="editBrandModal">লোগো ইডিট করুন</h5>
+                                                <h5 class="modal-title" id="editContact">যোগাযোগ ইডিট করুন</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -53,25 +53,42 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="card-body">
-                                                    <form role="form" method="POST"
-                                                        action="{{ route('insertAndUpdateLogo') }}"
-                                                        enctype="multipart/form-data">
+                                                    <form role="form" method="POST" action="{{ route('updateContact') }}">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $contact->id }}">
                                                         <div class="card-body">
                                                             <div class="form-group">
-                                                                <label for="main_contact">লোগো ছবি বাছাই</label>
-                                                                <input type="file"
-                                                                    class="form-control  @error('main_contact') is-invalid @enderror"
-                                                                    id="photoUpload" name="main_contact"
-                                                                    placeholder="ব্রান্ডের ছবি দিন">
+                                                                <label for="mobile">মোবাইল</label>
+                                                                <input type="text"
+                                                                    class="form-control  @error('mobile') is-invalid @enderror"
+                                                                    id="mobile" name="mobile" placeholder="মোবাইল দিন"
+                                                                    value="{{ $contact->mobile }}">
                                                             </div>
-                                                            @error('main_contact')
+                                                            @error('mobile')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
-                                                            <img id="previewHolder" height="100px"
-                                                                src="{{ asset($contact->main_contact) }}"
-                                                                alt="main_contact preview">
+
+
+                                                            <div class="form-group">
+                                                                <label for="email">ইমেইল</label>
+                                                                <input type="email"
+                                                                    class="form-control  @error('email') is-invalid @enderror"
+                                                                    id="email" name="email" placeholder="ইমেইল দিন"
+                                                                    value="{{ $contact->email }}">
+                                                            </div>
+                                                            @error('email')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+
+                                                            <div class="form-group">
+                                                                <label for="address">ঠিকানা</label>
+                                                                <textarea type="text" class="form-control  @error('address') is-invalid @enderror" id="address" name="address"
+                                                                    placeholder="ঠিকানা দিন">{{ $contact->address }}</textarea>
+                                                            </div>
+                                                            @error('address')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                         <!-- /.card-body -->
 

@@ -150,6 +150,7 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
 
     //contack us
     Route::get('contact-us', [ContactUsCotroller::class, 'index'])->name('contact-us');
+    Route::post('update-contact', [ContactUsCotroller::class, 'updateContact'])->name('updateContact');
     
     //order pending
     Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');

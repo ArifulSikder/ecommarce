@@ -3,6 +3,7 @@
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\ContactUs;
 use App\Models\MainLogo;
 use App\Models\Order;
 use App\Models\Product;
@@ -78,6 +79,11 @@ function brands(){
 //main logo
 function logo(){
   return MainLogo::where('status', 1)->first();
+}
+
+// contack us
+function contact(){
+  return ContactUs::latest()->first();
 }
 //admin dashboard
 //category visited times

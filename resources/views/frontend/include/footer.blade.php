@@ -9,15 +9,15 @@
                         <ul class="widget-body">
                             <li>
                                 <label>ফোন:</label>
-                                <a href="tel:#">Toll Free (123) 456-7890</a>
+                                <a href="tel:{{ contact()->mobile }}">{{ contact()->mobile }}</a>
                             </li>
                             <li>
                                 <label> ইমেইল:</label>
-                                <a href="mailto:mail@riode.com">mail@riode.com</a>
+                                <a href="mailto:{{ contact()->email }}">{{ contact()->email }}</a>
                             </li>
                             <li>
                                 <label>ঠিকানা:</label>
-                                <a href="#">123 Street Name, City, England</a>
+                                <a href="#">{{ contact()->address }}</a>
                             </li>
                             <li>
                                 <label>কাজের দিন / ঘন্টা:</label>
