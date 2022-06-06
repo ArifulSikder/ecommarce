@@ -215,6 +215,24 @@
                     </ul>
                 </li>
 
+                {{-- contact us --}}
+                <li class="nav-item has-treeview  @yield('contact')">
+                    <a href="#" class="nav-link  @yield('contactActive')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            যোগাযোগের তথ্য
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('contact-us') }}" class="nav-link  @yield('contact-us')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>যোগাযোগের তথ্যের তালিকা</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 {{-- order --}}
                 <li class="nav-item has-treeview  @yield('order')">
                     <a href="#" class="nav-link  @yield('activeOrder')">

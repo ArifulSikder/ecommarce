@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CagegoryController;
+use App\Http\Controllers\Backend\ContactUsCotroller;
 use App\Http\Controllers\Backend\LogoController;
 use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
@@ -147,6 +148,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('store-logo', [LogoController::class, 'insertAndUpdateLogo'])->name('insertAndUpdateLogo');
     Route::get('delete-logo/{logo_id}', [LogoController::class, 'deleteLogo']);
 
+    //contack us
+    Route::get('contact-us', [ContactUsCotroller::class, 'index'])->name('contact-us');
     
     //order pending
     Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');
