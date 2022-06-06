@@ -128,30 +128,7 @@
                             </section>
 
                             @include('frontend.include.latestProduct')
-
-                            <section class="mb-10 pb-6">
-                                <h2 class="title title-line title-underline">বৈশিষ্ট্যযুক্ত ব্র্যান্ড</h2>
-                                <div class="container">
-                                    <div class="owl-carousel owl-theme row brand-carousel cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2"
-                                        data-owl-options="{'nav': false,'dots': false,'autoplay': true, 'margin': 20,'loop': true,'responsive': {'0': {'items': 2 }, '576': {'items': 3 }, '768': { 'items': 4 }, '992': {'items': 5  } }   }">
-                                        <figure><img src="{{ asset('public/frontend') }}/images/brands/1.png" alt="brand"
-                                                width="180" height="100" />
-                                        </figure>
-                                        <figure><img src="{{ asset('public/frontend') }}/images/brands/2.png" alt="brand"
-                                                width="180" height="100" />
-                                        </figure>
-                                        <figure><img src="{{ asset('public/frontend') }}/images/brands/3.png" alt="brand"
-                                                width="180" height="100" />
-                                        </figure>
-                                        <figure><img src="{{ asset('public/frontend') }}/images/brands/4.png" alt="brand"
-                                                width="180" height="100" />
-                                        </figure>
-                                        <figure><img src="{{ asset('public/frontend') }}/images/brands/5.png" alt="brand"
-                                                width="180" height="100" />
-                                        </figure>
-                                    </div>
-                                </div>
-                            </section>
+                            @include('frontend.include.brands')
                         </div>
                     </div>
                 </div>

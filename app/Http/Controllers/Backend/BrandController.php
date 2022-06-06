@@ -76,4 +76,10 @@ class BrandController extends Controller
         }
         return redirect()->back()->with($notification);
     }
+
+    //delete brand
+    function deleteBrand($brand_id){
+        Brand::findOrFail($brand_id)->delete();
+        return redirect()->back();
+    }
 }

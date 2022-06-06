@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Blog;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -67,6 +68,10 @@ function testimonialData(){
 //product content
 function productContent($product_id){
   return ProductContent::where('product_id',$product_id)->first();
+}
+//brands 
+function brands(){
+  return Brand::where('status', 1)->orderBy('id', 'DESC')->get();
 }
 //admin dashboard
 //category visited times

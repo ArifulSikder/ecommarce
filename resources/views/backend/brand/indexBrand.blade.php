@@ -45,7 +45,7 @@
                                             data-toggle="modal" data-target="#brandEdit{{ $brand->id }}"><i
                                                 class="far fa-edit"></i></button>
 
-                                        <a href="{{ url('delete-brand/' . $brand->id) }}}}" class="btn btn-danger btn-sm"
+                                        <a href="{{ url('delete-brand/' . $brand->id) }}" class="btn btn-danger btn-sm"
                                             id="delete"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>

@@ -136,9 +136,10 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     
 
     //brand
-    Route::get('brand-list', [BrandController::class, 'index'])->name('brand-list');
-    Route::post('store-brand', [BrandController::class, 'storeBrand'])->name('storeBrand');
-    Route::post('update-brand', [BrandController::class, 'updateBrand'])->name('updateBrand');
+    Route::get('/brand-list', [BrandController::class, 'index'])->name('brand-list');
+    Route::post('/store-brand', [BrandController::class, 'storeBrand'])->name('storeBrand');
+    Route::post('/update-brand', [BrandController::class, 'updateBrand'])->name('updateBrand');
+    Route::get('/delete-brand/{brand_id}', [BrandController::class, 'deleteBrand']);
 
 
     //order pending
