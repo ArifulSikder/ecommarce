@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CagegoryController;
 use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
@@ -18,7 +19,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Location\LocationController;
-use App\Http\Controllers\frontend\SearchController;
+use App\Http\Controllers\Frontend\SearchController;
 
 Auth::routes();
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -52,7 +53,7 @@ Route::get('/division-by-district', [CheckoutController::class, 'divisionByDistr
 Route::get('/district-by-thana', [CheckoutController::class, 'districtByThana']);
 //order now
 Route::post('/order', [OrderController::class, 'orderStore'])->name('order');
-//live serarch
+//live search
 Route::post('/live-search', [SearchController::class, 'liveSearch']);
 
 
@@ -132,7 +133,12 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/division-by-district',  [LocationController::class, 'divisionByDistrict']);
     Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
     Route::post('/thana-update',  [LocationController::class, 'updateThana'])->name('thana-update');
+    
 
+    //brand
+    Route::get('brand-list', [BrandController::class, 'index'])->name('brand-list');
+    Route::post('store-brand', [BrandController::class, 'storeBrand'])->name('storeBrand');
+    Route::post('update-brand', [BrandController::class, 'updateBrand'])->name('updateBrand');
 
 
     //order pending

@@ -146,6 +146,7 @@
                     </ul>
                 </li>
 
+
                 {{-- location --}}
                 <li class="nav-item has-treeview  @yield('location')">
                     <a href="#" class="nav-link  @yield('activeLocation')">
@@ -177,6 +178,24 @@
                     </ul>
                 </li>
 
+                {{-- brand --}}
+                <li class="nav-item has-treeview  @yield('brand')">
+                    <a href="#" class="nav-link  @yield('activeBrand')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            ব্রান্ড
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('brand-list') }}" class="nav-link  @yield('brand-list')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ব্রান্ড তালিকা</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 {{-- order --}}
                 <li class="nav-item has-treeview  @yield('order')">

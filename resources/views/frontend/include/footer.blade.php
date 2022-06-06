@@ -1,31 +1,5 @@
 <footer class="footer appear-animate" data-animation-options="{'name': 'fadeIn', 'duration': '1s'}">
     <div class="container">
-        <div class="footer-top">
-            <div class="row align-items-center">
-                <div class="col-lg-3">
-                    <a href="demo3.html" class="logo-footer">
-                        <img src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png" alt="logo-footer"
-                            width="154" height="43" />
-                    </a>
-                    <!-- End FooterLogo -->
-                </div>
-                <div class="col-lg-9">
-                    <div class="widget widget-newsletter form-wrapper form-wrapper-inline">
-                        <div class="newsletter-info mx-auto mr-lg-2 ml-lg-4">
-                            <h4 class="widget-title">আমাদের নিউজলেটার Subscribe করুন</h4>
-                            <p>সব সর্বশেষ তথ্য, বিক্রয় এবং অফার পান.</p>
-                        </div>
-                        <form action="#" class="input-wrapper input-wrapper-inline">
-                            <input type="email" class="form-control" name="email" id="newsletter_email"
-                                placeholder="Email address here..." required />
-                            <button class="btn btn-primary btn-md btn-rounded ml-2" type="submit">subscribe<i
-                                    class="d-icon-arrow-right"></i></button>
-                        </form>
-                    </div>
-                    <!-- End Newsletter -->
-                </div>
-            </div>
-        </div>
         <!-- End FooterTop -->
         <div class="footer-middle">
             <div class="row">
