@@ -79,12 +79,25 @@
                                 <h2 class="title title-line title-underline with-link appear-animate"
                                     data-animation-options="{'delay': '.3s'}">
                                     বৈশিষ্ট্যযুক্ত পণ্য
-                                    <a href="#" class="font-weight-semi-bold">View more<i
-                                            class="d-icon-arrow-right"></i></a>
+                                    @if ($products->lastPage() == $products->currentPage() && $products->currentPage() != 1)
+                                        <a href="{{ $products->previousPageUrl() }}" class="font-weight-semi-bold"><i
+                                                class="d-icon-arrow-left"></i>Previous Page
+                                        </a>
+                                    @else
+                                        @if ($products->currentPage() != 1)
+                                            <a href="{{ $products->previousPageUrl() }}"
+                                                class="font-weight-semi-bold float-left"><i
+                                                    class="d-icon-arrow-left"></i>Previous Page
+                                            </a>
+                                        @endif
+                                        <a href="{{ $products->nextPageUrl() }}" class="font-weight-semi-bold">View
+                                            more<i class="d-icon-arrow-right"></i>
+                                        </a>
+                                    @endif
                                 </h2>
                                 <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
 
-                                    @foreach ($products->take(12) as $product)
+                                    @foreach ($products as $product)
                                         <div class="col-md-3 col-6 mb-4">
                                             <div class="product text-center">
                                                 <figure class="product-media">

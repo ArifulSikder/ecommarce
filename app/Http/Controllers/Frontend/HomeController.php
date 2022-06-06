@@ -30,9 +30,9 @@ class HomeController extends Controller
         $visitor=Visitor::where(['visitor_ip' => $UserIP->ip,'status'=> 1])->orderBy('date','desc')->first();
         $query = Product::latest();
         if ($visitor == null) {
-            $products = $query->with('category')->get();
+            $products = $query->with('category')->paginate(12);
         } else {
-            $products = $query->with('category')->where('category_id',$visitor->category_id)->get();
+            $products = $query->with('category')->where('category_id',$visitor->category_id)->paginate(12); 
         }
         $singleCategory = Category::where(['status' => 1]);
         $banners = Banner::where(['status' => 1, 'active_status' => 1])->get();
