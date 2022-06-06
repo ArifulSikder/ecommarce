@@ -3,6 +3,7 @@
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\MainLogo;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductContent;
@@ -72,6 +73,11 @@ function productContent($product_id){
 //brands 
 function brands(){
   return Brand::where('status', 1)->orderBy('id', 'DESC')->get();
+}
+
+//main logo
+function logo(){
+  return MainLogo::where('status', 1)->first();
 }
 //admin dashboard
 //category visited times

@@ -7,8 +7,7 @@
                     <i class="d-icon-bars2"></i>
                 </a>
                 <a href="{{ url('/') }}" class="logo">
-                    <img src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png" alt="logo" width="153"
-                        height="44" />
+                    <img src="{{ asset(logo()->main_logo) }}" alt="logo" width="153" height="44" />
                 </a>
                 <!-- End Logo -->
 
