@@ -167,8 +167,6 @@
                                 <h2 class="title title-line title-underline with-link appear-animate"
                                     data-animation-options="{'delay': '.3s'}">
                                     {{ $singleCategory->skip(0)->first()->category_name }}
-                                    <a href="#" class="font-weight-semi-bold">View more<i
-                                            class="d-icon-arrow-right"></i></a>
                                 </h2>
                                 <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                     @foreach (catWiseProducts($singleCategory->skip(0)->first()->id)->take(4) as $product)
@@ -243,8 +241,6 @@
                                 <h2 class="title title-line title-underline with-link appear-animate"
                                     data-animation-options="{'delay': '.3s'}">
                                     {{ $singleCategory->skip(1)->first()->category_name }}
-                                    <a href="#" class="font-weight-semi-bold">View more<i
-                                            class="d-icon-arrow-right"></i></a>
                                 </h2>
                                 <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                     @foreach (catWiseProducts($singleCategory->skip(1)->first()->id)->take(4) as $product)
@@ -319,8 +315,6 @@
                                 <h2 class="title title-line title-underline with-link appear-animate"
                                     data-animation-options="{'delay': '.3s'}">
                                     {{ $singleCategory->skip(2)->first()->category_name }}
-                                    <a href="#" class="font-weight-semi-bold">View more<i
-                                            class="d-icon-arrow-right"></i></a>
                                 </h2>
                                 <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                     @foreach (catWiseProducts($singleCategory->skip(2)->first()->id)->take(4) as $product)
