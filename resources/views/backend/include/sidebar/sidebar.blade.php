@@ -196,6 +196,24 @@
                         </li>
                     </ul>
                 </li>
+                {{-- logo --}}
+                <li class="nav-item has-treeview  @yield('logo')">
+                    <a href="#" class="nav-link  @yield('activeLogo')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            লোগো
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('main-logo') }}" class="nav-link  @yield('main-logo')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>লোগো তালিকা</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 {{-- order --}}
                 <li class="nav-item has-treeview  @yield('order')">
