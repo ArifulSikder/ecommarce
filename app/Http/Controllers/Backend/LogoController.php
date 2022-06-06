@@ -74,4 +74,10 @@ class LogoController extends Controller
 
      
     }
+
+    //logo delete
+    function deleteLogo($logo_id){
+        MainLogo::findOrFail($logo_id)->delete();
+        return redirect()->back();
+    }
 }

@@ -145,6 +145,8 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     //logo
     Route::get('main-logo', [LogoController::class, 'index'])->name('main-logo');
     Route::post('store-logo', [LogoController::class, 'insertAndUpdateLogo'])->name('insertAndUpdateLogo');
+    Route::get('delete-logo/{logo_id}', [LogoController::class, 'deleteLogo']);
+
     
     //order pending
     Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');
