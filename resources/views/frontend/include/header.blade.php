@@ -33,7 +33,7 @@
                     </div>
                     <div class="icon-box-content d-lg-show">
                         <h4 class="icon-box-title">কল করুন:</h4>
-                        <p>0(800) 123-456</p>
+                        <p>{{ contact()->mobile }}</p>
                     </div>
                 </a>
                 <span class="divider"></span>

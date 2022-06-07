@@ -3,7 +3,7 @@
         <!-- End FooterTop -->
         <div class="footer-middle">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="widget widget-info">
                         <h4 class="widget-title">যোগাযোগের তথ্য</h4>
                         <ul class="widget-body">
@@ -19,17 +19,11 @@
                                 <label>ঠিকানা:</label>
                                 <a href="#">{{ contact()->address }}</a>
                             </li>
-                            <li>
-                                <label>কাজের দিন / ঘন্টা:</label>
-                            </li>
-                            <li>
-                                <a href="#">Mon - Sun / 9:00 AM - 8:00 PM</a>
-                            </li>
                         </ul>
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="widget ml-lg-4">
                         <h4 class="widget-title">
                             আমার অ্যাকাউন্ট</h4>
@@ -54,7 +48,7 @@
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="widget ml-lg-4">
                         <h4 class="widget-title">যোগাযোগের তথ্য</h4>
                         <ul class="widget-body">
@@ -62,10 +56,7 @@
                                 <a href="#">Sign in</a>
                             </li>
                             <li>
-                                <a href="cart.html"> Cart দেখুন</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html">My Wishlist</a>
+                                <a href="#"> Cart দেখুন</a>
                             </li>
                             <li>
                                 <a href="#">Track My Order</a>
@@ -77,7 +68,7 @@
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                {{-- <div class="col-lg-3 col-md-6">
                     <div class="widget widget-instagram">
                         <h4 class="widget-title">Instagram</h4>
                         <figure class="widget-body row">
@@ -116,7 +107,7 @@
                         </figure>
                     </div>
                     <!-- End Instagram -->
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- End FooterMiddle -->
