@@ -30,7 +30,7 @@
 
                 <li class="nav-item has-treeview  @yield('banner')">
                     <a href="#" class="nav-link  @yield('bannerActive')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-tv"></i>
                         <p>
                             ব্যানার
                             <i class="right fas fa-angle-left"></i>
@@ -54,7 +54,7 @@
                 {{-- product --}}
                 <li class="nav-item has-treeview  @yield('product')">
                     <a href="#" class="nav-link  @yield('productActive')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-baby-carriage"></i>
                         <p>
                             প্রোডাক্ট (পন্য)
                             <i class="right fas fa-angle-left"></i>
@@ -85,7 +85,7 @@
                 {{-- blog --}}
                 <li class="nav-item has-treeview  @yield('blog')">
                     <a href="#" class="nav-link  @yield('blogActive')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-blog"></i>
                         <p>
                             ব্লোগ
                             <i class="right fas fa-angle-left"></i>
@@ -110,7 +110,7 @@
                 {{-- testimonial --}}
                 <li class="nav-item has-treeview  @yield('testimonial')">
                     <a href="#" class="nav-link  @yield('testimonialActive')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon far fa-comment-alt"></i>
                         <p>
                             প্রশংসাপত্র
                             <i class="right fas fa-angle-left"></i>
@@ -130,7 +130,7 @@
                 {{-- coupon --}}
                 <li class="nav-item has-treeview  @yield('coupon')">
                     <a href="#" class="nav-link  @yield('activeCoupon')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-percent"></i>
                         <p>
                             কুপন
                             <i class="right fas fa-angle-left"></i>
@@ -150,7 +150,7 @@
                 {{-- location --}}
                 <li class="nav-item has-treeview  @yield('location')">
                     <a href="#" class="nav-link  @yield('activeLocation')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-location-arrow"></i>
                         <p>
                             লোকেশন
                             <i class="right fas fa-angle-left"></i>
@@ -181,7 +181,7 @@
                 {{-- brand --}}
                 <li class="nav-item has-treeview  @yield('brand')">
                     <a href="#" class="nav-link  @yield('activeBrand')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-bold"></i>
                         <p>
                             ব্রান্ড
                             <i class="right fas fa-angle-left"></i>
@@ -199,7 +199,7 @@
                 {{-- logo --}}
                 <li class="nav-item has-treeview  @yield('logo')">
                     <a href="#" class="nav-link  @yield('activeLogo')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-signature"></i>
                         <p>
                             লোগো
                             <i class="right fas fa-angle-left"></i>
@@ -218,7 +218,7 @@
                 {{-- contact us --}}
                 <li class="nav-item has-treeview  @yield('contact')">
                     <a href="#" class="nav-link  @yield('contactActive')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon far fa-envelope"></i>
                         <p>
                             যোগাযোগের তথ্য
                             <i class="right fas fa-angle-left"></i>
@@ -236,7 +236,7 @@
                 {{-- order --}}
                 <li class="nav-item has-treeview  @yield('order')">
                     <a href="#" class="nav-link  @yield('activeOrder')">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-shopping-basket"></i>
                         <p>
                             সকল অর্ডার
                             <i class="right fas fa-angle-left"></i>
@@ -299,7 +299,7 @@
                 {{-- @can('user') --}}
                 <li class="nav-item has-treeview  @yield('user')">
                     <a href=" #" class="nav-link  @yield('activeUser')">
-                        <i class=" nav-icon fas fa-chart-pie"></i>
+                        <i class=" nav-icon far fa-user-circle"></i>
                         <p>
                             ব্যবহারকারি
                             <i class="right fas fa-angle-left"></i>
@@ -323,7 +323,7 @@
                 {{-- @endcan --}}
                 <li class="nav-item has-treeview  @yield('roleAndPermission')">
                     <a href=" #" class="nav-link  @yield('roleAndPermissionActive')">
-                        <i class=" nav-icon fas fa-chart-pie"></i>
+                        <i class=" nav-icon fas fa-shield-alt"></i>
                         <p>
                             Role And Permission
                             <i class="right fas fa-angle-left"></i>
