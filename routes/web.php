@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CagegoryController;
+use App\Http\Controllers\Backend\ContactUsCotroller;
+use App\Http\Controllers\Backend\LogoController;
 use App\Http\Controllers\Backend\OrderController_;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\Role\RoleController;
+use App\Http\Controllers\Backend\ShippingController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Coupon\CouponController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +21,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Location\LocationController;
-use App\Http\Controllers\frontend\SearchController;
+use App\Http\Controllers\Frontend\SearchController;
 
 Auth::routes();
 // +++++++++++++++++++++++++++++++++++++++++ frontend routes start ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -37,6 +43,8 @@ Route::get('/remove-cart', [CartController::class, 'productRemove']);
 Route::get('/cart', [CartController::class, 'cartIndex']);
 // cart page ajax 
 Route::get('/cart-page', [CartController::class, 'cartPage']);
+//check product quantity ajax
+Route::get('/check-product-qty-ajax', [CartController::class, 'checkProductQtyAjax']);
 // incrase cart quantity 
 Route::get('/increase-cart-qty', [CartController::class, 'increaseCartQty']);
 // have coupon
@@ -47,7 +55,7 @@ Route::get('/division-by-district', [CheckoutController::class, 'divisionByDistr
 Route::get('/district-by-thana', [CheckoutController::class, 'districtByThana']);
 //order now
 Route::post('/order', [OrderController::class, 'orderStore'])->name('order');
-//live serarch
+//live search
 Route::post('/live-search', [SearchController::class, 'liveSearch']);
 
 
@@ -77,6 +85,10 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/image-update', [ProductController::class, 'imageUpdate'])->name('image-update');
     Route::get('/add-product-content/{product_id}', [ProductController::class, 'addProductContent']);
     Route::post('/store-product-content', [ProductController::class, 'storeProductContent'])->name('storeProductContent');
+    //product shipping
+    Route::get('/shipping-information', [ShippingController::class, 'shippingInformation'])->name('shippingInformation');
+    Route::post('/store-shipping',  [ShippingController::class, 'storeShipping'])->name('storeShipping');
+    Route::get('/shipping-info-delete/{id}', [ShippingController::class, 'shippingInfoDelete']);
 
     //banner
     Route::get('/banner', [BannerController::class, 'bannerIndex'])->name('banner');
@@ -123,7 +135,23 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     Route::post('/division-by-district',  [LocationController::class, 'divisionByDistrict']);
     Route::post('/store-thana',  [LocationController::class, 'storeThana'])->name('storeThana');
     Route::post('/thana-update',  [LocationController::class, 'updateThana'])->name('thana-update');
+    
 
+    //brand
+    Route::get('/brand-list', [BrandController::class, 'index'])->name('brand-list');
+    Route::post('/store-brand', [BrandController::class, 'storeBrand'])->name('storeBrand');
+    Route::post('/update-brand', [BrandController::class, 'updateBrand'])->name('updateBrand');
+    Route::get('/delete-brand/{brand_id}', [BrandController::class, 'deleteBrand']);
+
+    //logo
+    Route::get('main-logo', [LogoController::class, 'index'])->name('main-logo');
+    Route::post('store-logo', [LogoController::class, 'insertAndUpdateLogo'])->name('insertAndUpdateLogo');
+    Route::get('delete-logo/{logo_id}', [LogoController::class, 'deleteLogo']);
+
+    //contack us
+    Route::get('contact-us', [ContactUsCotroller::class, 'index'])->name('contact-us');
+    Route::post('update-contact', [ContactUsCotroller::class, 'updateContact'])->name('updateContact');
+    
     //order pending
     Route::get('/pending-order', [OrderController_::class, 'index'])->name('pending-order');
     Route::get('/order-items/{order_id}', [OrderController_::class, 'orderItems']);
@@ -148,6 +176,31 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
     //order return
     Route::get('/return-order/{order_id}', [OrderController_::class, 'returnOrder']);
     Route::get('/return-order', [OrderController_::class, 'retrunOrderList'])->name('return-order');
+
+       //role and permission
+    Route::controller(RoleController::class)->group(function () {
+        //role
+        Route::get('/roles', 'indexRole')->name('roles');
+        Route::post('/create-role', 'createRole')->name('create_role');
+        Route::post('/update-role', 'updateRole')->name('updateRole');
+        Route::get('/role-permission-list/{roll_id}', 'rolePermissionList');
+        //permission
+        Route::get('/permissions', 'indexPermission')->name('permissions');
+        Route::post('/create-permission', 'createPermission')->name('createPermission');
+        Route::get('/give-permission', 'givePermission')->name('givePermission');
+        Route::post('/give-permission', 'givePermissionStore')->name('givePermission');
+
+    });
+    //user controller
+    Route::controller(UserController::class)->group(function () {
+        //role
+        Route::get('/user-list', 'indexUser')->name('userList');
+        Route::get('/register-user', 'registerUser')->name('createuser');
+        Route::post('/register-user', 'registerUserStore')->name('registerUser');
+        Route::post('/update-user', 'updateUser')->name('updateUser');
+
+    });
+
 
     //delete order
     // Route::get('delete', [OrderController_::class, 'delete']);

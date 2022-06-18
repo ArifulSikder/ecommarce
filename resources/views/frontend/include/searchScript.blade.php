@@ -20,7 +20,6 @@
                 data: {
                     searched: searched
                 },
-                // dataType: "JSON",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -46,7 +45,6 @@
                 data: {
                     searched: searched
                 },
-                // dataType: "JSON",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },

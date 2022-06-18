@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
+use function Ramsey\Uuid\v1;
+
 class ProductController extends Controller
 {
     function index(){

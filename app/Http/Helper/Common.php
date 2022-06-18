@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\Blog;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\ContactUs;
+use App\Models\MainLogo;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductContent;
@@ -9,6 +12,7 @@ use App\Models\Testimonial;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
 //frontend category wise product 
 
@@ -18,6 +22,7 @@ function catWiseProducts($cat_id){
 
 function SpecialOffer(){
   return Product::where(['status'=> 1, 'special_offer'=> 1])->latest()->first();
+  
 }
 
 function dateToday(){
@@ -66,6 +71,20 @@ function testimonialData(){
 function productContent($product_id){
   return ProductContent::where('product_id',$product_id)->first();
 }
+//brands 
+function brands(){
+  return Brand::where('status', 1)->orderBy('id', 'DESC')->get();
+}
+
+//main logo
+function logo(){
+  return MainLogo::where('status', 1)->first();
+}
+
+// contack us
+function contact(){
+  return ContactUs::latest()->first();
+}
 //admin dashboard
 //category visited times
 function  categoryVisitedTimes($category_id){
@@ -85,3 +104,9 @@ function banglaNumber($str)
     $str = str_replace($english, $bangla, $str);
     return $str;
 }
+// role user type/ 
+function getUserType($user_user){
+  $UserRole =  DB::table('model_has_roles')->where('model_id', $user_user)->first();
+  $role = Role::findOrFail($UserRole->role_id);
+  return $role->name;
+ }

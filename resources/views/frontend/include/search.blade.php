@@ -7,7 +7,7 @@
         </li>
     @empty
         <li class="list-group-item">
-            <p class="text-danger">Empty</p>
+            <p class="text-danger">কোনো প্রোডাক্ট নেই</p>
         </li>
     @endforelse
 </ul>

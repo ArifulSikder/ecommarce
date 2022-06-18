@@ -1,61 +1,29 @@
 <footer class="footer appear-animate" data-animation-options="{'name': 'fadeIn', 'duration': '1s'}">
     <div class="container">
-        <div class="footer-top">
-            <div class="row align-items-center">
-                <div class="col-lg-3">
-                    <a href="demo3.html" class="logo-footer">
-                        <img src="{{ asset('public/frontend') }}/images/demos/demo3/logo_.png" alt="logo-footer"
-                            width="154" height="43" />
-                    </a>
-                    <!-- End FooterLogo -->
-                </div>
-                <div class="col-lg-9">
-                    <div class="widget widget-newsletter form-wrapper form-wrapper-inline">
-                        <div class="newsletter-info mx-auto mr-lg-2 ml-lg-4">
-                            <h4 class="widget-title">আমাদের নিউজলেটার Subscribe করুন</h4>
-                            <p>সব সর্বশেষ তথ্য, বিক্রয় এবং অফার পান.</p>
-                        </div>
-                        <form action="#" class="input-wrapper input-wrapper-inline">
-                            <input type="email" class="form-control" name="email" id="newsletter_email"
-                                placeholder="Email address here..." required />
-                            <button class="btn btn-primary btn-md btn-rounded ml-2" type="submit">subscribe<i
-                                    class="d-icon-arrow-right"></i></button>
-                        </form>
-                    </div>
-                    <!-- End Newsletter -->
-                </div>
-            </div>
-        </div>
         <!-- End FooterTop -->
         <div class="footer-middle">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="widget widget-info">
                         <h4 class="widget-title">যোগাযোগের তথ্য</h4>
                         <ul class="widget-body">
                             <li>
                                 <label>ফোন:</label>
-                                <a href="tel:#">Toll Free (123) 456-7890</a>
+                                <a href="tel:{{ contact()->mobile }}">{{ contact()->mobile }}</a>
                             </li>
                             <li>
                                 <label> ইমেইল:</label>
-                                <a href="mailto:mail@riode.com">mail@riode.com</a>
+                                <a href="mailto:{{ contact()->email }}">{{ contact()->email }}</a>
                             </li>
                             <li>
                                 <label>ঠিকানা:</label>
-                                <a href="#">123 Street Name, City, England</a>
-                            </li>
-                            <li>
-                                <label>কাজের দিন / ঘন্টা:</label>
-                            </li>
-                            <li>
-                                <a href="#">Mon - Sun / 9:00 AM - 8:00 PM</a>
+                                <a href="#">{{ contact()->address }}</a>
                             </li>
                         </ul>
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="widget ml-lg-4">
                         <h4 class="widget-title">
                             আমার অ্যাকাউন্ট</h4>
@@ -80,7 +48,7 @@
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="widget ml-lg-4">
                         <h4 class="widget-title">যোগাযোগের তথ্য</h4>
                         <ul class="widget-body">
@@ -88,10 +56,7 @@
                                 <a href="#">Sign in</a>
                             </li>
                             <li>
-                                <a href="cart.html"> Cart দেখুন</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html">My Wishlist</a>
+                                <a href="#"> Cart দেখুন</a>
                             </li>
                             <li>
                                 <a href="#">Track My Order</a>
@@ -103,7 +68,7 @@
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                {{-- <div class="col-lg-3 col-md-6">
                     <div class="widget widget-instagram">
                         <h4 class="widget-title">Instagram</h4>
                         <figure class="widget-body row">
@@ -142,7 +107,7 @@
                         </figure>
                     </div>
                     <!-- End Instagram -->
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- End FooterMiddle -->

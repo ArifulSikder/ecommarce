@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -37,12 +38,20 @@ class OrderController extends Controller
         $order = Order::create($input);
          
         foreach (Cart::content() as $cart) {
+            $product=Product::findOrFail($cart->id);
+            if ($product->product_qty>=$cart->qty) {
+            $product->update(['product_qty'=> ($product->product_qty - $cart->qty)]);
              OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $cart->id,
                 'product_qty' => $cart->qty,
                 'price' => $cart->price,
              ]);
+            } else{
+                $notification = ([
+                    'error' => 'দুঃখিত! এই পরিমান প্রোডাক্ট স্টকে নেই। দয়া করে কমিয়ে কিনুন...!',
+                ]);
+            }
         }
 
         if ($order == true) {

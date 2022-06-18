@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product_qty">প্রোডাক্টের পরিমান</label>
+                                <label for="product_qty">প্রোডাক্টের পরিমান(Englist)</label>
                                 <input type="number" class="form-control  @error('product_qty') is-invalid @enderror"
                                     id="product_qty" name="product_qty" placeholder="প্রোডাক্টের পরিমান দিন"
                                     value='{{ $productData->product_qty }}'>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product_code">প্রোডাক্টের কোড</label>
+                                <label for="product_code">প্রোডাক্টের কোড(Englist)</label>
                                 <input type="text" class="form-control  @error('product_code') is-invalid @enderror"
                                     id="product_code" name="product_code" placeholder="প্রোডাক্টের কোড দিন"
                                     value='{{ $productData->product_code }}'>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product_price">প্রোডাক্টের দাম (টাকা)</label>
+                                <label for="product_price">প্রোডাক্টের দাম (টাকা)(Englist)</label>
                                 <input type="number" class="form-control  @error('product_price') is-invalid @enderror"
                                     id="product_price" name="product_price" placeholder="প্রোডাক্টের দাম (টাকা) দিন"
                                     value='{{ $productData->product_price }}'>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product_discount">প্রোডাক্টের ডিস্কাউন্ট (%)</label>
+                                <label for="product_discount">প্রোডাক্টের ডিস্কাউন্ট (%)(Englist)</label>
                                 <input type="number" class="form-control  @error('product_discount') is-invalid @enderror"
                                     id="product_discount" name="product_discount"
                                     placeholder="প্রোডাক্টের ডিস্কাউন্ট (%) দিন"

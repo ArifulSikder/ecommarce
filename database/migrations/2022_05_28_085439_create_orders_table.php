@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('payment_type', 50);
             $table->float('amount', 50);
             $table->date('order_date');
-            $table->string('invoice_no')->nullable();
+            // $table->string('invoice_no')->nullable();
             $table->date('confirm_date')->nullable();
             $table->date('processing_date')->nullable();
             $table->date('picked_date')->nullable();
