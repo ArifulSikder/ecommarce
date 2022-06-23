@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('banner') }}" class="nav-link  @yield('banner')">
+                            <a href="{{ route('banner') }}" class="nav-link  @yield('banner-list')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ব্যানার তালিকা</p>
                             </a>

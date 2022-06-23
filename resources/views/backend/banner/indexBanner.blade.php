@@ -6,7 +6,7 @@
 {{-- menu active start --}}
 @section('banner', 'menu-open')
 @section('bannerActive', 'active')
-@section('banner', 'active')
+@section('banner-list', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div>
@@ -43,7 +43,8 @@
                                     <td>{{ $banner->title }}</td>
                                     <td>{{ $banner->product_name }}</td>
                                     <td>
-                                        <span class="badge badge-{{ $banner->active_status == 1 ? 'primary' : 'danger' }}">
+                                        <span
+                                            class="badge badge-{{ $banner->active_status == 1 ? 'primary' : 'danger' }}">
                                             {{ $banner->active_status == 1 ? 'Active' : 'Inactive' }}
                                         </span>
                                     </td>
@@ -52,7 +53,8 @@
                                         <a href="{{ url('edit-banner/' . $banner->id) }}}}"
                                             class="btn btn-primary btn-sm"><i class="far fa-edit"></i></a>
                                         <a href="{{ url('delete-banner/' . $banner->id) }}}}"
-                                            class="btn btn-danger btn-sm" id="delete"><i class="far fa-trash-alt"></i></a>
+                                            class="btn btn-danger btn-sm" id="delete"><i
+                                                class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

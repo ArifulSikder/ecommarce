@@ -35,13 +35,16 @@
                             <ul class="treeview">
                                 @foreach ($treviewParents as $parent)
                                     <li>
-                                        <input type="checkbox" name="permission[]" id="tall" value="{{ $parent->id }}">
+                                        <input type="checkbox" name="permission[]" id="tall"
+                                            value="{{ $parent->id }}">
                                         <label for="tall" class="custom-unchecked">
                                             {{ $parent->name }}</label>
-                                        @if (count($parent->childs))
-                                            @include('backend.userExcess.treviewPermission', [
-                                                'childs' => $parent->childs,
-                                            ])
+                                        @if ($parent->childs != null)
+                                            @if (count($parent->childs))
+                                                @include('backend.userExcess.treviewPermission', [
+                                                    'childs' => $parent->childs,
+                                                ])
+                                            @endif
                                         @endif
                                     </li>
                                 @endforeach

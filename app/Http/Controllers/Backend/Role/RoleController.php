@@ -93,7 +93,6 @@ class RoleController extends Controller
     // *********************************************** permission start ********************************************************
     function indexPermission(){
         $treviewParents = Permission::orderBy("name", 'asc')->where('parent_id', 0)->get();
-        // dd($treviewParents);
         $parents = Permission::orderBy("name", 'asc')->get();
         $permissions = Permission::orderBy("name", 'asc')->paginate(10);
         return view('backend.userExcess.permisson', compact("permissions", 'parents', 'treviewParents'));
@@ -151,7 +150,6 @@ class RoleController extends Controller
     function givePermission(){
         $roles = Role::orderBy("name", 'asc')->get();
         $treviewParents = Permission::orderBy("name", 'asc')->where('parent_id', 0)->get();
-        
         return view('backend.userExcess.givePermission', compact("treviewParents",'roles'));
     }
 
