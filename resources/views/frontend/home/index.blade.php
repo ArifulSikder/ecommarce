@@ -102,8 +102,9 @@
                                             <div class="product text-center">
                                                 <figure class="product-media">
                                                     <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}" alt="product"
-                                                            width="280" height="315" style="background-color: #f5f5f5;" />
+                                                        <img src="{{ asset($product->product_thumbnail) }}"
+                                                            alt="product" width="280" height="315"
+                                                            style="background-color: #f5f5f5;" />
                                                     </a>
                                                     <div class="product-label-group">
                                                         <label class="product-label label-new">নতুন</label>
@@ -175,8 +176,9 @@
                                             <div class="product text-center">
                                                 <figure class="product-media">
                                                     <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}" alt="product"
-                                                            width="280" height="315" style="background-color: #f5f5f5;" />
+                                                        <img src="{{ asset($product->product_thumbnail) }}"
+                                                            alt="product" width="280" height="315"
+                                                            style="background-color: #f5f5f5;" />
                                                     </a>
                                                     <div class="product-label-group">
                                                         <label class="product-label label-new">নতুন</label>
@@ -249,8 +251,9 @@
                                             <div class="product text-center">
                                                 <figure class="product-media">
                                                     <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}" alt="product"
-                                                            width="280" height="315" style="background-color: #f5f5f5;" />
+                                                        <img src="{{ asset($product->product_thumbnail) }}"
+                                                            alt="product" width="280" height="315"
+                                                            style="background-color: #f5f5f5;" />
                                                     </a>
                                                     <div class="product-label-group">
                                                         <label class="product-label label-new">নতুন</label>
@@ -323,8 +326,9 @@
                                             <div class="product text-center">
                                                 <figure class="product-media">
                                                     <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}" alt="product"
-                                                            width="280" height="315" style="background-color: #f5f5f5;" />
+                                                        <img src="{{ asset($product->product_thumbnail) }}"
+                                                            alt="product" width="280" height="315"
+                                                            style="background-color: #f5f5f5;" />
                                                     </a>
                                                     <div class="product-label-group">
                                                         <label class="product-label label-new">নতুন</label>
@@ -448,7 +452,7 @@
 @endsection
 @section('script')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
+    <script src="{{ asset('admin/plugins/spinner/spinner.min.js') }}"></script>
     <script>
         $("input[type='number']").inputSpinner();
     </script>

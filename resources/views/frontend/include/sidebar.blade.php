@@ -31,22 +31,18 @@
                 </li> --}}
             </ul>
             @if (SpecialOffer() != null)
-                <div class="banner banner-fixed overlay-zoom overlay-dark">
-                    <figure>
-                        <img src="{{ asset(SpecialOffer()->product_thumbnail) }}" width="280" height="312"
-                            alt="banner" style="background-color: #26303c;" />
-                    </figure>
-                    <div class="banner-price-info font-weight-bold text-white text-uppercase">
-                        20-22<sup>th</sup> April</div>
-                    <div class="banner-content text-center w-100">
-                        <h4 class="banner-subtitle d-inline-block bg-primary font-weight-semi-bold text-uppercase">
-                            Ultimate Sale</h4>
-                        <h3 class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
-                            Up
-                            to {{ SpecialOffer()->product_discount }}%</h3>
-                        <p class="mb-4 font-primary text-white lh-1">Discount Selected Items</p>
+                <a href="{{ url('_' . SpecialOffer()->product_slug) }}">
+                    <div class="banner banner-fixed overlay-zoom overlay-dark">
+                        <figure>
+                            <img src="{{ asset(SpecialOffer()->product_thumbnail) }}" width="280" height="312"
+                                alt="banner" style="background-color: #26303c;" />
+                        </figure>
+                        <div class="banner-content text-center w-100">
+                            <h3 class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
+                                ছাড় {{ SpecialOffer()->product_discount }}%</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endif
 
             <div class="widget widget-blog border-no" data-animation-options="{'delay': '.3s'}">
@@ -69,8 +65,8 @@
                                     </div>
                                     <h3 class="post-title"><a href="#">{{ $blog->blog_title }}</a>
                                     </h3>
-                                    <a href="#" class="btn btn-primary btn-link btn-underline btn-sm">Read
-                                        More<i class="d-icon-arrow-right"></i></a>
+                                    {{-- <a href="#" class="btn btn-primary btn-link btn-underline btn-sm">Read
+                                        More<i class="d-icon-arrow-right"></i></a> --}}
                                 </div>
                             </div>
                         @endforeach
