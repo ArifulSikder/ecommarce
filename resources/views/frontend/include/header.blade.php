@@ -114,10 +114,6 @@
                     </ul>
                 </nav>
             </div>
-            <div class="header-right">
-                <a href="#">সিমিত সময়ের অফার</a>
-                <a href="https://d-themes.com/buynow/riodehtml" target="_blank" class="ml-6">কিনুন !</a>
-            </div>
         </div>
     </div>
 </header>
