@@ -50,9 +50,9 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="widget ml-lg-4">
-                        <h4 class="widget-title">যোগাযোগের তথ্য</h4>
+                        <h4 class="widget-title"> তথ্য</h4>
                         <ul class="widget-body">
-                            <li>
+                            {{-- <li>
                                 <a href="#">Sign in</a>
                             </li>
                             <li>
@@ -60,7 +60,7 @@
                             </li>
                             <li>
                                 <a href="#">Track My Order</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="#">Help</a>
                             </li>
