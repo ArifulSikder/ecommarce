@@ -13,22 +13,8 @@
     <meta name="author" content="D-THEMES">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('public/frontend/images/icons/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset(logo()->main_logo) }}">
 
-    {{-- <script>
-        WebFontConfig = {
-            google: {
-                families: ['Poppins:400,500,600,700,800,900']
-            }
-        };
-        (function(d) {
-            var wf = d.createElement('script'),
-                s = d.scripts[0];
-            wf.src = 'js/webfont.js';
-            wf.async = true;
-            s.parentNode.insertBefore(wf, s);
-        })(document);
-    </script> --}}
     <link rel="stylesheet" type="text/css"
         href="{{ asset('public/frontend/vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/vendor/animate/animate.min.css') }}">
@@ -107,7 +93,7 @@
         </script>
     @endif
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
+    <script src="{{ asset('admin/plugins/spinner/spinner.min.js') }}"></script>
     <script>
         $("input[type='number']").inputSpinner();
     </script>
