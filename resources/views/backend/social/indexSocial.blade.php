@@ -4,8 +4,8 @@
 @endsection
 
 {{-- menu active start --}}
-@section('category', 'menu-open')
-@section('categoryActive', 'active')
+@section('social', 'menu-open')
+@section('socialActive', 'active')
 {{-- menu active end --}}
 @section('maincontant')
     <div class="row">
