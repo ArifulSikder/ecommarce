@@ -19,6 +19,24 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
+                            <label>প্রডাক্ট বাছাই করুন</label>
+                            <select name="product_id"
+                                class="form-control select2  @error('product_id') is-invalid @enderror" style="width: 100%;"
+                                data-placeholder="প্রডাক্ট বাছাই করুন">
+                                <option selected="selected" value="">প্রডাক্ট</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}"
+                                        {{ collect(old('product_id'))->contains($product->id) ? 'selected' : '' }}>
+                                        {{ $product->product_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('product_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label>ব্যানার সাজান</label>
                             <select name="content_type"
                                 class="form-control select2  @error('content_type') is-invalid @enderror"

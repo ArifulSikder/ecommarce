@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use illuminate\Support\Facades\File;
@@ -17,7 +18,8 @@ class BannerController extends Controller
     //banner add
 
     function addBanner(){
-        return view('backend.banner.addBanner');
+        $products= Product::where(['status'=> 1])->get();
+        return view('backend.banner.addBanner', compact('products'));
     }
 
     //store bannser 
@@ -28,12 +30,14 @@ class BannerController extends Controller
             'product_name' => 'required|max:255',
             'product_price' => 'required|max:255',
             'banner_photo' => 'required',
+            'product_id' => 'required',
         ],[
             'content_type.required' => 'Please Enter This Filed',
             'title.required' => 'Please Enter This Filed',
             'product_name.required' => 'Please Enter This Filed',
             'product_price.required' => 'Please Enter This Filed',
             'banner_photo.required' => 'Please Enter This Filed',
+            'product_id.required' => 'Please Enter This Filed',
             
         ]);
         $input = $request->all();
@@ -62,7 +66,8 @@ class BannerController extends Controller
     //edit banner
     function editBanner($banner_id){
         $bannerData=Banner::findOrFail($banner_id);
-        return view('backend.banner.editBanner', compact('bannerData'));
+        $products= Product::where(['status'=> 1])->get();
+        return view('backend.banner.editBanner', compact('bannerData','products'));
 
     }
 
@@ -74,11 +79,13 @@ class BannerController extends Controller
             'title' => 'required|max:255',
             'product_name' => 'required|max:255',
             'product_price' => 'required|max:255',
+            'product_id' => 'required|max:255',
         ],[
             'content_type.required' => 'Please Enter This Filed',
             'title.required' => 'Please Enter This Filed',
             'product_name.required' => 'Please Enter This Filed',
             'product_price.required' => 'Please Enter This Filed',
+            'product_id.required' => 'Please Enter This Filed',
             
         ]);
         $input = $request->all();

@@ -20,12 +20,30 @@
                     <input type="hidden" name="id" value="{{ $bannerData->id }}">
                     <div class="card-body">
                         <div class="form-group">
+                            <label>প্রডাক্ট বাছাই করুন</label>
+                            <select name="product_id"
+                                class="form-control select2  @error('product_id') is-invalid @enderror" style="width: 100%;"
+                                data-placeholder="প্রডাক্ট বাছাই করুন">
+                                <option selected="selected" value="">প্রডাক্ট</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}"
+                                        {{ $product->id == $bannerData->product_id ? 'selected' : '' }}>
+                                        {{ $product->product_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('product_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>ব্যানার সাজান</label>
                             <select name="content_type"
                                 class="form-control select2  @error('content_type') is-invalid @enderror"
                                 style="width: 100%;" data-placeholder="ব্যানার সাজান বাছাই করুন">
                                 <option selected="selected" value="">ব্যানার সাজান</option>
-                                <option value="left" {{ $bannerData->content_type == 'left' ? 'selected' : '' }}>বাম পাশে
+                                <option value="left" {{ $bannerData->content_type == 'left' ? 'selected' : '' }}>বাম
+                                    পাশে
                                 </option>
                                 <option value="right" {{ $bannerData->content_type == 'right' ? 'selected' : '' }}>
                                     ডান পাশে

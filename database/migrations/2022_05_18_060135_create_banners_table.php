@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("product_id");
             $table->string("content_type");
             $table->string("title");
             $table->string("product_name");
