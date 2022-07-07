@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\Role\RoleController;
 use App\Http\Controllers\Backend\ShippingController;
+use App\Http\Controllers\Backend\SocialController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
@@ -201,6 +202,9 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
 
     });
 
+    //social links
+    Route::get('social-links', [SocialController::class, 'index']);
+    Route::post('social-update', [SocialController::class, 'updateSocial'])->name('social-update');
 
     //delete order
     // Route::get('delete', [OrderController_::class, 'delete']);

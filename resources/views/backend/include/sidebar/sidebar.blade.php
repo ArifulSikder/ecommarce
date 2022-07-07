@@ -107,6 +107,15 @@
                     </ul>
                 </li>
 
+                {{-- social --}}
+                <li class="nav-item has-treeview  @yield('social')">
+                    <a href="{{ url('social-links') }}" class="nav-link  @yield('socialActive')">
+                        <i class="nav-icon fas fa-blog"></i>
+                        <p>
+                            সামাজিক মাধ্যম লিংক
+                        </p>
+                    </a>
+                </li>
                 {{-- testimonial --}}
                 <li class="nav-item has-treeview  @yield('testimonial')">
                     <a href="#" class="nav-link  @yield('testimonialActive')">
