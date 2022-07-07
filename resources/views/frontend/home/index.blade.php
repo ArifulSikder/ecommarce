@@ -21,55 +21,61 @@
 
                                     @foreach ($banners as $banner)
                                         @if ($banner->content_type == 'right')
-                                            <div class="banner banner-fixed intro-slide2">
-                                                <figure>
-                                                    <img src="{{ asset($banner->banner_photo) }}" alt="intro-banner"
-                                                        width="880" height="474" style="background-color: #fbfcfc;" />
-                                                </figure>
-                                                <div class="banner-content y-50 text-right">
-                                                    <h4 class="banner-subtitle text-body font-weight-semi-bold mb-3 slide-animate"
-                                                        data-animation-options="{'name': 'fadeInDownShorter','duration': '1s'}">
-                                                        {{ $banner->title }}
-                                                    </h4>
-                                                    <h2 class="banner-title text-uppercase ls-l slide-animate text-white"
-                                                        data-animation-options="{'name': 'fadeInDownShorter','delay': '.3s','duration': '1s' }">
-                                                        {{ $banner->product_name }}
-                                                    </h2>
-                                                    <p class="font-weight-semi-bold ls-m text-body mb-6 slide-animate"
-                                                        data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
-                                                        মূল্য ৳ {{ banglaNumber($banner->product_price) }}/-
-                                                    </p>
-                                                    {{-- <a href="{{ route('productDetails') }}"
+                                            <a href="{{ url('_' . $banner->product->product_slug) }}">
+                                                <div class="banner banner-fixed intro-slide2">
+                                                    <figure>
+                                                        <img src="{{ asset($banner->banner_photo) }}" alt="intro-banner"
+                                                            width="880" height="474"
+                                                            style="background-color: #fbfcfc;" />
+                                                    </figure>
+                                                    <div class="banner-content y-50 text-right">
+                                                        <h4 class="banner-subtitle text-body font-weight-semi-bold mb-3 slide-animate"
+                                                            data-animation-options="{'name': 'fadeInDownShorter','duration': '1s'}">
+                                                            {{ $banner->title }}
+                                                        </h4>
+                                                        <h2 class="banner-title text-uppercase ls-l slide-animate text-white"
+                                                            data-animation-options="{'name': 'fadeInDownShorter','delay': '.3s','duration': '1s' }">
+                                                            {{ $banner->product_name }}
+                                                        </h2>
+                                                        <p class="font-weight-semi-bold ls-m text-body mb-6 slide-animate"
+                                                            data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
+                                                            মূল্য ৳ {{ banglaNumber($banner->product_price) }}/-
+                                                        </p>
+                                                        {{-- <a href="{{ route('productDetails') }}"
                                                         class="btn btn-dark btn-rounded slide-animate"
                                                         data-animation-options="{'name': 'fadeInDownShorter','delay': '.5s','duration': '1s'}">
                                                         এখুনি কিনুন</a> --}}
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="banner banner-fixed intro-slide3">
-                                                <figure>
-                                                    <img src="{{ asset($banner->banner_photo) }}" alt="intro-banner"
-                                                        width="880" height="474" style="background-color: #d3d4d5;" />
-                                                </figure>
-                                                <div class="banner-content y-50 pb-3">
-                                                    <div class="slide-animate"
-                                                        data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1s'}">
-                                                        <h4 class="banner-subtitle font-weight-normal ls-m mb-1">
-                                                            {{ $banner->title }}</h4>
-                                                        <h2 class="banner-title text-uppercase mb-3 ls-l">
-                                                            {{ $banner->product_name }}
-                                                        </h2>
-                                                        <h4 class="banner-price-info text-uppercase ls-l">মূল্য <strong
-                                                                class="text-primary">৳
-                                                                {{ banglaNumber($banner->product_price) }}/-</strong>
-                                                        </h4>
-                                                        {{-- <p class="text-dark lh-1 ls-m mb-4">প্যকেজ কিনে বাড়তি সুবিধা পান !
-                                                        </p> --}}
-                                                        {{-- <a href="{{ route('productDetails') }}"
-                                                            class="btn btn-white btn-rounded">এখুনি কিনুন</a> --}}
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
+                                        @else
+                                            <a href="{{ url('_' . $banner->product->product_slug) }}">
+                                                <div class="banner banner-fixed intro-slide3">
+                                                    <figure>
+                                                        <img src="{{ asset($banner->banner_photo) }}" alt="intro-banner"
+                                                            width="880" height="474"
+                                                            style="background-color: #d3d4d5;" />
+                                                    </figure>
+                                                    <div class="banner-content y-50 pb-3">
+                                                        <div class="slide-animate"
+                                                            data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1s'}">
+                                                            <h4 class="banner-subtitle font-weight-normal ls-m mb-1">
+                                                                {{ $banner->title }}</h4>
+                                                            <h2 class="banner-title text-uppercase mb-3 ls-l">
+                                                                {{ $banner->product_name }}
+                                                            </h2>
+                                                            <h4 class="banner-price-info text-uppercase ls-l">মূল্য <strong
+                                                                    class="text-primary">৳
+                                                                    {{ banglaNumber($banner->product_price) }}/-</strong>
+                                                            </h4>
+                                                            {{-- <p class="text-dark lh-1 ls-m mb-4">প্যকেজ কিনে বাড়তি সুবিধা পান !
+                                                        </p> --}}
+                                                            {{-- <a href="{{ route('productDetails') }}"
+                                                            class="btn btn-white btn-rounded">এখুনি কিনুন</a> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         @endif
                                     @endforeach
                                 </div>
@@ -411,7 +417,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productName">Modal title</h5>
+                    <h5 class="modal-title" id="productName">Add To Cart</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
