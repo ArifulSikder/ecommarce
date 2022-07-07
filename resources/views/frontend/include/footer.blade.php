@@ -68,46 +68,6 @@
                     </div>
                     <!-- End Widget -->
                 </div>
-                {{-- <div class="col-lg-3 col-md-6">
-                    <div class="widget widget-instagram">
-                        <h4 class="widget-title">Instagram</h4>
-                        <figure class="widget-body row">
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/01.jpg" alt="instagram 1"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/02.jpg" alt="instagram 2"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/03.jpg" alt="instagram 3"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/04.jpg" alt="instagram 4"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/05.jpg" alt="instagram 5"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/06.jpg" alt="instagram 6"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/07.jpg" alt="instagram 7"
-                                    width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/frontend') }}/images/instagram/08.jpg" alt="instagram 8"
-                                    width="64" height="64" />
-                            </div>
-                        </figure>
-                    </div>
-                    <!-- End Instagram -->
-                </div> --}}
             </div>
         </div>
         <!-- End FooterMiddle -->
@@ -123,9 +83,9 @@
             </div>
             <div class="footer-right">
                 <div class="social-links">
-                    <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                    <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                    <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                    <a href="{{ socialLinks()->facebook }}" class="social-link social-facebook fab fa-facebook-f"></a>
+                    <a href="{{ socialLinks()->twitter }}" class="social-link social-twitter fab fa-twitter"></a>
+                    <a href="{{ socialLinks()->linkdin }}" class="social-link social-linkedin fab fa-linkedin-in"></a>
                 </div>
             </div>
         </div>

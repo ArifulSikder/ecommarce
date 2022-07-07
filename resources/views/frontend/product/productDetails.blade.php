@@ -60,33 +60,10 @@
                                         <li>বিস্তারিত</li>
                                     </ul>
 
-                                    {{-- <ul class="product-nav">
-                                        <li class="product-nav-prev">
-                                            <a href="#">
-                                                <i class="d-icon-arrow-left"></i> Prev
-                                                <span class="product-nav-popup">
-                                                    <img src="{{ asset('public/frontend') }}/images/product/product-thumb-prev.jpg"
-                                                        alt="product thumbnail" width="110" height="123">
-                                                    <span class="product-name">Sed egtas Dnte Comfort</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="product-nav-next">
-                                            <a href="#">
-                                                Next <i class="d-icon-arrow-right"></i>
-                                                <span class="product-nav-popup">
-                                                    <img src="{{ asset('public/frontend') }}/images/product/product-thumb-next.jpg"
-                                                        alt="product thumbnail" width="110" height="123">
-                                                    <span class="product-name">Sed egtas Dnte Comfort</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul> --}}
                                 </div>
 
                                 <h1 class="product-name">{{ $product->product_name }}</h1>
                                 <div class="product-meta">
-                                    SKU:<span class="product-sku">123456701</span>
                                     ক্যাটাগরি:<span class="product-brand"> {{ $product->category->category_name }}</span>
                                 </div>
                                 @if ($product->product_discount > 0)
@@ -137,9 +114,12 @@
 
                                 <div class="product-footer">
                                     <div class="social-links mr-4">
-                                        <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                        <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                        <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                                        <a href="{{ socialLinks()->facebook }}"
+                                            class="social-link social-facebook fab fa-facebook-f"></a>
+                                        <a href="{{ socialLinks()->twitter }}"
+                                            class="social-link social-twitter fab fa-twitter"></a>
+                                        <a href="{{ socialLinks()->linkdin }}"
+                                            class="social-link social-linkedin fab fa-linkedin-in"></a>
                                     </div>
                                     <hr class="divider d-lg-show">
                                     <div class="product-action">
@@ -192,7 +172,8 @@
                                                 </h5>
 
                                                 <video width="560" height="315" controls>
-                                                    <source src="{{ asset(productContent($product->id)->content_file) }}"
+                                                    <source
+                                                        src="{{ asset(productContent($product->id)->content_file) }}"
                                                         type="video/mp4">
                                                 </video>
 
@@ -244,8 +225,8 @@
                                 <div class="product text-center">
                                     <figure class="product-media">
                                         <a href="{{ url('_' . $product->product_slug) }}">
-                                            <img src="{{ asset($product->product_thumbnail) }}" alt="product" width="280"
-                                                height="315">
+                                            <img src="{{ asset($product->product_thumbnail) }}" alt="product"
+                                                width="280" height="315">
                                         </a>
 
                                         <div class="product-action-vertical">
@@ -297,8 +278,8 @@
         </main>
 
         <!-- Modal -->
-        <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
+        <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -324,7 +305,8 @@
                                     </li>
                                     {{-- <li class="list-group-item"> প্রোডাক্টের দাম (টাকা) : <strong id="productPrice"></strong>
                             </li> --}}
-                                    <li class="list-group-item product-price" style="font-size: 13px;">বিক্রয় মুল্য(টাকা) :
+                                    <li class="list-group-item product-price" style="font-size: 13px;">বিক্রয় মুল্য(টাকা)
+                                        :
                                         <ins class="new-price">৳ <span id="discunt_price"></span>/-</ins><del
                                             class="old-price">৳
                                             <span id="product_price"></span>/-</del>

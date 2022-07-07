@@ -8,6 +8,7 @@ use App\Models\MainLogo;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductContent;
+use App\Models\Social;
 use App\Models\Testimonial;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Auth;
@@ -109,4 +110,9 @@ function getUserType($user_user){
   $UserRole =  DB::table('model_has_roles')->where('model_id', $user_user)->first();
   $role = Role::findOrFail($UserRole->role_id);
   return $role->name;
+ }
+
+ //social links
+ function socialLinks(){
+   return Social::latest()->first();
  }
