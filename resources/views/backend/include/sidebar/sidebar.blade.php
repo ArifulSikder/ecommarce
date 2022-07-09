@@ -110,7 +110,7 @@
                 {{-- social --}}
                 <li class="nav-item has-treeview  @yield('social')">
                     <a href="{{ url('social-links') }}" class="nav-link  @yield('socialActive')">
-                        <i class="nav-icon fas fa-blog"></i>
+                        <i class="nav-icon fab fa-facebook"></i>
                         <p>
                             সামাজিক মাধ্যম লিংক
                         </p>

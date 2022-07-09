@@ -22,31 +22,34 @@
                                     data-owl-options="{'items': 1, 'dots': true, 'nav': false, 'loop': true,'autoplay': false}">
 
                                     @foreach ($products->take(10) as $product_banner)
-                                        <div class="banner banner-fixed intro-slide2">
-                                            <figure>
-                                                <img src="{{ asset($product_banner->product_slider_img) }}"
-                                                    alt="intro-banner" width="880" height="474"
-                                                    style="background-color: #fbfcfc;" />
-                                            </figure>
-                                            <div class="banner-content y-50 text-right">
-                                                <h4 class="banner-subtitle text-body font-weight-semi-bold mb-3 slide-animate"
-                                                    data-animation-options="{'name': 'fadeInDownShorter','duration': '1s'}">
-                                                    {{ banglaNumber($product_banner->product_discount) }}% ছাড়ে পাচ্ছেন
-                                                </h4>
-                                                <h2 class="product_banner-title text-uppercase ls-l slide-animate text-white"
-                                                    data-animation-options="{'name': 'fadeInDownShorter','delay': '.3s','duration': '1s' }">
-                                                    {{ $product_banner->product_name }}
-                                                </h2>
-                                                <p class="font-weight-semi-bold ls-m text-body mb-6 slide-animate"
-                                                    data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
-                                                    মূল্য ৳ {{ banglaNumber($product_banner->product_price) }}/-
-                                                </p>
-                                                {{-- <a href="{{ route('productDetails') }}"
+                                        <a href="{{ url('_' . $product_banner->product_slug) }}">
+                                            <div class="banner banner-fixed intro-slide2">
+                                                <figure>
+                                                    <img src="{{ asset($product_banner->product_slider_img) }}"
+                                                        alt="intro-banner" width="880" height="474"
+                                                        style="background-color: #fbfcfc;" />
+                                                </figure>
+                                                <div class="banner-content y-50 text-right">
+                                                    <h4 class="banner-subtitle text-body font-weight-semi-bold mb-3 slide-animate"
+                                                        data-animation-options="{'name': 'fadeInDownShorter','duration': '1s'}">
+                                                        {{ banglaNumber($product_banner->product_discount) }}% ছাড়ে
+                                                        পাচ্ছেন
+                                                    </h4>
+                                                    <h2 class="product_banner-title text-uppercase ls-l slide-animate text-white"
+                                                        data-animation-options="{'name': 'fadeInDownShorter','delay': '.3s','duration': '1s' }">
+                                                        {{ $product_banner->product_name }}
+                                                    </h2>
+                                                    <p class="font-weight-semi-bold ls-m text-body mb-6 slide-animate"
+                                                        data-animation-options="{'name': 'fadeInDownShorter','delay': '.4s','duration': '1s'}">
+                                                        মূল্য ৳ {{ banglaNumber($product_banner->product_price) }}/-
+                                                    </p>
+                                                    {{-- <a href="{{ route('productDetails') }}"
                                                     class="btn btn-dark btn-rounded slide-animate"
                                                     data-animation-options="{'name': 'fadeInDownShorter','delay': '.5s','duration': '1s'}">
                                                     এখুনি কিনুন</a> --}}
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             </section>
@@ -65,7 +68,8 @@
                                                 <figure class="product-media">
                                                     <a href="{{ url('_' . $product->product_slug) }}">
                                                         <img src="{{ asset($product->product_thumbnail) }}" alt="product"
-                                                            width="280" height="315" style="background-color: #f5f5f5;" />
+                                                            width="280" height="315"
+                                                            style="background-color: #f5f5f5;" />
                                                     </a>
                                                     <div class="product-label-group">
                                                         <label class="product-label label-new">নতুন</label>

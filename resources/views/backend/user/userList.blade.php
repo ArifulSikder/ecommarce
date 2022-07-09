@@ -39,8 +39,11 @@
                                     <td>{{ getUserType($user->id) }}</td>
                                     <td>
                                         <button class="btn btn-success btn-sm" data-toggle="modal"
-                                            data-target="#editRole{{ $user->id }}"><i
-                                                class="fas fa-edit"></i></button>
+                                            data-target="#editRole{{ $user->id }}"><i class="fas fa-edit"></i></button>
+                                        @if (Auth::id() != $user->id)
+                                            <a href="{{ url('delete-user/' . $user->id) }}" id="delete"
+                                                class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -123,9 +126,12 @@
                                                         <select class="form-control select2 select2-danger" id="user_role"
                                                             name="user_role" data-dropdown-css-class="select2-info"
                                                             data-placeholder="রোল বাছাই করুন" style="width: 100%;" required>
-                                                            <option selected="selected" value="">Select User Role</option>
+                                                            <option selected="selected" value="">Select User Role
+                                                            </option>
                                                             @foreach ($roles as $role)
-                                                                <option value="{{ $role->id }}">{{ $role->name }}
+                                                                <option value="{{ $role->id }}"
+                                                                    {{ $role->id == role_check($user->id)->role_id ? 'selected' : '' }}>
+                                                                    {{ $role->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -165,7 +171,8 @@
                     <form method="POST" action="{{ route('registerUser') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="name" class="col-form-label text-md-end">{{ __(' ব্যবহারকারির নাম') }}</label>
+                            <label for="name"
+                                class="col-form-label text-md-end">{{ __(' ব্যবহারকারির নাম') }}</label>
 
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                                 name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
@@ -179,10 +186,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-form-label text-md-end">{{ __('ব্যবহারকারির  ইমেইল') }}</label>
+                            <label for="email"
+                                class="col-form-label text-md-end">{{ __('ব্যবহারকারির  ইমেইল') }}</label>
 
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email"
+                            <input id="email" type="email"
+                                class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ old('email') }}" required autocomplete="email"
                                 placeholder="ব্যবহারকারির  ইমেইল দিন">
 
                             @error('email')
@@ -210,8 +219,9 @@
                             <label for="password-confirm"
                                 class="col-form-label text-md-end">{{ __('কনফার্ম পাসওয়ার্ড') }}</label>
 
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                                required autocomplete="new-password" placeholder="কনফার্ম পাসওয়ার্ড দিন">
+                            <input id="password-confirm" type="password" class="form-control"
+                                name="password_confirmation" required autocomplete="new-password"
+                                placeholder="কনফার্ম পাসওয়ার্ড দিন">
                         </div>
 
                         <div class="form-group">

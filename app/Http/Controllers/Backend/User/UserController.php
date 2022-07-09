@@ -116,4 +116,10 @@ class UserController extends Controller
         
         return redirect()->back()->with($notification);
     }
+
+    // user delete
+    function deleteUser($user_id){
+        User::findOrFail($user_id)->delete();
+        return redirect()->back();
+    }
 }

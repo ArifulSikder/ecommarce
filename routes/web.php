@@ -199,16 +199,13 @@ Route::group(['middleware' => 'auth'], function(){ // added middleware auth
         Route::get('/register-user', 'registerUser')->name('createuser');
         Route::post('/register-user', 'registerUserStore')->name('registerUser');
         Route::post('/update-user', 'updateUser')->name('updateUser');
+        Route::get('/delete-user/{user_id}', 'deleteUser');
 
     });
 
     //social links
     Route::get('social-links', [SocialController::class, 'index']);
     Route::post('social-update', [SocialController::class, 'updateSocial'])->name('social-update');
-
-    //delete order
-    // Route::get('delete', [OrderController_::class, 'delete']);
-    Route::get('d', [OrderController_::class, 'd']);
 
     // ************************************frontend auth guard**************************************
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']); 
