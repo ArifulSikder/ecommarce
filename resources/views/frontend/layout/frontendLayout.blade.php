@@ -8,9 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Riode - Ultimate eCommerce Template">
-    <meta name="author" content="D-THEMES">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset(logo()->main_logo) }}">

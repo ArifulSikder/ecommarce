@@ -21,6 +21,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10%">সিরিয়াল</th>
+                                <th style="width: 20%">ওয়েব সাইটের নাম</th>
                                 <th style="width: 20%">লোগো</th>
                                 <th style="width: 20%">লোগো স্টেটাস</th>
                                 <th style="width: 20%" class="text-center">আকশন</th>
@@ -33,6 +34,7 @@
                             @foreach ($logos as $logo)
                                 <tr>
                                     <td>{{ $serial++ }}</td>
+                                    <td>{{ $logo->side_name }}</td>
                                     <td><img width="150" src="{{ asset($logo->main_logo) }}" alt="logo logo"></td>
                                     <td>
                                         <span class="badge badge-{{ $logo->status == 1 ? 'success' : 'danger' }}">
@@ -69,6 +71,17 @@
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $logo->id }}">
                                                         <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label for="side_name">ওয়েব সাইটের নাম</label>
+                                                                <input type="text"
+                                                                    class="form-control  @error('side_name') is-invalid @enderror"
+                                                                    id="photoUpload" name="side_name"
+                                                                    placeholder="ওয়েব সাইটের নাম দিন"
+                                                                    value="{{ $logo->side_name }}">
+                                                            </div>
+                                                            @error('side_name')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                             <div class="form-group">
                                                                 <label for="main_logo">লোগো ছবি বাছাই</label>
                                                                 <input type="file"
@@ -119,6 +132,16 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="side_name">ওয়েব সাইটের নাম</label>
+                                <input type="text" class="form-control  @error('side_name') is-invalid @enderror"
+                                    id="photoUpload" name="side_name" placeholder="ওয়েব সাইটের নাম দিন"
+                                    value="{{ old('side_name') }}">
+                            </div>
+                            @error('side_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
                             <div class="form-group">
                                 <label for="main_logo">লোগো ছবি বাছাই</label>
                                 <input type="file" class="form-control  @error('main_logo') is-invalid @enderror"

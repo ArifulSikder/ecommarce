@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('main_logos', function (Blueprint $table) {
             $table->id();
+            $table->string('side_name');
             $table->string('main_logo');
             $table->boolean('status')->default(1);
             $table->softDeletes();

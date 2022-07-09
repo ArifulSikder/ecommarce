@@ -1,6 +1,6 @@
 @extends('frontend.layout.frontendLayout')
 
-@section('title', 'আমাদের শপ ।। হোম')
+@section('title', 'প্রডাক্ট দেখুন')
 @section('pageClass', 'home')
 
 {{-- @section('navActive', 'active') --}}

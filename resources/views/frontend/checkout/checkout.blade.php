@@ -1,6 +1,6 @@
 @extends('frontend.layout.frontendLayout')
 
-@section('title', 'আমাদের শপ ।। হোম')
+@section('title', 'চেক আউট করুন')
 @section('pageClass', 'home')
 
 
@@ -42,8 +42,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="shipping_address"> আপনার ঠিকানা</label>
-                                                    <textarea type="taxt" rows="4" cols="50" required class="form-control" id="shipping_address" name="shipping_address"
-                                                        placeholder="আপনার ঠিকানা নাম"></textarea>
+                                                    <textarea type="taxt" rows="4" cols="50" required class="form-control" id="shipping_address"
+                                                        name="shipping_address" placeholder="আপনার ঠিকানা নাম"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -89,7 +89,8 @@
                                             </div>
 
                                             <div class="form-group mt-5">
-                                                <button type="submit" class="btn btn-block btn-primary">অর্ডার করুন</button>
+                                                <button type="submit" class="btn btn-block btn-primary">অর্ডার
+                                                    করুন</button>
                                             </div>
                                         </div>
                                     </form>
@@ -148,8 +149,8 @@
                                                         {{ session()->get('coupon')['total_amount'] }} TK</span>
                                                 </li>
                                             @else
-                                                <li class="list-group-item border-0">Grand Total <span
-                                                        class="float-right" id="grandTotal"></span>
+                                                <li class="list-group-item border-0">Grand Total <span class="float-right"
+                                                        id="grandTotal"></span>
                                                 </li>
                                             @endif
                                         </ul>

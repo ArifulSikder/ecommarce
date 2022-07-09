@@ -1,6 +1,6 @@
 @extends('frontend.layout.frontendLayout')
 
-@section('title', 'Riode - Ultimate eCommerce Template')
+@section('title', 'প্রডাক্ট বিবরন')
 @section('pageClass', 'products')
 
 

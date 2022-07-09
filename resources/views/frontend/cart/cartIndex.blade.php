@@ -1,6 +1,6 @@
 @extends('frontend.layout.frontendLayout')
 
-@section('title', 'আমাদের শপ ।। হোম')
+@section('title', 'প্রডাক্ট কার্ট')
 @section('pageClass', 'home')
 
 
@@ -39,8 +39,8 @@
                                         <label>Have coupon?</label>
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control email" name="coupon" id="coupon"
-                                                    placeholder="Enter Coupon...">
+                                                <input type="text" class="form-control email" name="coupon"
+                                                    id="coupon" placeholder="Enter Coupon...">
                                             </div>
                                             <div class="col-md-4">
                                                 <button class="btn btn-dark" style="font-size: 11px;" type="submit"

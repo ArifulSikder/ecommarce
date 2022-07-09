@@ -1,6 +1,6 @@
 @extends('frontend.layout.frontendLayout')
 
-@section('title', 'Riode - Ultimate eCommerce Template')
+@section('title', 'প্রডাক্ট কিনুন')
 @section('pageClass', 'shop')
 
 
@@ -154,8 +154,8 @@
                                                 <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
                                                     data-target="#addCartModal" title="Add to cart"><i
                                                         class="d-icon-bag"></i></a>
-                                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                                        class="d-icon-heart"></i></a>
+                                                <a href="#" class="btn-product-icon btn-wishlist"
+                                                    title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
                                                 <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত
@@ -198,11 +198,12 @@
                                                 <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
                                                     data-target="#addCartModal" title="Add to cart"><i
                                                         class="d-icon-bag"></i></a>
-                                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                                        class="d-icon-heart"></i></a>
+                                                <a href="#" class="btn-product-icon btn-wishlist"
+                                                    title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">দ্রুত
                                                     দেখুন</a>
                                             </div>
                                         </figure>
@@ -242,11 +243,12 @@
                                                 <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
                                                     data-target="#addCartModal" title="Add to cart"><i
                                                         class="d-icon-bag"></i></a>
-                                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                                        class="d-icon-heart"></i></a>
+                                                <a href="#" class="btn-product-icon btn-wishlist"
+                                                    title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">Quick
                                                     View</a>
                                             </div>
                                         </figure>
@@ -289,7 +291,8 @@
                                                     title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">দ্রুত
                                                     দেখুন</a>
                                             </div>
                                         </figure>
@@ -333,7 +336,8 @@
                                                     title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">দ্রুত
                                                     দেখুন</a>
                                             </div>
                                         </figure>
@@ -377,7 +381,8 @@
                                                     title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">Quick
                                                     View</a>
                                             </div>
                                         </figure>
@@ -420,7 +425,8 @@
                                                     title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">দ্রুত
                                                     দেখুন</a>
                                             </div>
                                         </figure>
@@ -464,7 +470,8 @@
                                                     title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">দ্রুত
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">দ্রুত
                                                     দেখুন</a>
                                             </div>
                                         </figure>
@@ -508,7 +515,8 @@
                                                     title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
+                                                <a href="#" class="btn-product btn-quickview"
+                                                    title="Quick View">Quick
                                                     View</a>
                                             </div>
                                         </figure>
@@ -537,8 +545,8 @@
                                 <p class="show-info">Showing <span>12 of 56</span> Products</p>
                                 <ul class="pagination">
                                     <li class="page-item disabled">
-                                        <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                            aria-disabled="true">
+                                        <a class="page-link page-link-prev" href="#" aria-label="Previous"
+                                            tabindex="-1" aria-disabled="true">
                                             <i class="d-icon-arrow-left"></i>Prev
                                         </a>
                                     </li>

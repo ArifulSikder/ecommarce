@@ -1,6 +1,6 @@
 @extends('frontend.layout.frontendLayout')
 
-@section('title', 'আমাদের শপ ।। হোম')
+@section('title', logo()->side_name)
 @section('pageClass', 'home')
 
 
