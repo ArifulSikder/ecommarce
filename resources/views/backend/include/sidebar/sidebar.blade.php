@@ -330,7 +330,7 @@
                     </ul>
                 </li>
                 {{-- @endcan --}}
-                <li class="nav-item has-treeview  @yield('roleAndPermission')">
+                {{-- <li class="nav-item has-treeview  @yield('roleAndPermission')">
                     <a href=" #" class="nav-link  @yield('roleAndPermissionActive')">
                         <i class=" nav-icon fas fa-shield-alt"></i>
                         <p>
@@ -358,7 +358,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
