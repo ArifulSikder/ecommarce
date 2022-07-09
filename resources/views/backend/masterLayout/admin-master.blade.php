@@ -63,6 +63,9 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
     <div class="wrapper">
 
         @include('backend.include.profile.profile')
@@ -171,7 +174,12 @@
     <script src="{{ asset('public/admin/plugins/jquiry-from-validator/jquiry_form_validator.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('public/admin/dist/js/demo.js') }}"></script>
-
+    <script>
+        window.onload = function() {
+            $('.wrapper').css('display', 'block');
+            $('#content').fadeOut(1000).css('display', 'none');
+        }
+    </script>
     @include('backend.masterLayout.masterScript')
     @include('backend.masterLayout.customScript')
     {{-- custom script --}}
