@@ -56,7 +56,8 @@
                                                 class="far fa-edit"></i></button>
 
                                         <a href="{{ url('delete-coupon/' . $coupon->id) }}}}"
-                                            class="btn btn-danger btn-sm" id="delete"><i class="far fa-trash-alt"></i></a>
+                                            class="btn btn-danger btn-sm" id="delete"><i
+                                                class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -75,7 +76,8 @@
                     <h3 class="card-title">কুপন যোগ করুন</h3>
                 </div>
                 <div class="card-body">
-                    <form role="form" method="POST" action="{{ route('storeCoupon') }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" action="{{ route('storeCoupon') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -192,7 +194,6 @@
                 changeMonth: true,
                 changeYear: true,
                 dateFormat: 'yy-mm-dd',
-                minDate: (new Date()),
             });
             $('.getCouponData').click(function() {
                 var id = $(this).data("id");

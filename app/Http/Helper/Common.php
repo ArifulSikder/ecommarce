@@ -119,7 +119,6 @@ function getUserType($user_user){
 
 //  user role check
 
-    
 function role_check($user_id){
   return $hasRole=DB::table('model_has_roles')->where(['model_id'=>$user_id])->first();
 }

@@ -1,4 +1,15 @@
 <?php return array (
+  'barryvdh/laravel-debugbar' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Debugbar' => 'Barryvdh\\Debugbar\\Facades\\Debugbar',
+    ),
+  ),
   'bumbummen99/shoppingcart' => 
   array (
     'providers' => 
@@ -79,6 +90,13 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'nunomaduro/termwind' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
   'spatie/laravel-ignition' => 
