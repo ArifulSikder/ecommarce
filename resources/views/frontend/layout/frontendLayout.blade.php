@@ -12,8 +12,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset(logo()->main_logo) }}">
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/frontend/vendor/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/vendor/animate/animate.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('public/admin/plugins/select2/css/select2.min.css') }}">

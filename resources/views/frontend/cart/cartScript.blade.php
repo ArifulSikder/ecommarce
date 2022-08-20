@@ -531,6 +531,7 @@
                   type: "POST",
                   url: "{{ url('have-coupon') }}",
                   data: {
+                      _token: "{{ csrf_token() }}",
                       coupon_name: coupon_name,
                   },
                   headers: {
