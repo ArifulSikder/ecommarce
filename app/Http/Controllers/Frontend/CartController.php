@@ -69,6 +69,7 @@ class CartController extends Controller
 
     //product remove from cart
     function productRemove(Request $request){
+        $request->session()->forget("coupon");
         $cart = Cart::remove($request->rowId);
         if ($cart == false) {
             $notification = ([
