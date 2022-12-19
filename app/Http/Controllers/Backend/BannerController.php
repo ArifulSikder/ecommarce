@@ -7,7 +7,7 @@ use App\Models\Banner;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller
 {
