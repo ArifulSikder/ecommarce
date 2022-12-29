@@ -108,8 +108,8 @@
                                             <div class="product text-center">
                                                 <figure class="product-media">
                                                     <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}"
-                                                            alt="product" width="280" height="315"
+                                                        <img src="{{ asset($product->product_thumbnail) }}" alt="product"
+                                                            width="280" height="315"
                                                             style="background-color: #f5f5f5;" />
                                                     </a>
                                                     <div class="product-label-group">
@@ -170,230 +170,91 @@
                                 </div>
                             </section>
                             {{-- cat wise product index zero --}}
-                            <section class="product-wrapper mb-8">
-                                <h2 class="title title-line title-underline with-link appear-animate"
-                                    data-animation-options="{'delay': '.3s'}">
-                                    {{ $singleCategory->skip(0)->first()->category_name }}
-                                </h2>
-                                <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                                    @foreach (catWiseProducts($singleCategory->skip(0)->first()->id)->take(4) as $product)
-                                        {{-- @if ($product->category_id) --}}
-                                        <div class="col-md-3 col-6 mb-4">
-                                            <div class="product text-center">
-                                                <figure class="product-media">
-                                                    <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}"
-                                                            alt="product" width="280" height="315"
-                                                            style="background-color: #f5f5f5;" />
-                                                    </a>
-                                                    <div class="product-label-group">
-                                                        <label class="product-label label-new">নতুন</label>
-                                                        @if ($product->product_discount > 0)
-                                                            <label class="product-label label-sale">
-                                                                {{ banglaNumber($product->product_discount) }}% off
-                                                            </label>
-                                                        @endif
 
-                                                    </div>
-                                                    <div class="product-action-vertical">
-                                                        <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" title="Add to cart"><i
-                                                                class="d-icon-bag"></i></button>
-                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
+                            @php
+                                $categories = $singleCategory->get();
+                                $length = $categories->count();
+                            @endphp
+                            @for ($i = 0; $i < $length; $i++)
+                                <section class="product-wrapper mb-8">
+                                    <h2 class="title title-line title-underline with-link appear-animate"
+                                        data-animation-options="{'delay': '.3s'}">
+                                        {{ $categories[$i]->category_name }}
+                                    </h2>
+                                    <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
+                                        @forelse (catWiseProducts($categories[$i]->id)->take(4) as $product)
+                                            {{-- @if ($product->category_id) --}}
+                                            <div class="col-md-3 col-6 mb-4">
+                                                <div class="product text-center">
+                                                    <figure class="product-media">
+                                                        <a href="{{ url('_' . $product->product_slug) }}">
+                                                            <img src="{{ asset($product->product_thumbnail) }}"
+                                                                alt="product" width="280" height="315"
+                                                                style="background-color: #f5f5f5;" />
+                                                        </a>
+                                                        <div class="product-label-group">
+                                                            <label class="product-label label-new">নতুন</label>
+                                                            @if ($product->product_discount > 0)
+                                                                <label class="product-label label-sale">
+                                                                    {{ banglaNumber($product->product_discount) }}% off
+                                                                </label>
+                                                            @endif
+
+                                                        </div>
+                                                        <div class="product-action-vertical">
+                                                            <button class="btn-product-icon ViewProduct"
+                                                                id="{{ $product->id }}" title="Add to cart"><i
+                                                                    class="d-icon-bag"></i></button>
+                                                            {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
                                                             class="btn-product-icon AddToWishList"
                                                             title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
-                                                    </div>
-                                                    <div class="product-action">
-                                                        <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product" title="Quick View">দ্রুত
-                                                            দেখুন</a>
-                                                    </div>
-                                                </figure>
-                                                <div class="product-details">
-                                                    <div class="product-cat"><a
-                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
-                                                    </div>
-                                                    <h3 class="product-name">
-                                                        <a
-                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
-                                                    </h3>
-                                                    @if ($product->product_discount > 0)
-                                                        <div class="product-price">
-                                                            <ins class="new-price">৳
-                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
-                                                                class="old-price">৳
-                                                                {{ banglaNumber($product->product_price) }}/-</del>
                                                         </div>
-                                                    @else
-                                                        <div class="product-price">
-                                                            <ins class="new-price">৳
-                                                                {{ banglaNumber($product->product_price) }}/-
-                                                            </ins>
+                                                        <div class="product-action">
+                                                            <a href="{{ url('_' . $product->product_slug) }}"
+                                                                class="btn-product" title="Quick View">দ্রুত
+                                                                দেখুন</a>
                                                         </div>
-                                                    @endif
-                                                    <div class="ratings-container">
-                                                        {{-- <div class="ratings-full">
+                                                    </figure>
+                                                    <div class="product-details">
+                                                        <div class="product-cat"><a
+                                                                href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
+                                                        </div>
+                                                        <h3 class="product-name">
+                                                            <a
+                                                                href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                        </h3>
+                                                        @if ($product->product_discount > 0)
+                                                            <div class="product-price">
+                                                                <ins class="new-price">৳
+                                                                    {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
+                                                                    class="old-price">৳
+                                                                    {{ banglaNumber($product->product_price) }}/-</del>
+                                                            </div>
+                                                        @else
+                                                            <div class="product-price">
+                                                                <ins class="new-price">৳
+                                                                    {{ banglaNumber($product->product_price) }}/-
+                                                                </ins>
+                                                            </div>
+                                                        @endif
+                                                        <div class="ratings-container">
+                                                            {{-- <div class="ratings-full">
                                                             <span class="ratings" style="width:80%"></span>
                                                             <span class="tooltiptext tooltip-top"></span>
                                                         </div> --}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        {{-- @endif --}}
-                                    @endforeach
-                                </div>
-                            </section>
-                            {{-- cat wise product index one --}}
-                            <section class="product-wrapper mb-8">
-                                <h2 class="title title-line title-underline with-link appear-animate"
-                                    data-animation-options="{'delay': '.3s'}">
-                                    {{ $singleCategory->skip(1)->first()->category_name }}
-                                </h2>
-                                <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                                    @foreach (catWiseProducts($singleCategory->skip(1)->first()->id)->take(4) as $product)
-                                        {{-- @if ($product->category_id) --}}
-                                        <div class="col-md-3 col-6 mb-4">
-                                            <div class="product text-center">
-                                                <figure class="product-media">
-                                                    <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}"
-                                                            alt="product" width="280" height="315"
-                                                            style="background-color: #f5f5f5;" />
-                                                    </a>
-                                                    <div class="product-label-group">
-                                                        <label class="product-label label-new">নতুন</label>
-                                                        @if ($product->product_discount > 0)
-                                                            <label class="product-label label-sale">
-                                                                {{ banglaNumber($product->product_discount) }}% off
-                                                            </label>
-                                                        @endif
+                                            {{-- @endif --}}
+                                        @empty
+                                        @endforelse
 
-                                                    </div>
-                                                    <div class="product-action-vertical">
-                                                        <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" title="Add to cart"><i
-                                                                class="d-icon-bag"></i></button>
-                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
-                                                            class="btn-product-icon AddToWishList"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
-                                                    </div>
-                                                    <div class="product-action">
-                                                        <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product" title="Quick View">দ্রুত
-                                                            দেখুন</a>
-                                                    </div>
-                                                </figure>
-                                                <div class="product-details">
-                                                    <div class="product-cat"><a
-                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
-                                                    </div>
-                                                    <h3 class="product-name">
-                                                        <a
-                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
-                                                    </h3>
-                                                    @if ($product->product_discount > 0)
-                                                        <div class="product-price">
-                                                            <ins class="new-price">৳
-                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
-                                                                class="old-price">৳
-                                                                {{ banglaNumber($product->product_price) }}/-</del>
-                                                        </div>
-                                                    @else
-                                                        <div class="product-price">
-                                                            <ins class="new-price">৳
-                                                                {{ banglaNumber($product->product_price) }}/-
-                                                            </ins>
-                                                        </div>
-                                                    @endif
-                                                    <div class="ratings-container">
-                                                        <div class="ratings-full">
-                                                            <span class="ratings" style="width:80%"></span>
-                                                            <span class="tooltiptext tooltip-top"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- @endif --}}
-                                    @endforeach
-                                </div>
-                            </section>
-                            {{-- cat wise product index two --}}
-                            <section class="product-wrapper mb-8">
-                                <h2 class="title title-line title-underline with-link appear-animate"
-                                    data-animation-options="{'delay': '.3s'}">
-                                    {{ $singleCategory->skip(2)->first()->category_name }}
-                                </h2>
-                                <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                                    @foreach (catWiseProducts($singleCategory->skip(2)->first()->id)->take(4) as $product)
-                                        {{-- @if ($product->category_id) --}}
-                                        <div class="col-md-3 col-6 mb-4">
-                                            <div class="product text-center">
-                                                <figure class="product-media">
-                                                    <a href="{{ url('_' . $product->product_slug) }}">
-                                                        <img src="{{ asset($product->product_thumbnail) }}"
-                                                            alt="product" width="280" height="315"
-                                                            style="background-color: #f5f5f5;" />
-                                                    </a>
-                                                    <div class="product-label-group">
-                                                        <label class="product-label label-new">নতুন</label>
-                                                        @if ($product->product_discount > 0)
-                                                            <label class="product-label label-sale">
-                                                                {{ banglaNumber($product->product_discount) }}% off
-                                                            </label>
-                                                        @endif
+                                    </div>
+                                </section>
+                            @endfor
 
-                                                    </div>
-                                                    <div class="product-action-vertical">
-                                                        <button class="btn-product-icon ViewProduct"
-                                                            id="{{ $product->id }}" title="Add to cart"><i
-                                                                class="d-icon-bag"></i></button>
-                                                        {{-- <button id="{{ $product->id }}" authId='{{ Auth::id() }}'
-                                                            class="btn-product-icon AddToWishList"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></button> --}}
-                                                    </div>
-                                                    <div class="product-action">
-                                                        <a href="{{ url('_' . $product->product_slug) }}"
-                                                            class="btn-product" title="Quick View">দ্রুত
-                                                            দেখুন</a>
-                                                    </div>
-                                                </figure>
-                                                <div class="product-details">
-                                                    <div class="product-cat"><a
-                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->category->category_name }}</a>
-                                                    </div>
-                                                    <h3 class="product-name">
-                                                        <a
-                                                            href="{{ url('_' . $product->product_slug) }}">{{ $product->product_name }}</a>
-                                                    </h3>
-                                                    @if ($product->product_discount > 0)
-                                                        <div class="product-price">
-                                                            <ins class="new-price">৳
-                                                                {{ banglaNumber($product->product_price - ($product->product_price * $product->product_discount) / 100) }}/-</ins><del
-                                                                class="old-price">৳
-                                                                {{ banglaNumber($product->product_price) }}/-</del>
-                                                        </div>
-                                                    @else
-                                                        <div class="product-price">
-                                                            <ins class="new-price">৳
-                                                                {{ banglaNumber($product->product_price) }}/-
-                                                            </ins>
-                                                        </div>
-                                                    @endif
-                                                    <div class="ratings-container">
-                                                        <div class="ratings-full">
-                                                            <span class="ratings" style="width:80%"></span>
-                                                            <span class="tooltiptext tooltip-top"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- @endif --}}
-                                    @endforeach
-                                </div>
-                            </section>
+
                             @include('frontend.include.latestProduct')
 
                             @include('frontend.include.brands')

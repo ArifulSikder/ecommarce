@@ -34,7 +34,7 @@ class HomeController extends Controller
         } else {
             $products = $query->with('category')->where('category_id',$visitor->category_id)->paginate(12); 
         }
-        $singleCategory = Category::where(['status' => 1]);
+        $singleCategory = Category::where('status', 1);
         $banners = Banner::with('product')->where(['status' => 1, 'active_status' => 1])->get();
         return view('frontend.home.index', compact('banners',  'products', 'singleCategory'));
     }
